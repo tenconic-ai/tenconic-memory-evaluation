@@ -1,11 +1,13 @@
 """Leaderboard joins saved evidence and a published score snapshot without partial ranks."""
 
 import importlib.util
+import io
 import json
 import math
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
@@ -93,8 +95,8 @@ class LeaderboardTest(unittest.TestCase):
         self.assertIn("System 2", panel["unranked_missing"])
         self.assertNotIn("System 2", [row["system"] for row in panel["ranked"]])
         document = builder.markdown(result)
-        self.assertIn("6개 패널", document)
-        self.assertIn("63.1407", document)
+        self.assertIn("all six panel scores", document)
+        self.assertIn("unrounded question-level scores", document)
 
     def test_beam_two_to_one_weighting_and_weight_sums(self):
         counts = (4, 2, 400, 200, 1, 1)
@@ -124,6 +126,39 @@ class LeaderboardTest(unittest.TestCase):
                                    for p in w["panel_weights"]), 1)
         self.assertAlmostEqual(beam["panel_weights"][0]["effective_weight"], 2 / 15)
         self.assertAlmostEqual(beam["panel_weights"][1]["effective_weight"], 1 / 15)
+
+    def test_markdown_languages_share_scores_and_link_to_matching_documents(self):
+        result = self.build()
+        english = builder.markdown(result)
+        korean = builder.markdown(result, language="ko")
+        self.assertEqual(english, builder.markdown(result, language="en"))
+        self.assertIn("[Home](README.md) | [Methodology](METHODOLOGY.md) | [Korean](LEADERBOARD.ko.md)", english)
+        self.assertIn("[홈](README.ko.md) | [평가 방법](METHODOLOGY.ko.md) | [English](LEADERBOARD.md)", korean)
+        self.assertIn("# Public comparison leaderboard", english)
+        self.assertIn("# 공개 비교 리더보드", korean)
+        self.assertIn("Recalculated from saved question records", english)
+        self.assertIn("문항별 저장 기록 재계산", korean)
+        self.assertNotIn("문항 수 가중", english)
+        self.assertIn("| 1 | Tenconic | 50.0000 |", english)
+        self.assertIn("| 1 | Tenconic | 50.0000 |", korean)
+        self.assertEqual(english.count("| 1 | Tenconic | 50.0000 |"),
+                         korean.count("| 1 | Tenconic | 50.0000 |"))
+        with self.assertRaisesRegex(ValueError, "unsupported language"):
+            builder.markdown(result, language="fr")
+
+    def test_cli_language_defaults_to_english_and_does_not_change_json(self):
+        result = self.build()
+        with patch.object(builder, "build", return_value=result):
+            def output(*args):
+                stream = io.StringIO()
+                with redirect_stdout(stream):
+                    self.assertEqual(builder.main(["--root", str(self.root), *args]), 0)
+                return stream.getvalue()
+
+            self.assertIn("# Public comparison leaderboard", output("--markdown"))
+            self.assertIn("# 공개 비교 리더보드", output("--markdown", "--language", "ko"))
+            self.assertEqual(json.loads(output("--json")),
+                             json.loads(output("--json", "--language", "ko")))
 
     def test_rank_swap_ties_and_missing_beam_panel_excludes_both(self):
         self.rows[0]["scores"]["locomo"] = 1.0

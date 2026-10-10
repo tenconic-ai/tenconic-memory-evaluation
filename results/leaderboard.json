@@ -7,7 +7,7 @@
     "original_score_precision": "two decimal places on 0-100 scale",
     "answer_model": "gpt-4.1-mini-2025-04-14",
     "judge_model": "gpt-4o-mini-2024-07-18",
-    "note": "Uses the original 2026-10-08 public snapshot cited by the named historical PDF. Published Reference Results are excluded. External raw question records are not in this package. This is not a synchronized controlled rerun. Zep / Graphiti retains the upstream grouping across different deployment routes."
+    "note": "Uses the 2026-10-08 snapshot of OmniMemEval Reproduced Results. Published Reference Results are excluded. External raw question records are not in this package. This is not a synchronized controlled rerun. Zep / Graphiti retains the upstream grouping across different deployment routes."
   },
   "weights": [
     {

@@ -1,18 +1,20 @@
-# 공개 비교 리더보드
+[Home](README.md) | [Methodology](METHODOLOGY.md) | [Korean](LEADERBOARD.ko.md)
 
-Tenconic 점수는 저장된 문항 기록에서 재계산했습니다. 비교 시스템 점수는 공개된 재현 결과의 반올림된 스냅샷입니다.
-두 종합점수는 서로 다른 0–1 지표를 합친 복합점수입니다. 공식 통합 정확도나 동일 조건에서 새로 실행한 순위가 아닙니다.
-문항 수 가중식: Σ(패널 문항 수 × 패널 점수) / 전체 포함 문항 수. 벤치마크 균등 가중식: (LoCoMo + LongMemEval + BEAM + PersonaMem + HaluMem) / 5.
-BEAM 점수는 (400 × BEAM 100K + 200 × BEAM 10M) / 600으로 계산합니다. 두 방법 모두 6개 패널 점수가 모두 있어야 전체 순위에 포함합니다.
+# Public comparison leaderboard
 
-비교 출처: [OmniMemEval 공개 재현 결과](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md) (조회 2026-10-08T09:29:05Z; upstream_reproduced_snapshot)
+Tenconic scores were recalculated from saved question records. Comparison-system scores come from a rounded snapshot of publicly reproduced results.
+Both overall scores combine different 0–1 metrics into composite scores. They are neither an official aggregate accuracy nor a ranking from a new run under identical conditions.
+Question-count weighting: Σ(panel question count × panel score) / total included questions. Equal benchmark weighting: (LoCoMo + LongMemEval + BEAM + PersonaMem + HaluMem) / 5.
+The BEAM score is (400 × BEAM 100K + 200 × BEAM 10M) / 600. Both methods require scores in all six panels for an overall rank.
 
-비교 점수 표기 정밀도: two decimal places on 0-100 scale. 답변 모델: gpt-4.1-mini-2025-04-14; 판정 모델: gpt-4o-mini-2024-07-18.
-Uses the original 2026-10-08 public snapshot cited by the named historical PDF. Published Reference Results are excluded. External raw question records are not in this package. This is not a synchronized controlled rerun. Zep / Graphiti retains the upstream grouping across different deployment routes.
+Comparison source: [OmniMemEval public reproduced results](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md) (retrieved 2026-10-08T09:29:05Z; upstream_reproduced_snapshot)
 
-## 문항 수 가중치
+Comparison-score display precision: two decimal places on 0-100 scale. Answer model: gpt-4.1-mini-2025-04-14; judge model: gpt-4o-mini-2024-07-18.
+Uses the 2026-10-08 snapshot of OmniMemEval Reproduced Results. Published Reference Results are excluded. External raw question records are not in this package. This is not a synchronized controlled rerun. Zep / Graphiti retains the upstream grouping across different deployment routes.
 
-| 벤치마크 | 문항 수 | 가중치 |
+## Question-count weights
+
+| Benchmark | Questions | Weight |
 | --- | ---: | ---: |
 | LoCoMo categories 1-4 | 1540 | 13.8651% |
 | LongMemEval-S cleaned | 500 | 4.5017% |
@@ -20,11 +22,11 @@ Uses the original 2026-10-08 public snapshot cited by the named historical PDF. 
 | BEAM 10M | 200 | 1.8007% |
 | PersonaMem v2 text 32K | 5000 | 45.0167% |
 | HaluMem Medium | 3467 | 31.2145% |
-| 합계 | 11107 | 100.0000% |
+| Total | 11107 | 100.0000% |
 
-## 벤치마크별 두 방식의 가중치
+## Benchmark weights under both methods
 
-| 벤치마크 | 포함 문항 수 | 문항 수 가중치 | 벤치마크 균등 가중치 | 내부 패널 비율 |
+| Benchmark | Included questions | Question-count weight | Equal benchmark weight | Within-benchmark panel shares |
 | --- | ---: | ---: | ---: | --- |
 | LoCoMo | 1540 | 13.8651% | 20.0000% | LoCoMo 100.0000% |
 | LongMemEval | 500 | 4.5017% | 20.0000% | LME 100.0000% |
@@ -32,28 +34,28 @@ Uses the original 2026-10-08 public snapshot cited by the named historical PDF. 
 | PersonaMem | 5000 | 45.0167% | 20.0000% | PersonaMem 100.0000% |
 | HaluMem | 3467 | 31.2145% | 20.0000% | HaluMem 100.0000% |
 
-## 문항 수 가중 전체 순위: 6개 패널 모두 점수가 있는 시스템
+## Question-count weighted overall ranking: systems with all six panel scores
 
-| 순위 | 시스템 | 문항 수 가중 복합점수 (0–100) | 점수 출처 |
+| Rank | System | Question-count weighted composite (0–100) | Score source |
 | ---: | --- | ---: | --- |
-| 1 | MemOS | 63.2854 | 공개 표의 반올림 점수 |
-| 2 | Tenconic | 63.1416 | 문항별 저장 기록 재계산 |
-| 3 | EverOS | 61.9178 | 공개 표의 반올림 점수 |
-| 4 | Hindsight | 61.5374 | 공개 표의 반올림 점수 |
-| 5 | Letta | 60.1003 | 공개 표의 반올림 점수 |
-| 6 | Mem0 | 56.1418 | 공개 표의 반올림 점수 |
-| 7 | Zep / Graphiti | 55.9907 | 공개 표의 반올림 점수 |
-| 8 | Viking | 53.9791 | 공개 표의 반올림 점수 |
-| 9 | mem9 | 53.6926 | 공개 표의 반올림 점수 |
-| 10 | Cognee | 51.6240 | 공개 표의 반올림 점수 |
-| 11 | Supermemory | 50.7572 | 공개 표의 반올림 점수 |
-| 12 | MemMachine | 46.4234 | 공개 표의 반올림 점수 |
+| 1 | MemOS | 63.2854 | Published table's rounded scores |
+| 2 | Tenconic | 63.1416 | Recalculated from saved question records |
+| 3 | EverOS | 61.9178 | Published table's rounded scores |
+| 4 | Hindsight | 61.5374 | Published table's rounded scores |
+| 5 | Letta | 60.1003 | Published table's rounded scores |
+| 6 | Mem0 | 56.1418 | Published table's rounded scores |
+| 7 | Zep / Graphiti | 55.9907 | Published table's rounded scores |
+| 8 | Viking | 53.9791 | Published table's rounded scores |
+| 9 | mem9 | 53.6926 | Published table's rounded scores |
+| 10 | Cognee | 51.6240 | Published table's rounded scores |
+| 11 | Supermemory | 50.7572 | Published table's rounded scores |
+| 12 | MemMachine | 46.4234 | Published table's rounded scores |
 
-## 벤치마크 균등 가중 전체 순위
+## Equal benchmark weighted overall ranking
 
-순위 변화는 문항 수 가중 순위에서 벤치마크 균등 가중 순위로 바뀐 자리 수입니다. 양수는 상승입니다.
+Rank change counts places gained from the question-count weighted rank to the equal benchmark weighted rank; a positive value means a rise.
 
-| 균등 가중 순위 | 시스템 | 균등 가중 점수 (0–100) | 문항 수 가중 순위 | 문항 수 가중 점수 (0–100) | 순위 변화 | 점수 변화 (0–100) |
+| Equal-weight rank | System | Equal-weight score (0–100) | Question-count rank | Question-count score (0–100) | Rank change | Score change (0–100) |
 | ---: | --- | ---: | ---: | ---: | ---: | ---: |
 | 1 | MemOS | 72.6033 | 1 | 63.2854 | +0 | +9.3179 |
 | 2 | Tenconic | 72.5138 | 2 | 63.1416 | +0 | +9.3721 |
@@ -68,17 +70,17 @@ Uses the original 2026-10-08 public snapshot cited by the named historical PDF. 
 | 11 | Cognee | 58.5093 | 10 | 51.6240 | -1 | +6.8854 |
 | 12 | MemMachine | 55.8320 | 12 | 46.4234 | +0 | +9.4086 |
 
-일부 패널 점수가 없는 시스템은 전체 순위에서 제외합니다. 빠진 점수를 0으로 대입하거나 남은 패널에 가중치를 다시 나누지 않습니다.
+Systems missing any panel score are excluded from overall rankings. Missing scores are not set to zero, and the remaining panels are not reweighted.
 
-| 전체 순위 제외 시스템 | 점수 있는 패널 | 포함 문항 수 | 포함 비율 | 빠진 패널 |
+| System excluded from overall rank | Scored panels | Covered questions | Coverage | Missing panels |
 | --- | ---: | ---: | ---: | --- |
 | Memori | 4/6 | 10507 | 94.5980% | BEAM100K, BEAM10M |
 | MemoryLake | 1/6 | 1540 | 13.8651% | LME, BEAM100K, BEAM10M, PersonaMem, HaluMem |
 | Backboard.io | 1/6 | 1540 | 13.8651% | LME, BEAM100K, BEAM10M, PersonaMem, HaluMem |
 
-## 6개 패널 비교표 (전체 점수·순위는 문항 수 가중)
+## Six-panel comparison (overall score and rank use question-count weighting)
 
-| 시스템 | LoCoMo | LME | BEAM100K | BEAM10M | PersonaMem | HaluMem | 문항 수 가중 점수 | 문항 수 가중 순위 | 빠진 패널 |
+| System | LoCoMo | LME | BEAM100K | BEAM10M | PersonaMem | HaluMem | Question-count score | Question-count rank | Missing panels |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | MemOS | 88.8300 | 89.2000 | 66.8700 | 56.7500 | 40.5800 | 80.9100 | 63.2854 | 1 | — |
 | Tenconic | 87.8571 | 86.6000 | 69.6769 | 55.2172 | 36.8400 | 86.4148 | 63.1416 | 2 | — |
@@ -96,123 +98,122 @@ Uses the original 2026-10-08 public snapshot cited by the named historical PDF. 
 | MemoryLake | 72.4900 | — | — | — | — | — | — | — | LME, BEAM100K, BEAM10M, PersonaMem, HaluMem |
 | Backboard.io | 22.4000 | — | — | — | — | — | — | — | LME, BEAM100K, BEAM10M, PersonaMem, HaluMem |
 
-Tenconic의 문항 수 가중 종합점수 63.1416은 반올림 전 문항 점수로 계산하므로, 과거 표에서 패널별 표시값을 다시 가중한 63.1407과 소폭 다릅니다. 공개 비교 시스템의 표시값은 원 출처의 반올림 정밀도를 유지합니다.
+Tenconic's question-count weighted overall score 63.1416 uses unrounded question-level scores. Rounding panel values before aggregation can change the final digits. Published comparison scores retain the source's rounding precision.
 
 ## LoCoMo categories 1-4 (locomo; binary_judge; n=1540)
 
-| 순위 | 시스템 | 점수 (0–100) | 점수 출처 |
+| Rank | System | Score (0–100) | Score source |
 | ---: | --- | ---: | --- |
-| 1 | MemOS | 88.8300 | 공개 표의 반올림 점수 |
-| 2 | Tenconic | 87.8571 | 문항별 저장 기록 재계산 |
-| 3 | Cognee | 83.4800 | 공개 표의 반올림 점수 |
-| 4 | EverOS | 82.7500 | 공개 표의 반올림 점수 |
-| 5 | Hindsight | 81.9900 | 공개 표의 반올림 점수 |
-| 6 | Mem0 | 77.6800 | 공개 표의 반올림 점수 |
-| 7 | Letta | 77.1200 | 공개 표의 반올림 점수 |
-| 8 | MemMachine | 73.9000 | 공개 표의 반올림 점수 |
-| 9 | mem9 | 73.6400 | 공개 표의 반올림 점수 |
-| 10 | Supermemory | 73.5300 | 공개 표의 반올림 점수 |
-| 11 | MemoryLake | 72.4900 | 공개 표의 반올림 점수 |
-| 12 | Viking | 69.3300 | 공개 표의 반올림 점수 |
-| 13 | Zep / Graphiti | 63.8300 | 공개 표의 반올림 점수 |
-| 14 | Memori | 41.3400 | 공개 표의 반올림 점수 |
-| 15 | Backboard.io | 22.4000 | 공개 표의 반올림 점수 |
+| 1 | MemOS | 88.8300 | Published table's rounded scores |
+| 2 | Tenconic | 87.8571 | Recalculated from saved question records |
+| 3 | Cognee | 83.4800 | Published table's rounded scores |
+| 4 | EverOS | 82.7500 | Published table's rounded scores |
+| 5 | Hindsight | 81.9900 | Published table's rounded scores |
+| 6 | Mem0 | 77.6800 | Published table's rounded scores |
+| 7 | Letta | 77.1200 | Published table's rounded scores |
+| 8 | MemMachine | 73.9000 | Published table's rounded scores |
+| 9 | mem9 | 73.6400 | Published table's rounded scores |
+| 10 | Supermemory | 73.5300 | Published table's rounded scores |
+| 11 | MemoryLake | 72.4900 | Published table's rounded scores |
+| 12 | Viking | 69.3300 | Published table's rounded scores |
+| 13 | Zep / Graphiti | 63.8300 | Published table's rounded scores |
+| 14 | Memori | 41.3400 | Published table's rounded scores |
+| 15 | Backboard.io | 22.4000 | Published table's rounded scores |
 
 ## LongMemEval-S cleaned (lme; binary_judge; n=500)
 
-| 순위 | 시스템 | 점수 (0–100) | 점수 출처 |
+| Rank | System | Score (0–100) | Score source |
 | ---: | --- | ---: | --- |
-| 1 | MemOS | 89.2000 | 공개 표의 반올림 점수 |
-| 2 | Tenconic | 86.6000 | 문항별 저장 기록 재계산 |
-| 3 | EverOS | 80.4000 | 공개 표의 반올림 점수 |
-| 4 | Zep / Graphiti | 79.8000 | 공개 표의 반올림 점수 |
-| 5 | mem9 | 78.0000 | 공개 표의 반올림 점수 |
-| 6 | Letta | 77.6700 | 공개 표의 반올림 점수 |
-| 7 | Hindsight | 72.2000 | 공개 표의 반올림 점수 |
-| 8 | Supermemory | 66.0700 | 공개 표의 반올림 점수 |
-| 9 | MemMachine | 63.6000 | 공개 표의 반올림 점수 |
-| 10 | Viking | 61.0700 | 공개 표의 반올림 점수 |
-| 11 | Mem0 | 56.0000 | 공개 표의 반올림 점수 |
-| 12 | Cognee | 51.8000 | 공개 표의 반올림 점수 |
-| 13 | Memori | 20.8000 | 공개 표의 반올림 점수 |
+| 1 | MemOS | 89.2000 | Published table's rounded scores |
+| 2 | Tenconic | 86.6000 | Recalculated from saved question records |
+| 3 | EverOS | 80.4000 | Published table's rounded scores |
+| 4 | Zep / Graphiti | 79.8000 | Published table's rounded scores |
+| 5 | mem9 | 78.0000 | Published table's rounded scores |
+| 6 | Letta | 77.6700 | Published table's rounded scores |
+| 7 | Hindsight | 72.2000 | Published table's rounded scores |
+| 8 | Supermemory | 66.0700 | Published table's rounded scores |
+| 9 | MemMachine | 63.6000 | Published table's rounded scores |
+| 10 | Viking | 61.0700 | Published table's rounded scores |
+| 11 | Mem0 | 56.0000 | Published table's rounded scores |
+| 12 | Cognee | 51.8000 | Published table's rounded scores |
+| 13 | Memori | 20.8000 | Published table's rounded scores |
 
-점수 없음 (순위 제외): MemoryLake, Backboard.io
+No score (unranked): MemoryLake, Backboard.io
 
 ## BEAM 100K (beam100k; beam_nugget_mean; n=400)
 
-| 순위 | 시스템 | 점수 (0–100) | 점수 출처 |
+| Rank | System | Score (0–100) | Score source |
 | ---: | --- | ---: | --- |
-| 1 | Viking | 70.7600 | 공개 표의 반올림 점수 |
-| 2 | Mem0 | 70.4100 | 공개 표의 반올림 점수 |
-| 3 | Hindsight | 70.2200 | 공개 표의 반올림 점수 |
-| 4 | Tenconic | 69.6769 | 문항별 저장 기록 재계산 |
-| 5 | Letta | 69.2200 | 공개 표의 반올림 점수 |
-| 6 | Zep / Graphiti | 68.7000 | 공개 표의 반올림 점수 |
-| 7 | MemOS | 66.8700 | 공개 표의 반올림 점수 |
-| 8 | Supermemory | 65.9800 | 공개 표의 반올림 점수 |
-| 9 | mem9 | 65.7500 | 공개 표의 반올림 점수 |
-| 10 | MemMachine | 64.8000 | 공개 표의 반올림 점수 |
-| 11 | Cognee | 59.3000 | 공개 표의 반올림 점수 |
-| 12 | EverOS | 58.6400 | 공개 표의 반올림 점수 |
+| 1 | Viking | 70.7600 | Published table's rounded scores |
+| 2 | Mem0 | 70.4100 | Published table's rounded scores |
+| 3 | Hindsight | 70.2200 | Published table's rounded scores |
+| 4 | Tenconic | 69.6769 | Recalculated from saved question records |
+| 5 | Letta | 69.2200 | Published table's rounded scores |
+| 6 | Zep / Graphiti | 68.7000 | Published table's rounded scores |
+| 7 | MemOS | 66.8700 | Published table's rounded scores |
+| 8 | Supermemory | 65.9800 | Published table's rounded scores |
+| 9 | mem9 | 65.7500 | Published table's rounded scores |
+| 10 | MemMachine | 64.8000 | Published table's rounded scores |
+| 11 | Cognee | 59.3000 | Published table's rounded scores |
+| 12 | EverOS | 58.6400 | Published table's rounded scores |
 
-점수 없음 (순위 제외): Memori, MemoryLake, Backboard.io
+No score (unranked): Memori, MemoryLake, Backboard.io
 
 ## BEAM 10M (beam10m; beam_nugget_mean; n=200)
 
-| 순위 | 시스템 | 점수 (0–100) | 점수 출처 |
+| Rank | System | Score (0–100) | Score source |
 | ---: | --- | ---: | --- |
-| 1 | Hindsight | 59.7500 | 공개 표의 반올림 점수 |
-| 2 | Viking | 58.1400 | 공개 표의 반올림 점수 |
-| 3 | mem9 | 57.3000 | 공개 표의 반올림 점수 |
-| 4 | MemOS | 56.7500 | 공개 표의 반올림 점수 |
-| 5 | Zep / Graphiti | 56.1100 | 공개 표의 반올림 점수 |
-| 6 | Cognee | 56.0200 | 공개 표의 반올림 점수 |
-| 7 | Tenconic | 55.2172 | 문항별 저장 기록 재계산 |
-| 8 | Supermemory | 52.4900 | 공개 표의 반올림 점수 |
-| 9 | Letta | 52.3000 | 공개 표의 반올림 점수 |
-| 10 | MemMachine | 51.9000 | 공개 표의 반올림 점수 |
-| 11 | EverOS | 47.7300 | 공개 표의 반올림 점수 |
-| 12 | Mem0 | 43.3300 | 공개 표의 반올림 점수 |
+| 1 | Hindsight | 59.7500 | Published table's rounded scores |
+| 2 | Viking | 58.1400 | Published table's rounded scores |
+| 3 | mem9 | 57.3000 | Published table's rounded scores |
+| 4 | MemOS | 56.7500 | Published table's rounded scores |
+| 5 | Zep / Graphiti | 56.1100 | Published table's rounded scores |
+| 6 | Cognee | 56.0200 | Published table's rounded scores |
+| 7 | Tenconic | 55.2172 | Recalculated from saved question records |
+| 8 | Supermemory | 52.4900 | Published table's rounded scores |
+| 9 | Letta | 52.3000 | Published table's rounded scores |
+| 10 | MemMachine | 51.9000 | Published table's rounded scores |
+| 11 | EverOS | 47.7300 | Published table's rounded scores |
+| 12 | Mem0 | 43.3300 | Published table's rounded scores |
 
-점수 없음 (순위 제외): Memori, MemoryLake, Backboard.io
+No score (unranked): Memori, MemoryLake, Backboard.io
 
 ## PersonaMem v2 text 32K (personamem; multiple_choice_saved; n=5000)
 
-| 순위 | 시스템 | 점수 (0–100) | 점수 출처 |
+| Rank | System | Score (0–100) | Score source |
 | ---: | --- | ---: | --- |
-| 1 | MemOS | 40.5800 | 공개 표의 반올림 점수 |
-| 2 | Supermemory | 39.6400 | 공개 표의 반올림 점수 |
-| 3 | Hindsight | 37.9800 | 공개 표의 반올림 점수 |
-| 4 | Tenconic | 36.8400 | 문항별 저장 기록 재계산 |
-| 5 | Mem0 | 36.7600 | 공개 표의 반올림 점수 |
-| 6 | EverOS | 35.9400 | 공개 표의 반올림 점수 |
-| 7 | Letta | 35.1200 | 공개 표의 반올림 점수 |
-| 8 | MemMachine | 34.1400 | 공개 표의 반올림 점수 |
-| 9 | Memori | 33.1600 | 공개 표의 반올림 점수 |
-| 10 | Zep / Graphiti | 32.3400 | 공개 표의 반올림 점수 |
-| 11 | Viking | 30.8000 | 공개 표의 반올림 점수 |
-| 12 | mem9 | 30.7600 | 공개 표의 반올림 점수 |
-| 13 | Cognee | 26.4600 | 공개 표의 반올림 점수 |
+| 1 | MemOS | 40.5800 | Published table's rounded scores |
+| 2 | Supermemory | 39.6400 | Published table's rounded scores |
+| 3 | Hindsight | 37.9800 | Published table's rounded scores |
+| 4 | Tenconic | 36.8400 | Recalculated from saved question records |
+| 5 | Mem0 | 36.7600 | Published table's rounded scores |
+| 6 | EverOS | 35.9400 | Published table's rounded scores |
+| 7 | Letta | 35.1200 | Published table's rounded scores |
+| 8 | MemMachine | 34.1400 | Published table's rounded scores |
+| 9 | Memori | 33.1600 | Published table's rounded scores |
+| 10 | Zep / Graphiti | 32.3400 | Published table's rounded scores |
+| 11 | Viking | 30.8000 | Published table's rounded scores |
+| 12 | mem9 | 30.7600 | Published table's rounded scores |
+| 13 | Cognee | 26.4600 | Published table's rounded scores |
 
-점수 없음 (순위 제외): MemoryLake, Backboard.io
+No score (unranked): MemoryLake, Backboard.io
 
 ## HaluMem Medium (halumem; binary_judge; n=3467)
 
-| 순위 | 시스템 | 점수 (0–100) | 점수 출처 |
+| Rank | System | Score (0–100) | Score source |
 | ---: | --- | ---: | --- |
-| 1 | EverOS | 88.6600 | 공개 표의 반올림 점수 |
-| 2 | Tenconic | 86.4148 | 문항별 저장 기록 재계산 |
-| 3 | Letta | 85.4300 | 공개 표의 반올림 점수 |
-| 4 | Hindsight | 83.9900 | 공개 표의 반올림 점수 |
-| 5 | Zep / Graphiti | 81.7100 | 공개 표의 반올림 점수 |
-| 6 | MemOS | 80.9100 | 공개 표의 반올림 점수 |
-| 7 | Viking | 77.3900 | 공개 표의 반올림 점수 |
-| 8 | Mem0 | 73.6400 | 공개 표의 반올림 점수 |
-| 9 | mem9 | 72.8000 | 공개 표의 반올림 점수 |
-| 10 | Cognee | 72.6000 | 공개 표의 반올림 점수 |
-| 11 | Supermemory | 52.6100 | 공개 표의 반올림 점수 |
-| 12 | Memori | 49.3800 | 공개 표의 반올림 점수 |
-| 13 | MemMachine | 47.0200 | 공개 표의 반올림 점수 |
+| 1 | EverOS | 88.6600 | Published table's rounded scores |
+| 2 | Tenconic | 86.4148 | Recalculated from saved question records |
+| 3 | Letta | 85.4300 | Published table's rounded scores |
+| 4 | Hindsight | 83.9900 | Published table's rounded scores |
+| 5 | Zep / Graphiti | 81.7100 | Published table's rounded scores |
+| 6 | MemOS | 80.9100 | Published table's rounded scores |
+| 7 | Viking | 77.3900 | Published table's rounded scores |
+| 8 | Mem0 | 73.6400 | Published table's rounded scores |
+| 9 | mem9 | 72.8000 | Published table's rounded scores |
+| 10 | Cognee | 72.6000 | Published table's rounded scores |
+| 11 | Supermemory | 52.6100 | Published table's rounded scores |
+| 12 | Memori | 49.3800 | Published table's rounded scores |
+| 13 | MemMachine | 47.0200 | Published table's rounded scores |
 
-점수 없음 (순위 제외): MemoryLake, Backboard.io
-
+No score (unranked): MemoryLake, Backboard.io

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite this evidence release when using the published records or score calculations."
+type: dataset
+title: "Tenconic Memory Evaluation"
+authors:
+  - name: "Tenconic"
+    website: "https://github.com/tenconic-ai"
+version: "v4-20261010"
+date-released: "2026-10-10"
+url: "https://github.com/tenconic-ai/tenconic-memory-evaluation/releases/tag/v4-20261010"
+repository-code: "https://github.com/tenconic-ai/tenconic-memory-evaluation"
+abstract: "Saved evaluation records for 11,107 questions across five user-memory benchmark families, partial answer disclosure, and offline score-recalculation scripts. This release does not include the Tenconic product implementation."
+keywords:
+  - user memory
+  - evaluation evidence
+  - score reproducibility

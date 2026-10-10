@@ -1,71 +1,87 @@
-# Tenconic — GPT 평가 결과·문항 검토·두 가중 방식 비교 (v3)
+# Tenconic Memory Evaluation
 
-2026-10-10 준비한 공개용 결과 패키지다. 2026-10-06~08에 시작한 마지막 완료 GPT 평가 6개 범위의 **11,107문항**을 담았다. 답변 모델은 `gpt-4.1-mini-2025-04-14`, 판정 모델은 `gpt-4o-mini-2024-07-18`이다. PersonaMem은 객관식 정오 평가이며 판정 모델을 쓰지 않았다.
+**English** | [한국어](README.ko.md)
 
-전체 11,107문항의 ID·채점값과 계산 코드를 제공하며, 저장 답변은 6,100건을 수록한다. LoCoMo·HaluMem 답변 본문 5,007건은 원문 표현을 반복할 가능성과 NC 라이선스의 사업 목적 이용 범위를 고려해 공개본에서 제외했다. 원래 답변은 비공개 원본에 보존하며 각 공개 행의 `answer_disclosure`에 제외 사유를 표시한다. **5,995문항에는 질문·정답을 함께 수록**했고, **5,112문항에는 공식 원문 링크와 문항 위치**를 제공한다. 뒤의 5,112문항은 LoCoMo 1,540문항, HaluMem 3,467문항과 PersonaMem 105문항이다. PersonaMem의 105문항은 원본 벤치마크 문구에서 제공자 키·비공개 경로처럼 보이는 패턴이 발견되어 질문·정답·선택지를 공개본에서 제외했다. 이는 원본 텍스트에 대한 공개 범위 조정이며 실제 사용 가능한 자격 증명이나 실재하는 비공개 경로가 확인되었다는 뜻은 아니다. **Python만으로 점수와 리더보드를 다시 계산할 수 있다. 서버·GPU·API 키는 필요 없다.** 외부 원문 링크를 여는 경우에만 인터넷이 필요하다. 이 패키지는 새로운 답변 생성이나 모델 재채점을 실행하지 않는다.
+Public evaluation evidence for Tenconic's user-memory system: **11,107 scored questions across five benchmark families**, saved answer records where disclosed, and standalone Python tools to reproduce the published score calculations.
 
-| 평가 범위 | 문항 수 | 지표 | 저장 결과 |
+This repository is maintained by [Tenconic](https://github.com/tenconic-ai). It contains evaluation data, documentation, and calculation scripts. The Tenconic product implementation, runtime, model weights, and internal retrieval contexts are not distributed here.
+
+[Results and leaderboards](LEADERBOARD.md) · [Methodology](METHODOLOGY.md) · [Download a release](https://github.com/tenconic-ai/tenconic-memory-evaluation/releases/latest) · [Dataset licenses](THIRD_PARTY_NOTICES.md)
+
+## Results at a glance
+
+These are saved results from completed GPT-based evaluations started on October 6–8, 2026. The answer model was `gpt-4.1-mini-2025-04-14`; model-judged panels used `gpt-4o-mini-2024-07-18`. PersonaMem used multiple-choice correctness without a judge model.
+
+| Evaluation panel | Questions | Metric | Tenconic result |
 | --- | ---: | --- | ---: |
-| LoCoMo 범주 1–4 | 1,540 | 모델 판정 정답률 | 1,353 / 1,540 = **87.8571%** |
-| LongMemEval-S cleaned | 500 | 모델 판정 정답률 | 433 / 500 = **86.6000%** |
-| BEAM 100K | 400 | 질문별 nugget score 평균 | **0.696769** |
-| BEAM 10M | 200 | 질문별 nugget score 평균 | **0.552172** |
-| PersonaMem v2 text 32K | 5,000 | 저장된 객관식 정답률 | 1,842 / 5,000 = **36.8400%** |
-| HaluMem Medium | 3,467 | 모델 판정 정답률 | 2,996 / 3,467 = **86.4148%** |
+| LoCoMo categories 1–4 | 1,540 | Model-judged accuracy | 87.8571% |
+| LongMemEval-S cleaned | 500 | Model-judged accuracy | 86.6000% |
+| BEAM 100K | 400 | Mean per-question nugget score | 0.696769 |
+| BEAM 10M | 200 | Mean per-question nugget score | 0.552172 |
+| PersonaMem v2 text 32K | 5,000 | Saved multiple-choice accuracy | 36.8400% |
+| HaluMem Medium | 3,467 | Model-judged accuracy | 86.4148% |
 
-종합 리더보드는 같은 저장 결과에 두 가지 가중 방식을 적용한다. **문항 수 가중**은 `Σ(범위별 점수 × 범위별 문항 수) / 11,107`이며 Tenconic은 **63.1416 / 100, 2위**다. **벤치마크 균등 가중**은 LoCoMo·LongMemEval·BEAM·PersonaMem·HaluMem에 각각 **20%**를 주며 Tenconic은 **72.5138 / 100, 2위**다. 두 방식 모두 6개 패널의 점수가 있는 12개 시스템을 대상으로 한다. 서로 다른 지표를 결합한 비교용 복합점수이며 공식 통합 정확도가 아니다.
+| Composite method | Tenconic score / 100 | Rank among 12 systems with all six panels |
+| --- | ---: | ---: |
+| Question-count weighted | 63.1416 | 2 |
+| Five-benchmark equal weighted | 72.5138 | 2 |
 
-[리더보드 전체 보기](LEADERBOARD.md)에는 두 방식의 가중치와 계산식, 종합 점수·순위·순위 변동 비교표, 기존 문항 수 가중 순위, 15개 시스템의 6열 비교표, 누락으로 종합 순위에서 제외된 시스템, 6개 평가 범위별 순위가 있다. 비교 시스템은 기존 PDF가 사용한 **2026-10-08 OmniMemEval 공개 재현 결과 스냅샷**을 유지했다. 다른 시스템은 공개 표의 반올림 점수이고 Tenconic은 이번 패키지의 문항별 기록에서 재계산한 값이다. 서로 같은 시점에 통제된 새 대결이나 각 제품의 최대 성능을 의미하지 않는다.
+**Comparison scope:** peer results come from the October 8, 2026 [OmniMemEval Reproduced Results snapshot](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md), using its published rounded values. Tenconic scores are recalculated from this repository's question records. These heterogeneous composites are descriptive comparisons, not an official unified accuracy measure or a newly controlled head-to-head evaluation. Three systems with incomplete panel coverage are excluded from both overall rankings.
 
-BEAM 통합 점수는 **`(400 × BEAM 100K 점수 + 200 × BEAM 10M 점수) / 600`**이다. 균등 가중 종합점수는 **`(LoCoMo + LongMemEval + BEAM 통합 + PersonaMem + HaluMem) / 5`**다. 따라서 BEAM 내부는 문항 수에 따른 **2:1**, 전체에서 100K·10M의 실질 가중치는 각각 **13.3333%·6.6667%**다. 6개 패널을 각각 같은 비중으로 평균하거나 BEAM을 두 번 세지 않는다. 질문·정답 공개 범위와 관계없이 전체 평가 문항 수를 기준으로 한다. LoCoMo 범주 5의 446문항은 기존 평가 범위에 포함되지 않는다. 지표와 포함 범위는 각 벤치마크 원 논문의 고유 평가 프로토콜과 구분한다.
+The question-count composite is `sum(panel_score × panel_questions) / 11,107`. The equal-weight composite gives each of LoCoMo, LongMemEval, BEAM, PersonaMem, and HaluMem 20%. BEAM is first pooled as `(400 × BEAM_100K + 200 × BEAM_10M) / 600`. See the [full leaderboards](LEADERBOARD.md) for formulas, weights, rank changes, and all panel results.
 
-## 질문·정답 공개 범위
+## Reproduce the score calculations
 
-| 데이터 | 문항 수 | 패키지에서 확인할 내용 | 데이터 라이선스 |
-| --- | ---: | --- | --- |
-| LongMemEval-S cleaned | 500 | 질문·정답·GPT 답변·판정 | MIT |
-| BEAM 100K / 10M | 600 | 질문·정답·GPT 답변·루브릭·저장된 세부 채점 | CC BY-SA 4.0 |
-| PersonaMem v2 | 5,000 | 4,895문항: 질문·당시 선택지·정답 선택지; 105문항: 공식 원문 링크·문항 위치. 전 행에 저장 답변·정오 | CC BY 4.0 |
-| LoCoMo | 1,540 | 저장 판정·공식 원문 링크·문항 위치·답변 제외 고지 | CC BY-NC 4.0 |
-| HaluMem Medium | 3,467 | 저장 판정·공식 원문 링크·문항 위치·답변 제외 고지 | CC BY-NC-ND 4.0 |
-
-이번 배포 용도는 제품 소개·사업 활용을 포함한다. LoCoMo와 HaluMem의 질문·정답은 공식 링크로 대체하고, 두 패널의 저장 GPT 답변 본문도 제외했다. 답변별 침해 여부를 단정하는 조치가 아니라 이번 사업 목적 배포 범위를 제한한 것이다. 비상업 라이선스가 모든 공개를 금지한다는 뜻은 아니다. PersonaMem 105문항은 라이선스와 별개로 원본 문구의 민감 패턴 때문에 같은 링크 방식으로 수록했다. 포함한 원문은 평가 기록의 문구와 값 유형을 보존했으며, 본문 대화나 검색 문맥은 동봉하지 않았다. 원문 접근 방법은 [SOURCE_ACCESS.md](SOURCE_ACCESS.md), 출처와 적용 조건은 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)에 있다.
-
-## 실행
-
-1. ZIP을 풀고 이 README가 있는 폴더에서 터미널을 연다.
-2. Python 3.10 이상으로 다음 명령을 실행한다.
+Download and extract the [latest release](https://github.com/tenconic-ai/tenconic-memory-evaluation/releases/latest), or clone this repository. Run from the repository root with **Python 3.10 or later**:
 
 ```sh
-python scripts/recompute_scores.py --check
+python -B scripts/recompute_scores.py --check
+python -B scripts/build_leaderboard.py --markdown
 ```
 
-macOS/Linux에서 명령 이름이 `python3`이면 `python` 대신 사용한다. 파일 누락, 중복 ID, 잘못된 수치, 질문 수 또는 점수 불일치가 있으면 종료 코드 1을 반환한다. 성공 시 평가군과 범주별 점수를 출력하고 종료 코드 0을 반환한다.
+No additional packages, GPU, server, API key, or network connection are needed for these commands. Use `python3` if that is the Python command on your system. The commands replay saved numerical evidence; they do not generate answers, rerun retrieval, or semantically rejudge responses.
+
+For machine-readable output and the focused tests:
 
 ```sh
-python scripts/recompute_scores.py --check --json
-python scripts/build_leaderboard.py --markdown
-python scripts/build_leaderboard.py --json
+python -B scripts/recompute_scores.py --check --json
+python -B scripts/build_leaderboard.py --json
 python -B -m unittest discover -s tests -p "test_*.py" -v
 ```
 
-문항별 재계산 결과는 [recomputed-scores.json](results/recomputed-scores.json), 리더보드 수치는 [leaderboard.json](results/leaderboard.json)에 저장되어 있다. 마지막 명령은 계산기와 리더보드의 경계 조건을 검사한다. 외부 패키지 설치는 필요 없다. 일부 시스템의 누락 점수를 0으로 채우거나 남은 범위에 가중치를 다시 나누지 않는다.
+The calculator returns a nonzero exit code for invalid records or a mismatch with expected counts or scores. Expected outputs are in [recomputed-scores.json](results/recomputed-scores.json) and [leaderboard.json](results/leaderboard.json). Korean leaderboard output is available with `--markdown --language ko`.
 
-## 내용
+## What is included
 
-- [평가 방법과 한계](METHODOLOGY.md): 평가 범위, 모델, 검색 설정, 점수 정의, 재현 가능한 범위.
-- [리더보드](LEADERBOARD.md): 평가 범위별 순위, 문항 수 가중·벤치마크 균등 가중 종합 순위와 비교.
-- [문항 데이터 구조](DATA_SCHEMA.md): 원본 위치 식별자와 채점값의 의미.
-- [원문 접근 안내](SOURCE_ACCESS.md): 라이선스별 수록 범위와 외부 원본에서 문항을 찾는 방법.
-- [평가 범위와 보존 점수](config/suite.json), [실험 설정](config/evaluation-settings.json), [보존 프롬프트 템플릿](config/prompt-templates.json).
-- 문항별 JSONL: [LoCoMo](data/locomo.jsonl), [LongMemEval](data/lme.jsonl), [BEAM 100K](data/beam100k.jsonl), [BEAM 10M](data/beam10m.jsonl), [PersonaMem](data/personamem.jsonl), [HaluMem](data/halumem.jsonl).
-- [문항 점수 계산 코드](scripts/recompute_scores.py), [리더보드 계산 코드](scripts/build_leaderboard.py), [공개 비교 점수](config/public-reference-scores.json).
-- [출처·라이선스 안내](THIRD_PARTY_NOTICES.md).
+| Material | Public coverage |
+| --- | --- |
+| Scoring records and source locations | All 11,107 evaluated questions |
+| Saved answers | 6,100: LongMemEval, BEAM, and PersonaMem |
+| Original question/reference pairs | 5,995 |
+| Question rows represented by official source links | 5,112 |
+| Withheld answer bodies | 5,007: all LoCoMo and HaluMem rows |
 
-## 읽을 때 필요한 구분
+LoCoMo and HaluMem question/reference text and saved answer bodies are excluded from this business-purpose distribution because of the datasets' noncommercial license scope and possible repetition of source expression. Their numerical judgments remain available for score replay. The excluded Tenconic answers cannot be inspected through this package or the upstream question links.
 
-LongMemEval·BEAM·PersonaMem의 저장 답변 6,100건을 수록했다. LoCoMo·HaluMem의 5,007건은 채점 수치 재계산만 가능하며, 이 패키지와 원문 링크만으로 Tenconic 답변 본문을 검토할 수는 없다. PersonaMem 답변은 당시 파서가 저장한 정규화 선택지이며 전체 원시 응답이 아니다. 4,895문항의 공개 선택지·정답으로 내용을 검토할 수 있으나, 나머지 105문항은 공식 원본 링크가 필요하다. 저장되지 않은 전체 원시 응답에 대한 파서의 대체 판정 경로까지 재실행할 수는 없다. LoCoMo·LongMemEval·HaluMem에는 정오 판정만 보존되어 있어 판정 이유를 새로 만들어 넣지 않았다. BEAM은 저장된 루브릭 항목 점수와 사건 위치로 점수를 다시 계산하며, 저장된 채점 이유도 함께 제공한다. 답변을 공개한 문항은 원문과 답변을 읽어 채점의 의미적 타당성을 따로 검토할 수 있다. 답변이 제외된 두 패널에는 이 검토 가능성을 주장하지 않는다.
+An additional 105 PersonaMem rows omit question/reference/options text because the benchmark source contains credential-shaped or private-path patterns. This does not establish that those strings are live credentials. All 5,000 PersonaMem answers and scores remain included; answers are saved normalized choices, not complete raw model responses. Original private records remain preserved. Details and attribution are in [Source access](SOURCE_ACCESS.md) and [Third-party notices](THIRD_PARTY_NOTICES.md).
 
-`source_ref`로 해당 시점 원본에서 문항 위치를 찾을 수 있으나 업스트림의 이후 수정으로 인덱스가 달라질 수 있다. 제품 소스코드, 제품 실행 파일, 모델 가중치, 비밀키, 내부 검색 문맥과 원시 실행 로그는 포함하지 않는다. 재계산 대상은 위 여섯 주 지표와 두 방식의 종합점수이며 보조 lexical F1 등 원래 보고서의 모든 지표를 다루지는 않는다. 내부 검토용 PDF 원본은 보존하고, 그 비교표에 사용된 공개 수치와 문항 수 가중 계산을 유지했다. 균등 가중 비교는 v3에서 추가했다. 가중 방식에 따른 점수 차이는 동일한 저장 결과의 집계 방식 차이다.
+## Documentation and files
 
-최종 저장 결과의 문항 누락은 0건이다. 이는 실행 중 중단이나 재시도가 없었다는 뜻이 아니다. 과거 원본과 실패 기록은 보존했으며, 이번 패키지 준비 과정에서는 새 답변 생성·재채점·업로드를 수행하지 않았다.
+| Start here | Contents |
+| --- | --- |
+| [Leaderboard](LEADERBOARD.md) | Two composite methods, weight comparison, coverage, and six panel rankings |
+| [Methodology](METHODOLOGY.md) | Evaluation scope, models, settings, metric definitions, and limitations |
+| [Data schema](DATA_SCHEMA.md) | JSONL fields, source references, and omission metadata |
+| [Source access](SOURCE_ACCESS.md) | How to locate original benchmark questions |
+| [Licensing](LICENSE.md) and [third-party notices](THIRD_PARTY_NOTICES.md) | Rights and attribution by material |
+| [Evaluation settings](config/evaluation-settings.json) and [prompt templates](config/prompt-templates.json) | Preserved historical configuration and selected prompt strings |
+| [Suite](config/suite.json), [data](data/), and [results](results/) | Included panels, question records, and calculated outputs |
+| [Calculation scripts](scripts/) and [tests](tests/) | Standard-library Python tools and their checks |
+
+## Scope and reuse
+
+This release supports inspection of disclosed records and independent recalculation of saved scores. It does not reproduce the full Tenconic product or a fresh end-to-end benchmark run. LoCoMo category 5 and auxiliary metrics outside the six listed primary scores are out of scope. Complete final question coverage does not imply that the original execution had no interruptions or retries.
+
+GitHub's **“Source code (zip/tar.gz)”** links are automatically generated archives of the files in this repository at the release tag. Here, “source code” means the included evaluation calculation scripts and accompanying repository files; it does not mean that Tenconic's product source has been released. The separately attached ZIP is the curated evaluation package.
+
+There is no repository-wide open-source license grant. Third-party materials retain their stated licenses; see [LICENSE.md](LICENSE.md). To cite the evidence release, use [CITATION.cff](CITATION.cff). Report reproducibility issues or proposed corrections through [GitHub Issues](https://github.com/tenconic-ai/tenconic-memory-evaluation/issues), following the [contribution notes](CONTRIBUTING.md).

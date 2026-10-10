@@ -1,35 +1,37 @@
-# 평가 방법과 해석 범위
+**English** | [한국어](METHODOLOGY.ko.md)
 
-## 평가 대상
+# Evaluation methodology and interpretation
 
-이 패키지는 [OmniMemEval](https://github.com/MemTensor/OmniMemEval) 경로에서 보존된 Tenconic의 마지막 완료 GPT 평가 여섯 패널, 총 11,107문항의 저장 채점값과 위치를 공개한다. 저장 답변은 LongMemEval·BEAM·PersonaMem의 6,100건을 수록하고 LoCoMo·HaluMem의 5,007건은 제외한다. 두 NC 데이터셋의 원문 표현을 답변이 반복할 가능성을 고려해 사업 목적 배포 범위를 제한했으며, 모든 원본 답변은 비공개로 보존했다. `answer_disclosure`는 이 제외를 표시한다. 점수와 전체 평가 문항 수는 유지하지만 제외된 답변의 의미적 타당성은 이 패키지에서 검토할 수 없다. 공개한 질문·정답·선택지는 원본 벤치마크 또는 당시 저장 평가 기록에서 가져왔으며 새로 생성하지 않았다. 패널별 공개 범위는 [SOURCE_ACCESS.md](SOURCE_ACCESS.md)와 `config/data-disclosure.json`에 기록한다.
+## Scope
 
-| 패널 ID | 평가 범위 | 질문 수 | 저장된 평균 점수 |
+This package publishes the saved scores and question locations for Tenconic's last completed GPT evaluation on the [OmniMemEval](https://github.com/MemTensor/OmniMemEval) path: six panels and 11,107 scored questions. It includes 6,100 saved answers from LongMemEval, BEAM, and PersonaMem. It omits 5,007 answers from LoCoMo and HaluMem because those answers could repeat source wording from datasets with noncommercial (NC) terms and this release serves a business purpose. All original answers remain preserved outside this package. `answer_disclosure` marks the omissions. The scores and full question count remain, but this package cannot support semantic review of the omitted answers. Published questions, references, and options came from the original benchmarks or saved evaluation records; they were not newly generated. See [SOURCE_ACCESS.md](SOURCE_ACCESS.md) and `config/data-disclosure.json` for panel disclosure.
+
+| Panel ID | Evaluation scope | Questions | Saved mean score |
 | --- | --- | ---: | ---: |
-| `locomo` | [LoCoMo](https://github.com/snap-research/locomo) 10개 대화, 범주 1–4; 범주 5의 적대적 질문 446개 제외 | 1,540 | 0.8785714285714286 |
+| `locomo` | [LoCoMo](https://github.com/snap-research/locomo), 10 conversations, categories 1–4; excludes 446 adversarial category 5 questions | 1,540 | 0.8785714285714286 |
 | `lme` | [LongMemEval-S cleaned](https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned) | 500 | 0.866 |
-| `beam100k` | [BEAM 100K](https://huggingface.co/datasets/Mohammadta/BEAM), 20개 대화 | 400 | 0.6967688155496329 |
-| `beam10m` | [BEAM 10M](https://huggingface.co/datasets/Mohammadta/BEAM-10M), 10개 대화 | 200 | 0.5521723765700567 |
-| `personamem` | [PersonaMem-v2](https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2) 32K 범위 | 5,000 | 0.3684 |
+| `beam100k` | [BEAM 100K](https://huggingface.co/datasets/Mohammadta/BEAM), 20 conversations | 400 | 0.6967688155496329 |
+| `beam10m` | [BEAM 10M](https://huggingface.co/datasets/Mohammadta/BEAM-10M), 10 conversations | 200 | 0.5521723765700567 |
+| `personamem` | [PersonaMem-v2](https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2), 32K scope | 5,000 | 0.3684 |
 | `halumem` | [HaluMem Medium](https://huggingface.co/datasets/IAAR-Shanghai/HaluMem/blob/main/HaluMem-Medium.jsonl) | 3,467 | 0.8641476781078743 |
 
-선택된 검색 구성은 로컬 Tenconic 저장·검색 경로, 본문/캡션의 어휘 검색과 Qwen3-Embedding-0.6B Q8 밀집 검색을 결합했다. 후보 결합에는 reciprocal rank fusion 상수 60을 사용하고, Qwen3-Reranker-0.6B Q8로 최대 96개 앵커를 재정렬했다. 최종 문맥은 최대 20개 앵커와 24개 탐색 프로브를 사용했으며, 원본 소스 묶음 및 인접 단위를 함께 배치했다. 로컬 전체 입력 선택 예산은 `o200k_base` 추정 7,168토큰, 검색 문맥 한도는 4,096토큰이었다. 로컬 Ministral 3 8B는 저장·검색 런타임의 의존 모델이며 이 평가의 답변이나 판정을 생성하지 않았다. 관련 설정은 `config/evaluation-settings.json`을 참조한다. 이 패키지에는 검색 엔진 구현이나 원본 대화가 없으므로 검색 결과를 새로 만들거나 검색 충실도를 독립 감사할 수 없다.
+The selected retrieval configuration used Tenconic's local storage/retrieval path, combining lexical search over body text and captions with Qwen3-Embedding-0.6B Q8 dense search. Candidate fusion used reciprocal rank fusion constant 60. Qwen3-Reranker-0.6B Q8 reranked up to 96 anchors. Final context used up to 20 anchors and 24 exploration probes, with original source groups and adjacent units. The local full-input selection budget was 7,168 tokens estimated with `o200k_base`; the retrieved-context cap was 4,096 tokens. Local Ministral 3 8B was a storage/retrieval runtime dependency and generated neither answers nor judgments in this evaluation. See `config/evaluation-settings.json`. The retrieval engine implementation and original conversations are outside this package, so this release cannot regenerate retrieval results or independently audit retrieval fidelity.
 
-답변 모델은 `gpt-4.1-mini-2025-04-14`, 판정 모델은 `gpt-4o-mini-2024-07-18`로 저장 설정에 기록되어 있다. 2026-10-07 보존 하네스의 해당 답변·판정 호출 코드에서는 `temperature=0`을 확인했다. 문항별 실제 요청 캡처를 이 패키지로 확인한 것은 아니며, 코드 스냅샷만으로 후속 실행의 모든 요청 설정을 확정하지 않는다. 근거 범위는 `config/evaluation-settings.json`의 `temperature_evidence`에 적었다. 비공개 원본에는 각 문항의 답변과 해당 채점 결과가 1회씩 저장되어 있다. 공개본의 답변 제외는 이 원본 기록이나 채점값을 바꾸지 않는다. API seed, max_tokens, response_format의 별도 지정은 기록되지 않았다. 공개한 `config/prompt-templates.json`은 2026-10-07 보존 OmniMemEval 하네스에서 선택한 프롬프트 문자열을 JSON으로 변환한 자료이며 변경 고지를 포함한다. 후속 구성의 프롬프트 경로가 같다는 사실만으로 모든 실제 요청의 전체 입력이 그 스냅샷과 같았다고 단정할 수 없다. 보존된 평가 경로는 정답 및 데이터셋 증거를 채점용으로 취급한다. 공개본에는 실제 검색 요청과 전체 문맥이 없어 문항별 입력 분리를 독립적으로 재검증할 수 없다. 이전 로컬 시도로 선택된 구성이라 블라인드 홀드아웃 성능으로 볼 수 없다.
+Saved configuration names `gpt-4.1-mini-2025-04-14` as answer model and `gpt-4o-mini-2024-07-18` as judge. Preserved harness answer/judgment call code dated 2026-10-07 specifies `temperature=0`. This package has no per-question request captures; that code snapshot alone cannot establish every setting of every later request. `config/evaluation-settings.json` records the `temperature_evidence` boundary. The private original has one saved answer and corresponding scoring result per question. Omitting answers here does not change those original records or scores. No separate API `seed`, `max_tokens`, or `response_format` setting was recorded. Published `config/prompt-templates.json` converts selected prompt strings from the 2026-10-07 preserved OmniMemEval harness into JSON and includes a change notice. A matching prompt path in a later configuration does not prove every full request input matched that snapshot. The preserved evaluation path treats reference answers and dataset evidence as scoring inputs. Actual retrieval requests and full contexts are absent here, so question-level input separation cannot be independently rechecked. Earlier local trials informed configuration selection; these scores are not blind holdout performance.
 
-## 저장된 점수의 계산
+## Computing saved scores
 
-`locomo`, `lme`, `halumem`의 공개 행에는 저장된 이진 판정(`evaluation.judgments`)이 있다. 각 질문의 점수는 참 판정 수를 판정 수로 나눈 값이다. `personamem`은 저장된 객관식 정오(`is_correct`)에 같은 산술을 적용하며 GPT 판정 모델을 사용하지 않았다. 공개 행의 질문·정답이나 원본 링크는 당시 판정 맥락을 살피는 데 도움을 주지만, 이 계산 자체는 새로운 채점이나 독립적인 정답 검증이 아니다. 이진 판정 행에는 원시 판정 이유가 없다.
+Published `locomo`, `lme`, and `halumem` rows contain saved binary judgments (`evaluation.judgments`). A question's score is true judgments divided by all judgments. `personamem` applies the same arithmetic to saved multiple-choice correctness (`is_correct`); it did not use the GPT judge. Published questions, references, and source links help inspect scoring context, but this calculation neither rejudges an answer nor independently validates its reference. Binary-judgment rows contain no raw judge reasons.
 
-LoCoMo와 LongMemEval의 공통 판정 프롬프트는 질문·정답·생성 답변을 받아 주제와 의미가 맞으면 관대하게 정답으로 판단하도록 지시한다. HaluMem은 핵심 사실, 최신 상태와 지어낸 정보 여부를 보는 별도 프롬프트를 사용한다. 원래 LoCoMo의 token F1 등 벤치마크 고유 채점과 구분해야 하며, 이 세 패널의 모델 판정 점수를 인간 검증 정답률로 해석할 수 없다. 보존 템플릿의 구체적인 문구는 `config/prompt-templates.json`에서 확인할 수 있다.
+The shared LoCoMo/LongMemEval judging prompt takes a question, reference, and generated answer, and instructs the judge to accept a generous topical and semantic match. HaluMem has a separate prompt concerning key facts, latest state, and fabricated information. These model-judged scores differ from benchmark-native metrics such as LoCoMo token F1 and cannot be read as human-verified accuracy. Exact preserved text is in `config/prompt-templates.json`.
 
-BEAM의 루브릭 질문은 항목별 저장 점수 0, 0.5, 1의 평균을 구한 뒤 항목 평균을 질문 점수로 쓴다. 순서 질문은 공개된 이벤트 순서와 보존된 이벤트 위치를 비교한다. 발견된 이벤트의 쌍에 대해 동률을 반영한 Kendall tau-b를 계산하고 `max(0, (tau + 1) / 2) × 발견 비율`로 정규화한다. 발견이 없으면 0, 하나만 발견되면 `0.5 × 발견 비율`, 모두 같은 위치라 tau-b의 분모가 0이면 tau를 0으로 둔다. 원본 루브릭·이벤트 문구와 저장된 BEAM 판정 이유도 문항에 포함했다. 각 BEAM 질문의 여러 저장 실행은 평균하고, 각 패널은 질문 점수의 산술평균을 사용한다. 판정 이유의 의미적 타당성은 별도 판단이다.
+For BEAM rubric questions, each item's saved scores of 0, 0.5, or 1 are averaged over runs, then item means are averaged into a question score. Ordering questions compare published event order with saved event positions. Kendall tau-b with ties is calculated over pairs of found events and normalized as `max(0, (tau + 1) / 2) × found fraction`. No found events scores 0; one found event scores `0.5 × found fraction`; if all positions are tied and the tau-b denominator is zero, tau is set to 0. Original rubric/event wording and saved BEAM judgment reasons appear in question records. Multiple saved runs of a BEAM question are averaged; each panel is the arithmetic mean of question scores. Semantic validity of judgment reasons remains a separate issue.
 
-여섯 패널의 질문 수 가중 **전체 복합점수는 0.6314164042076046(0–100 표시로 63.1416404)**이다. 계산식은 `Σ(패널 질문 수 × 패널 평균) / 11,107`이다. BEAM 100K와 10M의 600문항은 각각 한 번씩만 합산한다. 패널 간 채점 방식이 다르므로 이 수치는 공통 정확도나 원래 단일 벤치마크 지표가 아니다. 패널별 가중치·기여도와 BEAM을 묶은 가족별 참고값은 `results/recomputed-scores.json`에 있다. 보존된 과거 PDF `Tenconic_User_Memory_Report_KO_FINAL_20261008.pdf`의 6–7쪽 전체표는 반올림된 표시값으로 63.1407을 제시했다. 이 배포본은 반올림 전 문항 점수로 다시 계산했고, PDF 자체는 배포하지 않는다.
+The question-count-weighted **overall composite is 0.6314164042076046 (63.1416404 on a 0–100 display)**: `Σ(panel question count × panel mean) / 11,107`. The 600 BEAM 100K/10M questions each enter once. Because panel scoring methods differ, this is neither common accuracy nor an original single-benchmark metric. Panel weights/contributions and values grouping BEAM panels appear in `results/recomputed-scores.json`. This release calculates Tenconic scores from unrounded question-level values; rounding panel values before aggregation can change the final digits.
 
-## 벤치마크 균등 가중과 기존 방식의 비교
+## Benchmark-equal and question-weighted aggregation
 
-v3는 기존 문항 수 가중 순위와 함께 5개 벤치마크에 각각 20%를 부여한 순위를 제공한다. 각 패널 점수를 `S`, 질문 수를 `n`으로 두고 0–1 척도로 계산한 뒤 표에서는 100을 곱한다.
+The release includes a ranking that gives each of five benchmarks 20%, alongside the existing question-count-weighted ranking. Let `S` be a panel score on a 0–1 scale. Tables multiply by 100.
 
 ```text
 S_count = (1540*S_LoCoMo + 500*S_LongMemEval + 400*S_BEAM100K
@@ -38,36 +40,36 @@ S_BEAM = (400*S_BEAM100K + 200*S_BEAM10M) / 600
 S_equal = (S_LoCoMo + S_LongMemEval + S_BEAM + S_PersonaMem + S_HaluMem) / 5
 ```
 
-BEAM 내부의 가중치는 100K가 400/600, 10M이 200/600으로 2:1이다. 벤치마크 균등은 **5개 벤치마크 사이**에 적용하며, BEAM 내부의 문항 수 비율은 유지한다. 전체 균등 점수에서 BEAM 100K의 실질 가중치는 `(1/5)*(400/600)=2/15`, BEAM 10M은 `(1/5)*(200/600)=1/15`다. 6개 패널 단순 평균이나 BEAM 두 범위의 단순 평균은 이 방식과 다르다.
+Within BEAM, the 100K and 10M panels retain a 400:200, or 2:1, question-count weighting. Equality applies **between five benchmarks**. Their effective weights are `(1/5)*(400/600)=2/15` for BEAM 100K and `(1/5)*(200/600)=1/15` for BEAM 10M. A plain mean of six panels or of the two BEAM scopes is different.
 
-| 벤치마크 | 문항 수 | 문항 수 가중 | 벤치마크 균등 가중 |
+| Benchmark | Questions | Question-count weight | Benchmark-equal weight |
 | --- | ---: | ---: | ---: |
 | LoCoMo | 1,540 | 13.8651% | 20% |
 | LongMemEval | 500 | 4.5017% | 20% |
-| BEAM 통합 | 600 | 5.4020% | 20% |
+| BEAM combined | 600 | 5.4020% | 20% |
 | PersonaMem | 5,000 | 45.0167% | 20% |
 | HaluMem | 3,467 | 31.2145% | 20% |
-| 합계 | 11,107 | 100% | 100% |
+| Total | 11,107 | 100% | 100% |
 
-Tenconic의 BEAM 통합 점수는 0.6485700025564408이며, 균등 가중 종합점수는 **0.7251378218471487(72.5138/100), 2위**다. 기존 문항 수 가중 점수는 **63.1416/100, 2위**로 유지된다. 전체 시스템의 양쪽 점수·순위 및 변동은 [LEADERBOARD.md](LEADERBOARD.md)에 함께 표시한다. 순위 변동은 `기존 문항 수 가중 순위 - 균등 가중 순위`로 정의하여 양수는 상승이다. 점수 차이는 같은 저장 결과를 다른 가중치로 집계한 결과다.
+Tenconic's combined BEAM score is 0.6485700025564408. Its benchmark-equal composite is **0.7251378218471487 (72.5138/100), rank 2**. Its original question-weighted score remains **63.1416/100, rank 2**. [LEADERBOARD.md](LEADERBOARD.md) shows both scores/ranks and changes for every system. `rank_change` is original question-weighted rank minus benchmark-equal rank, so a positive number indicates a rise. Different weights aggregate the same saved results.
 
-두 방식 모두 모든 6개 패널이 있어야 종합 순위에 포함한다. BEAM의 한 범위라도 없으면 해당 시스템을 두 종합 순위에서 제외하며, 남은 BEAM 범위나 남은 벤치마크만으로 가중치를 다시 나누지 않는다. 패널별 순위는 기존대로 해당 점수가 있는 시스템을 포함한다. 표시 반올림 전에 정렬하고, 같은 계산 점수에는 공동 순위를 부여하여 다음 순위를 건너뛴다.
+Both overall rankings require all six panels. If either BEAM scope is missing, the system is excluded from both; weights are not redistributed over remaining scopes. Panel rankings still include systems with that panel's score. Sorting uses scores before display rounding. Exactly equal calculated scores share a rank and skip the next rank.
 
-재계산은 Python 3.10 이상 표준 라이브러리만 필요하다. 패키지 루트에서 다음 명령을 실행한다.
+Recomputation needs only Python 3.10 or later and its standard library. From the package root:
 
 ```text
-python scripts/recompute_scores.py --check
-python scripts/recompute_scores.py --check --json
-python scripts/build_leaderboard.py --json
-python scripts/build_leaderboard.py --markdown
+python -B scripts/recompute_scores.py --check
+python -B scripts/recompute_scores.py --check --json
+python -B scripts/build_leaderboard.py --json
+python -B scripts/build_leaderboard.py --markdown
 ```
 
-첫 스크립트는 UTF-8 JSONL 행의 스키마, 패널 ID·질문 수·상태·중복 ID를 확인하고 저장된 항목/질문/패널 점수와 `config/suite.json`의 전체 질문 수 가중 점수를 재계산한다. JSON 출력은 `results/recomputed-scores.json`과 비교할 수 있다. 나머지 명령은 공개 비교 스냅샷을 결합하고 두 가중 방식의 점수·순위를 계산해 `results/leaderboard.json`과 `LEADERBOARD.md` 형태를 만든다. 이는 **저장된 수치의 오프라인 산술 감사 및 표시**다. 공개 자료만으로 GPT 답변을 다시 생성하거나 판정 모델을 다시 호출하거나 검색 충실도를 감사할 수 없다. LoCoMo·HaluMem은 답변 본문을 제공하지 않아 그 답변을 직접 검토할 수 없다. PersonaMem의 저장된 정규화 답변은 전체 원시 응답이 빠질 수 있다. 4,895문항의 저장된 선택지 순서를 함께 공개하지만 원시 응답을 다시 파싱해 객관식 결정을 독립적으로 입증한다고 주장하지 않는다.
+The first script checks UTF-8 JSONL row schema, panel IDs, counts, status, and duplicate IDs, and recomputes saved item, question, panel, and `config/suite.json` overall question-weighted scores. Its JSON output can be compared with `results/recomputed-scores.json`. The remaining commands combine the public comparison snapshot and calculate scores/ranks under both methods, producing the form of `results/leaderboard.json` and `LEADERBOARD.md`. This is an **offline arithmetic audit and display of saved numbers**. Public materials cannot regenerate GPT answers, call the judge again, or audit retrieval fidelity. LoCoMo/HaluMem answer bodies cannot be reviewed directly. PersonaMem's saved normalized choices may omit full raw model responses. We publish saved option order for 4,895 questions, but do not claim to prove the multiple-choice decision independently by reparsing raw responses.
 
-최종 저장 범위는 여섯 패널 모두 예상 질문 수를 채운 상태다. 진행 중의 중단·재시도 이력은 별개의 역사적 사실이며 최종 행이 모두 성공이라는 사실로 지워지지 않는다. 공개한 네 패널의 질문·정답·선택지·루브릭과 별개로 원본 대화, 내부 검색 문맥, 전체 모델 입력, 제품 소스 및 원시 실행 로그는 배포하지 않는다. 원본 데이터셋 전체를 포함한 독립 재현성이나 운영 신뢰성의 증거로 이 점수를 사용해서는 안 된다.
+All six panels filled their expected final question counts. Interrupted and retried in-progress work remains a separate historical fact; successful final rows do not erase it. This package excludes original conversations, internal retrieval contexts, full model inputs, product source, and raw run logs. These scores do not establish independent reproduction from full original datasets or operational reliability.
 
-## 공개 비교의 한계
+## Limits of the public comparison
 
-비교표의 Tenconic 점수는 이 패키지의 문항 기록에서 재계산했다. 다른 14개 시스템은 [OmniMemEval의 공개 Reproduced Results](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md)의 당시 반올림된 점수 스냅샷(`config/public-reference-scores.json`)을 사용한다. **Published Reference**와 **Reproduced Results**는 서로 다른 출처다. 여섯 패널 점수가 있는 12개 시스템만 전체 순위에 포함하고, 값이 빠진 3개 시스템은 전체 순위에서 제외한다. 누락을 0으로 채우거나 남은 패널로 가중치를 다시 나누지 않는다. 패널별 비교에는 해당 패널 점수가 있는 시스템을 모두 보인다.
+Tenconic's comparison scores are recomputed from records here. The other 14 systems use a snapshot of then-rounded scores from [OmniMemEval's public Reproduced Results](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md), stored in `config/public-reference-scores.json`. **Published Reference** and **Reproduced Results** are different sources. Only 12 systems with all six panel scores enter overall rankings; three systems with missing values are excluded. Missing values are neither zero-filled nor used to redistribute weights. Panel comparisons include every system with a score on that panel.
 
-동일한 답변·판정 모델명이 모든 시스템의 동일 시점·동일 배포 조건 재실행을 뜻하지 않는다. Zep와 Graphiti 등 이름상 묶인 항목은 배포 구성이 섞였을 가능성도 있다. 이전 로컬 시험이 Tenconic 검색 구성 선택에 영향을 주었으므로 블라인드 홀드아웃이나 비교 우월성 주장도 성립하지 않는다.
+Shared answer and judge model names do not establish same-time, same-deployment reruns for all systems. Entries grouped by name, including Zep and Graphiti, may mix deployment configurations. Earlier local trials influenced Tenconic's retrieval configuration, so the comparison does not establish blind holdout performance or superiority.

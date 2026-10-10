@@ -157,57 +157,143 @@ def build(root: Path) -> dict:
                 "ranked": equal_complete, "excluded": [item.copy() for item in overall_excluded]}}
 
 
-def markdown(result: dict) -> str:
+def markdown(result: dict, language: str = "en") -> str:
+    if language not in {"en", "ko"}:
+        raise ValueError(f"unsupported language: {language}")
+
+    labels = {
+        "en": {
+            "nav": "[Home](README.md) | [Methodology](METHODOLOGY.md) | [Korean](LEADERBOARD.ko.md)",
+            "title": "# Public comparison leaderboard",
+            "intro1": "Tenconic scores were recalculated from saved question records. Comparison-system scores come from a rounded snapshot of publicly reproduced results.",
+            "intro2": "Both overall scores combine different 0–1 metrics into composite scores. They are neither an official aggregate accuracy nor a ranking from a new run under identical conditions.",
+            "formula": "Question-count weighting: Σ(panel question count × panel score) / total included questions. Equal benchmark weighting: (LoCoMo + LongMemEval + BEAM + PersonaMem + HaluMem) / 5.",
+            "beam": "The BEAM score is (400 × BEAM 100K + 200 × BEAM 10M) / 600. Both methods require scores in all six panels for an overall rank.",
+            "source": "Comparison source",
+            "source_link": "OmniMemEval public reproduced results",
+            "retrieved": "retrieved",
+            "precision": "Comparison-score display precision",
+            "answer_model": "Answer model",
+            "judge_model": "judge model",
+            "weights_heading": "## Question-count weights",
+            "weight_header": "| Benchmark | Questions | Weight |",
+            "total": "Total",
+            "benchmark_weights_heading": "## Benchmark weights under both methods",
+            "benchmark_weights_header": "| Benchmark | Included questions | Question-count weight | Equal benchmark weight | Within-benchmark panel shares |",
+            "overall_heading": "## Question-count weighted overall ranking: systems with all six panel scores",
+            "overall_header": "| Rank | System | Question-count weighted composite (0–100) | Score source |",
+            "equal_heading": "## Equal benchmark weighted overall ranking",
+            "rank_change_note": "Rank change counts places gained from the question-count weighted rank to the equal benchmark weighted rank; a positive value means a rise.",
+            "equal_header": "| Equal-weight rank | System | Equal-weight score (0–100) | Question-count rank | Question-count score (0–100) | Rank change | Score change (0–100) |",
+            "excluded_note": "Systems missing any panel score are excluded from overall rankings. Missing scores are not set to zero, and the remaining panels are not reweighted.",
+            "excluded_header": "| System excluded from overall rank | Scored panels | Covered questions | Coverage | Missing panels |",
+            "matrix_heading": "## Six-panel comparison (overall score and rank use question-count weighting)",
+            "matrix_score": "Question-count score",
+            "matrix_rank": "Question-count rank",
+            "missing": "Missing panels",
+            "precision_note": "Tenconic's question-count weighted overall score {score} uses unrounded question-level scores. Rounding panel values before aggregation can change the final digits. Published comparison scores retain the source's rounding precision.",
+            "panel_header": "| Rank | System | Score (0–100) | Score source |",
+            "no_score": "No score (unranked)",
+            "saved_origin": "Recalculated from saved question records",
+            "published_origin": "Published table's rounded scores",
+        },
+        "ko": {
+            "nav": "[홈](README.ko.md) | [평가 방법](METHODOLOGY.ko.md) | [English](LEADERBOARD.md)",
+            "title": "# 공개 비교 리더보드",
+            "intro1": "Tenconic 점수는 저장된 문항 기록에서 재계산했습니다. 비교 시스템 점수는 공개된 재현 결과의 반올림된 스냅샷입니다.",
+            "intro2": "두 종합점수는 서로 다른 0–1 지표를 합친 복합점수입니다. 공식 통합 정확도나 동일 조건에서 새로 실행한 순위가 아닙니다.",
+            "formula": "문항 수 가중식: Σ(패널 문항 수 × 패널 점수) / 전체 포함 문항 수. 벤치마크 균등 가중식: (LoCoMo + LongMemEval + BEAM + PersonaMem + HaluMem) / 5.",
+            "beam": "BEAM 점수는 (400 × BEAM 100K + 200 × BEAM 10M) / 600으로 계산합니다. 두 방법 모두 6개 패널 점수가 모두 있어야 전체 순위에 포함합니다.",
+            "source": "비교 출처",
+            "source_link": "OmniMemEval 공개 재현 결과",
+            "retrieved": "조회",
+            "precision": "비교 점수 표기 정밀도",
+            "answer_model": "답변 모델",
+            "judge_model": "판정 모델",
+            "weights_heading": "## 문항 수 가중치",
+            "weight_header": "| 벤치마크 | 문항 수 | 가중치 |",
+            "total": "합계",
+            "benchmark_weights_heading": "## 벤치마크별 두 방식의 가중치",
+            "benchmark_weights_header": "| 벤치마크 | 포함 문항 수 | 문항 수 가중치 | 벤치마크 균등 가중치 | 내부 패널 비율 |",
+            "overall_heading": "## 문항 수 가중 전체 순위: 6개 패널 모두 점수가 있는 시스템",
+            "overall_header": "| 순위 | 시스템 | 문항 수 가중 복합점수 (0–100) | 점수 출처 |",
+            "equal_heading": "## 벤치마크 균등 가중 전체 순위",
+            "rank_change_note": "순위 변화는 문항 수 가중 순위에서 벤치마크 균등 가중 순위로 바뀐 자리 수입니다. 양수는 상승입니다.",
+            "equal_header": "| 균등 가중 순위 | 시스템 | 균등 가중 점수 (0–100) | 문항 수 가중 순위 | 문항 수 가중 점수 (0–100) | 순위 변화 | 점수 변화 (0–100) |",
+            "excluded_note": "일부 패널 점수가 없는 시스템은 전체 순위에서 제외합니다. 빠진 점수를 0으로 대입하거나 남은 패널에 가중치를 다시 나누지 않습니다.",
+            "excluded_header": "| 전체 순위 제외 시스템 | 점수 있는 패널 | 포함 문항 수 | 포함 비율 | 빠진 패널 |",
+            "matrix_heading": "## 6개 패널 비교표 (전체 점수·순위는 문항 수 가중)",
+            "matrix_score": "문항 수 가중 점수",
+            "matrix_rank": "문항 수 가중 순위",
+            "missing": "빠진 패널",
+            "precision_note": "Tenconic의 문항 수 가중 종합점수 {score}은 반올림 전 문항 점수로 계산합니다. 패널 점수를 먼저 반올림하면 종합점수의 마지막 자릿수가 달라질 수 있습니다. 공개 비교 시스템의 표시값은 원 출처의 반올림 정밀도를 유지합니다.",
+            "panel_header": "| 순위 | 시스템 | 점수 (0–100) | 점수 출처 |",
+            "no_score": "점수 없음 (순위 제외)",
+            "saved_origin": "문항별 저장 기록 재계산",
+            "published_origin": "공개 표의 반올림 점수",
+        },
+    }[language]
+
     def pct(value: float | None) -> str:
         return "—" if value is None else f"{value * 100:.4f}"
 
     def origin(value: str) -> str:
-        return {"saved_question_records": "문항별 저장 기록 재계산",
-                "published_rounded_scores": "공개 표의 반올림 점수"}[value]
+        return {"saved_question_records": labels["saved_origin"],
+                "published_rounded_scores": labels["published_origin"]}[value]
 
     short_labels = {"locomo": "LoCoMo", "lme": "LME", "beam100k": "BEAM100K",
                     "beam10m": "BEAM10M", "personamem": "PersonaMem", "halumem": "HaluMem"}
 
-    lines = ["# 공개 비교 리더보드", "",
-             "Tenconic 점수는 저장된 문항 기록에서 재계산했습니다. 비교 시스템 점수는 공개된 재현 결과의 반올림된 스냅샷입니다.",
-             "두 종합점수는 서로 다른 0–1 지표를 합친 복합점수입니다. 공식 통합 정확도나 동일 조건에서 새로 실행한 순위가 아닙니다.",
-             "문항 수 가중식: Σ(패널 문항 수 × 패널 점수) / 전체 포함 문항 수. 벤치마크 균등 가중식: (LoCoMo + LongMemEval + BEAM + PersonaMem + HaluMem) / 5.",
-             "BEAM 점수는 (400 × BEAM 100K + 200 × BEAM 10M) / 600으로 계산합니다. 두 방법 모두 6개 패널 점수가 모두 있어야 전체 순위에 포함합니다.", "",
-             f"비교 출처: [OmniMemEval 공개 재현 결과]({result['source']['url']}) (조회 {result['source']['retrieved_at_utc']}; {result['source']['kind']})", "",
-             f"비교 점수 표기 정밀도: {result['source']['original_score_precision']}. 답변 모델: {result['source']['answer_model']}; 판정 모델: {result['source']['judge_model']}.",
-             result["source"]["note"], "",
-             "## 문항 수 가중치", "", "| 벤치마크 | 문항 수 | 가중치 |", "| --- | ---: | ---: |"]
+    precision = result["source"]["original_score_precision"]
+    source_note = result["source"]["note"]
+    if language == "ko":
+        if precision == "two decimal places on 0-100 scale":
+            precision = "0–100 척도에서 소수점 두 자리"
+        if source_note == ("Uses the 2026-10-08 snapshot of OmniMemEval Reproduced Results. "
+                           "Published Reference Results are excluded. External raw question records are not in this package. "
+                           "This is not a synchronized controlled rerun. Zep / Graphiti retains the upstream grouping "
+                           "across different deployment routes."):
+            source_note = ("2026-10-08 OmniMemEval 공개 재현 결과 스냅샷을 사용합니다. 공개된 참조 결과는 제외했고, "
+                           "외부 시스템의 문항별 원본 기록은 이 패키지에 없습니다. 동일 시점·동일 조건에서 통제해 "
+                           "다시 실행한 결과가 아닙니다. Zep / Graphiti는 배포 경로가 달라도 원 출처의 묶음을 유지합니다.")
+
+    lines = [labels["nav"], "", labels["title"], "", labels["intro1"],
+             labels["intro2"], labels["formula"], labels["beam"], "",
+             f"{labels['source']}: [{labels['source_link']}]({result['source']['url']}) ({labels['retrieved']} {result['source']['retrieved_at_utc']}; {result['source']['kind']})", "",
+             f"{labels['precision']}: {precision}. {labels['answer_model']}: {result['source']['answer_model']}; {labels['judge_model']}: {result['source']['judge_model']}.",
+             source_note, "",
+             labels["weights_heading"], "", labels["weight_header"], "| --- | ---: | ---: |"]
     for entry in result["weights"]:
         lines.append(f"| {entry['label']} | {entry['count']} | {pct(entry['weight'])}% |")
-    lines += [f"| 합계 | {result['total_questions']} | 100.0000% |", "",
-              "## 벤치마크별 두 방식의 가중치", "",
-              "| 벤치마크 | 포함 문항 수 | 문항 수 가중치 | 벤치마크 균등 가중치 | 내부 패널 비율 |",
+    lines += [f"| {labels['total']} | {result['total_questions']} | 100.0000% |", "",
+              labels["benchmark_weights_heading"], "",
+              labels["benchmark_weights_header"],
               "| --- | ---: | ---: | ---: | --- |"]
     for entry in result["benchmark_equal_weighted"]["weights"]:
         within = ", ".join(f"{short_labels[panel['id']]} {pct(panel['weight_within_benchmark'])}%"
                            for panel in entry["panel_weights"])
         lines.append(f"| {entry['label']} | {entry['question_count']} | {pct(entry['question_count_weight'])}% | {pct(entry['weight'])}% | {within} |")
-    lines += ["", "## 문항 수 가중 전체 순위: 6개 패널 모두 점수가 있는 시스템", "",
-              "| 순위 | 시스템 | 문항 수 가중 복합점수 (0–100) | 점수 출처 |", "| ---: | --- | ---: | --- |"]
+    lines += ["", labels["overall_heading"], "",
+              labels["overall_header"], "| ---: | --- | ---: | --- |"]
     for item in result["overall_ranked"]:
         lines.append(f"| {item['rank']} | {item['system']} | {pct(item['score'])} | {origin(item['origin'])} |")
-    lines += ["", "## 벤치마크 균등 가중 전체 순위", "",
-              "순위 변화는 문항 수 가중 순위에서 벤치마크 균등 가중 순위로 바뀐 자리 수입니다. 양수는 상승입니다.", "",
-              "| 균등 가중 순위 | 시스템 | 균등 가중 점수 (0–100) | 문항 수 가중 순위 | 문항 수 가중 점수 (0–100) | 순위 변화 | 점수 변화 (0–100) |",
+    lines += ["", labels["equal_heading"], "",
+              labels["rank_change_note"], "",
+              labels["equal_header"],
               "| ---: | --- | ---: | ---: | ---: | ---: | ---: |"]
     for item in result["benchmark_equal_weighted"]["ranked"]:
         lines.append(f"| {item['rank']} | {item['system']} | {pct(item['score'])} | "
                      f"{item['question_weighted_rank']} | {pct(item['question_weighted_score'])} | "
                      f"{item['rank_change']:+d} | {item['score_change'] * 100:+.4f} |")
-    lines += ["", "일부 패널 점수가 없는 시스템은 전체 순위에서 제외합니다. 빠진 점수를 0으로 대입하거나 남은 패널에 가중치를 다시 나누지 않습니다.",
-              "", "| 전체 순위 제외 시스템 | 점수 있는 패널 | 포함 문항 수 | 포함 비율 | 빠진 패널 |",
+    lines += ["", labels["excluded_note"],
+              "", labels["excluded_header"],
               "| --- | ---: | ---: | ---: | --- |"]
     for item in result["overall_excluded"]:
         missing = ", ".join(short_labels[panel_id] for panel_id in item["missing_panels"])
         lines.append(f"| {item['system']} | {len(result['weights']) - len(item['missing_panels'])}/{len(result['weights'])} | {item['covered_questions']} | {pct(item['coverage_fraction'])}% | {missing} |")
-    lines += ["", "## 6개 패널 비교표 (전체 점수·순위는 문항 수 가중)", ""]
+    lines += ["", labels["matrix_heading"], ""]
     panel_ids = [entry["id"] for entry in result["weights"]]
-    lines.append("| 시스템 | " + " | ".join(short_labels[panel_id] for panel_id in panel_ids) + " | 문항 수 가중 점수 | 문항 수 가중 순위 | 빠진 패널 |")
+    lines.append("| " + ("System" if language == "en" else "시스템") + " | " + " | ".join(short_labels[panel_id] for panel_id in panel_ids) + f" | {labels['matrix_score']} | {labels['matrix_rank']} | {labels['missing']} |")
     lines.append("| --- | " + " | ".join("---:" for _ in panel_ids) + " | ---: | ---: | --- |")
     for item in result["comparison_matrix"]:
         cells = [pct(item["scores"][panel_id]) for panel_id in panel_ids]
@@ -216,14 +302,14 @@ def markdown(result: dict) -> str:
                      (str(item["overall_rank"]) if item["overall_rank"] is not None else "—") +
                      " | " + (", ".join(short_labels[panel_id] for panel_id in item["missing_panels"]) or "—") + " |")
     tenconic = next(item for item in result["overall_ranked"] if item["system"] == "Tenconic")
-    lines += ["", f"Tenconic의 문항 수 가중 종합점수 {pct(tenconic['score'])}은 반올림 전 문항 점수로 계산하므로, 과거 표에서 패널별 표시값을 다시 가중한 63.1407과 소폭 다릅니다. 공개 비교 시스템의 표시값은 원 출처의 반올림 정밀도를 유지합니다.", ""]
+    lines += ["", labels["precision_note"].format(score=pct(tenconic["score"])), ""]
     for table in result["panel_leaderboards"]:
         lines += [f"## {table['label']} ({table['id']}; {table['metric']}; n={table['count']})", "",
-                  "| 순위 | 시스템 | 점수 (0–100) | 점수 출처 |", "| ---: | --- | ---: | --- |"]
+                  labels["panel_header"], "| ---: | --- | ---: | --- |"]
         for item in table["ranked"]:
             lines.append(f"| {item['rank']} | {item['system']} | {pct(item['score'])} | {origin(item['origin'])} |")
         if table["unranked_missing"]:
-            lines += ["", "점수 없음 (순위 제외): " + ", ".join(table["unranked_missing"])]
+            lines += ["", labels["no_score"] + ": " + ", ".join(table["unranked_missing"])]
         lines.append("")
     return "\n".join(lines)
 
@@ -233,16 +319,18 @@ def main(argv: list[str] | None = None) -> int:
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
+    parser.add_argument("--language", choices=("en", "ko"), default="en",
+                        help="Markdown output language (default: en)")
     output = parser.add_mutually_exclusive_group()
     output.add_argument("--json", action="store_true", help="write full-precision JSON to stdout")
-    output.add_argument("--markdown", action="store_true", help="write Korean Markdown to stdout")
+    output.add_argument("--markdown", action="store_true", help="write Markdown to stdout")
     args = parser.parse_args(argv)
     try:
         result = build(args.root.resolve())
     except EvidenceError as exc:
         print(f"invalid package: {exc}", file=sys.stderr)
         return 1
-    print(markdown(result) if args.markdown else json.dumps(result, ensure_ascii=False, indent=2))
+    print(markdown(result, language=args.language) if args.markdown else json.dumps(result, ensure_ascii=False, indent=2))
     return 0
 
 
