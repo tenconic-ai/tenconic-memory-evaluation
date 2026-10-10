@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "package_date": "2026-10-10",
+  "system": "Tenconic",
+  "panels": [
+    {
+      "id": "locomo",
+      "label": "LoCoMo categories 1-4",
+      "expected_questions": 1540,
+      "metric": "binary_judge",
+      "data_file": "data/locomo.jsonl",
+      "expected_score": 0.8785714285714286,
+      "source_dataset": "locomo10.json",
+      "source_url": "https://github.com/snap-research/locomo/blob/main/data/locomo10.json",
+      "run_label": "full-official-retrieval-v1-1-20261006",
+      "final_coverage": {
+        "answer": {
+          "intended": 1540,
+          "success": 1540,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "unmatched_extra_records": 0,
+          "ambiguous_legacy_records": 0,
+          "complete_success_coverage": true
+        },
+        "judge": {
+          "intended": 1540,
+          "success": 1540,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "unmatched_extra_records": 0,
+          "ambiguous_legacy_records": 0,
+          "complete_success_coverage": true
+        }
+      },
+      "benchmark_family": "LoCoMo",
+      "dataset_license": "CC-BY-NC-4.0",
+      "question_reference_coverage": "source_link_only",
+      "question_reference_pairs_included": 0,
+      "saved_answers_included": 0,
+      "saved_answer_bodies_withheld": 1540
+    },
+    {
+      "id": "lme",
+      "label": "LongMemEval-S cleaned",
+      "expected_questions": 500,
+      "metric": "binary_judge",
+      "data_file": "data/lme.jsonl",
+      "expected_score": 0.866,
+      "source_dataset": "longmemeval_s_cleaned.json",
+      "source_url": "https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned",
+      "run_label": "full-official-retrieval-v1-1-20261006",
+      "final_coverage": {
+        "answer": {
+          "intended": 500,
+          "success": 500,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "unmatched_extra_records": 0,
+          "ambiguous_legacy_records": 0,
+          "complete_success_coverage": true
+        },
+        "judge": {
+          "intended": 500,
+          "success": 500,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "unmatched_extra_records": 0,
+          "ambiguous_legacy_records": 0,
+          "complete_success_coverage": true
+        }
+      },
+      "benchmark_family": "LongMemEval",
+      "dataset_license": "MIT",
+      "question_reference_coverage": "full",
+      "question_reference_pairs_included": 500,
+      "saved_answers_included": 500,
+      "saved_answer_bodies_withheld": 0
+    },
+    {
+      "id": "beam100k",
+      "label": "BEAM 100K",
+      "expected_questions": 400,
+      "metric": "beam_nugget_mean",
+      "data_file": "data/beam100k.jsonl",
+      "expected_score": 0.6967688155496329,
+      "source_dataset": "beam_100k.json",
+      "source_url": "https://huggingface.co/datasets/Mohammadta/BEAM",
+      "run_label": "remaining-user-memory-v1-1-20261007",
+      "final_coverage": {
+        "answer": {
+          "intended": 400,
+          "success": 400,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "incomplete": 0,
+          "complete_success_coverage": true
+        },
+        "judge": {
+          "intended": 400,
+          "success": 400,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "incomplete": 0,
+          "complete_success_coverage": true
+        }
+      },
+      "benchmark_family": "BEAM",
+      "dataset_license": "CC-BY-SA-4.0",
+      "question_reference_coverage": "full",
+      "question_reference_pairs_included": 400,
+      "saved_answers_included": 400,
+      "saved_answer_bodies_withheld": 0
+    },
+    {
+      "id": "beam10m",
+      "label": "BEAM 10M",
+      "expected_questions": 200,
+      "metric": "beam_nugget_mean",
+      "data_file": "data/beam10m.jsonl",
+      "expected_score": 0.5521723765700567,
+      "source_dataset": "beam_10m.json",
+      "source_url": "https://huggingface.co/datasets/Mohammadta/BEAM-10M",
+      "run_label": "remaining-user-memory-beam10m-v1-1-20261008",
+      "final_coverage": {
+        "answer": {
+          "intended": 200,
+          "success": 200,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "incomplete": 0,
+          "complete_success_coverage": true
+        },
+        "judge": {
+          "intended": 200,
+          "success": 200,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "incomplete": 0,
+          "complete_success_coverage": true
+        }
+      },
+      "benchmark_family": "BEAM",
+      "dataset_license": "CC-BY-SA-4.0",
+      "question_reference_coverage": "full",
+      "question_reference_pairs_included": 200,
+      "saved_answers_included": 200,
+      "saved_answer_bodies_withheld": 0
+    },
+    {
+      "id": "personamem",
+      "label": "PersonaMem v2 text 32K",
+      "expected_questions": 5000,
+      "metric": "multiple_choice_saved",
+      "data_file": "data/personamem.jsonl",
+      "expected_score": 0.3684,
+      "source_dataset": "benchmark/text/benchmark.csv",
+      "source_url": "https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2",
+      "run_label": "remaining-user-memory-v1-1-20261007",
+      "final_coverage": {
+        "answer": {
+          "intended": 5000,
+          "success": 5000,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "incomplete": 0,
+          "complete_success_coverage": true
+        }
+      },
+      "benchmark_family": "PersonaMem-v2",
+      "dataset_license": "CC-BY-4.0",
+      "question_reference_coverage": "partial",
+      "question_reference_pairs_included": 4895,
+      "saved_answers_included": 5000,
+      "saved_answer_bodies_withheld": 0
+    },
+    {
+      "id": "halumem",
+      "label": "HaluMem Medium",
+      "expected_questions": 3467,
+      "metric": "binary_judge",
+      "data_file": "data/halumem.jsonl",
+      "expected_score": 0.8641476781078743,
+      "source_dataset": "HaluMem-Medium.jsonl",
+      "source_url": "https://huggingface.co/datasets/IAAR-Shanghai/HaluMem/blob/main/HaluMem-Medium.jsonl",
+      "run_label": "remaining-user-memory-v1-1-20261007",
+      "final_coverage": {
+        "answer": {
+          "intended": 3467,
+          "success": 3467,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "incomplete": 0,
+          "complete_success_coverage": true
+        },
+        "judge": {
+          "intended": 3467,
+          "success": 3467,
+          "failed": 0,
+          "skipped": 0,
+          "missing": 0,
+          "incomplete": 0,
+          "complete_success_coverage": true
+        }
+      },
+      "benchmark_family": "HaluMem",
+      "dataset_license": "CC-BY-NC-ND-4.0",
+      "question_reference_coverage": "source_link_only",
+      "question_reference_pairs_included": 0,
+      "saved_answers_included": 0,
+      "saved_answer_bodies_withheld": 3467
+    }
+  ],
+  "package_revision": 3,
+  "aggregation": {
+    "method": "question_count_weighted",
+    "expected_questions": 11107,
+    "expected_score": 0.6314164042076046,
+    "label": "Question-count weighted composite of heterogeneous benchmark scores",
+    "missing_policy": "All six panel results and all intended questions required; no partial renormalization."
+  }
+}

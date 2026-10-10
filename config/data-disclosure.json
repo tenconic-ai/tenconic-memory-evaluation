@@ -1,0 +1,108 @@
+{
+  "publication_purpose": "Product introduction and business use, as specified by the user.",
+  "license_review_date": "2026-10-10",
+  "original_questions_and_references_included": 5995,
+  "source_link_only_questions": 5112,
+  "panels": [
+    {
+      "panel": "locomo",
+      "benchmark_family": "LoCoMo",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "source_url": "https://github.com/snap-research/locomo/blob/main/data/locomo10.json",
+      "reason": "For this product/business package, source questions/references and all saved GPT answer bodies are omitted. Official source links, locations and saved numerical judgments remain. Original answers are preserved privately; the package supports score replay, not answer inspection for this panel.",
+      "questions": 1540,
+      "question_reference_pairs_included": 0,
+      "question_reference_coverage": "source_link_only",
+      "source_link_only_questions": 1540,
+      "saved_answers_included": 0,
+      "saved_answer_bodies_withheld": 1540
+    },
+    {
+      "panel": "lme",
+      "benchmark_family": "LongMemEval",
+      "license": "MIT",
+      "license_url": "https://github.com/xiaowu0162/LongMemEval/blob/main/LICENSE",
+      "source_url": "https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned",
+      "reason": "Question/reference excerpts included with the MIT copyright and permission notice.",
+      "questions": 500,
+      "question_reference_pairs_included": 500,
+      "question_reference_coverage": "full",
+      "source_link_only_questions": 0,
+      "saved_answers_included": 500,
+      "saved_answer_bodies_withheld": 0
+    },
+    {
+      "panel": "beam100k",
+      "benchmark_family": "BEAM",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source_url": "https://huggingface.co/datasets/Mohammadta/BEAM",
+      "reason": "Question/reference/rubric excerpts retain attribution and CC BY-SA 4.0 terms; the original field text is preserved.",
+      "questions": 400,
+      "question_reference_pairs_included": 400,
+      "question_reference_coverage": "full",
+      "source_link_only_questions": 0,
+      "saved_answers_included": 400,
+      "saved_answer_bodies_withheld": 0
+    },
+    {
+      "panel": "beam10m",
+      "benchmark_family": "BEAM",
+      "license": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source_url": "https://huggingface.co/datasets/Mohammadta/BEAM-10M",
+      "reason": "Question/reference/rubric excerpts retain attribution and CC BY-SA 4.0 terms; the original field text is preserved.",
+      "questions": 200,
+      "question_reference_pairs_included": 200,
+      "question_reference_coverage": "full",
+      "source_link_only_questions": 0,
+      "saved_answers_included": 200,
+      "saved_answer_bodies_withheld": 0
+    },
+    {
+      "panel": "personamem",
+      "benchmark_family": "PersonaMem-v2",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_url": "https://huggingface.co/datasets/bowen-upenn/PersonaMem-v2",
+      "reason": "4,895 original question/reference/option excerpts included under CC BY 4.0. 105 rows containing credential-shaped strings or private-path patterns in benchmark source text use source links only; all saved answers and scores remain included. No claim is made that those strings are live credentials or actual private locations.",
+      "questions": 5000,
+      "question_reference_pairs_included": 4895,
+      "question_reference_coverage": "partial",
+      "source_link_only_questions": 105,
+      "source_text_omissions": {
+        "reason": "sensitive_source_text",
+        "rows": 105
+      },
+      "saved_answers_included": 5000,
+      "saved_answer_bodies_withheld": 0
+    },
+    {
+      "panel": "halumem",
+      "benchmark_family": "HaluMem",
+      "license": "CC-BY-NC-ND-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+      "source_url": "https://huggingface.co/datasets/IAAR-Shanghai/HaluMem/blob/main/HaluMem-Medium.jsonl",
+      "reason": "For this product/business package, source questions/references and all saved GPT answer bodies are omitted. Official source links, locations and saved numerical judgments remain. Original answers are preserved privately; the package supports score replay, not answer inspection for this panel.",
+      "questions": 3467,
+      "question_reference_pairs_included": 0,
+      "question_reference_coverage": "source_link_only",
+      "source_link_only_questions": 3467,
+      "saved_answers_included": 0,
+      "saved_answer_bodies_withheld": 3467
+    }
+  ],
+  "saved_answers_included": 6100,
+  "saved_answer_bodies_withheld": 5007,
+  "scoring_records_included": 11107,
+  "withheld_answer_policy": {
+    "panels": [
+      "locomo",
+      "halumem"
+    ],
+    "reason": "dataset_license_scope",
+    "preserved_original_outside_package": true,
+    "scope": "All saved answer bodies in the two NC panels are omitted from this product/business package because they may repeat source expression. IDs, source locations and saved numerical grading evidence remain included. This is not a finding that every answer is legally restricted."
+  }
+}

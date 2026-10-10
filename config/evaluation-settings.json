@@ -1,0 +1,139 @@
+{
+  "answer_temperature": 0,
+  "judge_temperature": 0,
+  "api_seed_override": null,
+  "api_max_tokens_override": null,
+  "api_response_format_override": null,
+  "null_meaning": "No explicit override recorded; not a claim about provider defaults.",
+  "answer_passes": 1,
+  "judge_passes": 1,
+  "personamem_judge": "not applicable",
+  "full_prompt_budget_tokenizer": "o200k_base",
+  "local_native_dependency": "Ministral-3-8B-Instruct-2512-Q4_K_M; storage/search support, not answer/judge",
+  "scope": "Historical saved GPT runs; score replay requires no models.",
+  "configurations": [
+    {
+      "answer_model": "gpt-4.1-mini-2025-04-14",
+      "judge_model": "gpt-4o-mini-2024-07-18",
+      "top_k": 20,
+      "judge_runs": 1,
+      "version": "full-official-retrieval-v1-1-20261006",
+      "profile": "official-retrieval-v1-1",
+      "retrieval_policy": "source_frontier_groups_v1",
+      "rerank_admission_policy": "legacy",
+      "source_content_policy": "original_fields_v1",
+      "source_time_policy": "explicit_day_offsets_v1",
+      "recall_limits": {
+        "native_anchor_k": 200,
+        "body_anchor_k": 200,
+        "caption_anchor_k": 50,
+        "dense_anchor_k": 200,
+        "rrf_constant": 60,
+        "max_union_anchors": 650,
+        "rerank_anchor_k": 96,
+        "rerank_max_windows": 384,
+        "search_context_tokens": 4096,
+        "embedding_batch_size": 16,
+        "embedding_input_reserved_tokens": 16
+      },
+      "retrieval_view_limits": {
+        "max_anchors": 20,
+        "max_template_token_probes": 24,
+        "final_input_token_limit": 7168
+      },
+      "search_models": {
+        "embedding_model_file": "Qwen3-Embedding-0.6B-Q8_0.gguf",
+        "reranker_model_file": "qwen3-reranker-0.6b-q8_0.gguf"
+      }
+    },
+    {
+      "answer_model": "gpt-4.1-mini-2025-04-14",
+      "judge_model": "gpt-4o-mini-2024-07-18",
+      "top_k": 20,
+      "judge_runs": 1,
+      "answer_runs": 1,
+      "version": "remaining-user-memory-v1-1-20261007",
+      "profile": "remaining-user-memory-retrieval-v1-1",
+      "retrieval_policy": "source_frontier_groups_v1",
+      "rerank_admission_policy": "legacy",
+      "source_content_policy": "original_fields_v1",
+      "source_time_policy": "explicit_day_offsets_v1",
+      "recall_limits": {
+        "native_anchor_k": 200,
+        "body_anchor_k": 200,
+        "caption_anchor_k": 50,
+        "dense_anchor_k": 200,
+        "rrf_constant": 60,
+        "max_union_anchors": 650,
+        "rerank_anchor_k": 96,
+        "rerank_max_windows": 384,
+        "search_context_tokens": 4096,
+        "embedding_batch_size": 16,
+        "embedding_input_reserved_tokens": 16
+      },
+      "retrieval_view_limits": {
+        "max_anchors": 20,
+        "max_template_token_probes": 24,
+        "final_input_token_limit": 7168
+      },
+      "search_models": {
+        "embedding_model_file": "Qwen3-Embedding-0.6B-Q8_0.gguf",
+        "reranker_model_file": "qwen3-reranker-0.6b-q8_0.gguf"
+      }
+    },
+    {
+      "answer_model": "gpt-4.1-mini-2025-04-14",
+      "judge_model": "gpt-4o-mini-2024-07-18",
+      "top_k": 20,
+      "judge_runs": 1,
+      "answer_runs": 1,
+      "version": "remaining-user-memory-beam10m-v1-1-20261008",
+      "profile": "remaining-user-memory-retrieval-v1-1",
+      "retrieval_policy": "source_frontier_groups_v1",
+      "rerank_admission_policy": "legacy",
+      "source_content_policy": "original_fields_v1",
+      "source_time_policy": "explicit_day_offsets_v1",
+      "recall_limits": {
+        "native_anchor_k": 200,
+        "body_anchor_k": 200,
+        "caption_anchor_k": 50,
+        "dense_anchor_k": 200,
+        "rrf_constant": 60,
+        "max_union_anchors": 650,
+        "rerank_anchor_k": 96,
+        "rerank_max_windows": 384,
+        "search_context_tokens": 4096,
+        "embedding_batch_size": 16,
+        "embedding_input_reserved_tokens": 16
+      },
+      "retrieval_view_limits": {
+        "max_anchors": 20,
+        "max_template_token_probes": 24,
+        "final_input_token_limit": 7168
+      },
+      "search_models": {
+        "embedding_model_file": "Qwen3-Embedding-0.6B-Q8_0.gguf",
+        "reranker_model_file": "qwen3-reranker-0.6b-q8_0.gguf"
+      }
+    }
+  ],
+  "temperature_evidence": {
+    "status": "verified_in_archived_harness_source",
+    "archived_snapshot_date": "2026-10-07",
+    "answer_temperature": 0,
+    "judge_temperature": 0,
+    "historical_request_capture_verified": false,
+    "scope": "The saved local harness answer/judge call sites set temperature=0. Per-request wire captures are not included, and later executions are not independently established by this snapshot alone.",
+    "source_files": [
+      "scripts/locomo/locomo_responses.py",
+      "scripts/locomo/locomo_eval.py",
+      "scripts/longmemeval/lme_responses.py",
+      "scripts/longmemeval/lme_eval.py",
+      "scripts/beam/beam_responses.py",
+      "scripts/beam/beam_eval.py",
+      "scripts/personamem_v2/pm_responses.py",
+      "scripts/halumem/hm_responses.py",
+      "scripts/halumem/hm_eval.py"
+    ]
+  }
+}
