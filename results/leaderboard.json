@@ -1,0 +1,1517 @@
+{
+  "source": {
+    "url": "https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md",
+    "retrieved_at_utc": "2026-10-08T09:29:05Z",
+    "kind": "upstream_reproduced_snapshot",
+    "score_scale": "0-1",
+    "original_score_precision": "two decimal places on 0-100 scale",
+    "answer_model": "gpt-4.1-mini-2025-04-14",
+    "judge_model": "gpt-4o-mini-2024-07-18",
+    "note": "Uses the original 2026-10-08 public snapshot cited by the named historical PDF. Published Reference Results are excluded. External raw question records are not in this package. This is not a synchronized controlled rerun. Zep / Graphiti retains the upstream grouping across different deployment routes."
+  },
+  "weights": [
+    {
+      "id": "locomo",
+      "label": "LoCoMo categories 1-4",
+      "count": 1540,
+      "weight": 0.1386513009813631,
+      "score": 0.8785714285714286,
+      "weighted_contribution": 0.1218150715764833
+    },
+    {
+      "id": "lme",
+      "label": "LongMemEval-S cleaned",
+      "count": 500,
+      "weight": 0.04501665616278023,
+      "score": 0.866,
+      "weighted_contribution": 0.03898442423696768
+    },
+    {
+      "id": "beam100k",
+      "label": "BEAM 100K",
+      "count": 400,
+      "weight": 0.03601332493022418,
+      "score": 0.6967688155496329,
+      "weighted_contribution": 0.02509296175563637
+    },
+    {
+      "id": "beam10m",
+      "label": "BEAM 10M",
+      "count": 200,
+      "weight": 0.01800666246511209,
+      "score": 0.5521723765700567,
+      "weighted_contribution": 0.00994278160745578
+    },
+    {
+      "id": "personamem",
+      "label": "PersonaMem v2 text 32K",
+      "count": 5000,
+      "weight": 0.4501665616278023,
+      "score": 0.3684,
+      "weighted_contribution": 0.16584136130368235
+    },
+    {
+      "id": "halumem",
+      "label": "HaluMem Medium",
+      "count": 3467,
+      "weight": 0.3121454938327181,
+      "score": 0.8641476781078743,
+      "weighted_contribution": 0.26973980372737916
+    }
+  ],
+  "total_questions": 11107,
+  "overall_ranked": [
+    {
+      "system": "MemOS",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.8883,
+        "lme": 0.892,
+        "beam100k": 0.6687000000000001,
+        "beam10m": 0.5675,
+        "personamem": 0.4058,
+        "halumem": 0.8090999999999999
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.6328542090573511,
+      "rank": 1
+    },
+    {
+      "system": "Tenconic",
+      "origin": "saved_question_records",
+      "scores": {
+        "locomo": 0.8785714285714286,
+        "lme": 0.866,
+        "beam100k": 0.6967688155496329,
+        "beam10m": 0.5521723765700567,
+        "personamem": 0.3684,
+        "halumem": 0.8641476781078743
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.6314164042076046,
+      "rank": 2
+    },
+    {
+      "system": "EverOS",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.8275,
+        "lme": 0.804,
+        "beam100k": 0.5864,
+        "beam10m": 0.47729999999999995,
+        "personamem": 0.3594,
+        "halumem": 0.8865999999999999
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.6191781939317548,
+      "rank": 3
+    },
+    {
+      "system": "Hindsight",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.8199,
+        "lme": 0.722,
+        "beam100k": 0.7021999999999999,
+        "beam10m": 0.5975,
+        "personamem": 0.37979999999999997,
+        "halumem": 0.8399
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.615374025389394,
+      "rank": 4
+    },
+    {
+      "system": "Letta",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7712,
+        "lme": 0.7767000000000001,
+        "beam100k": 0.6922,
+        "beam10m": 0.523,
+        "personamem": 0.35119999999999996,
+        "halumem": 0.8543000000000001
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.6010026199693888,
+      "rank": 5
+    },
+    {
+      "system": "Mem0",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7768,
+        "lme": 0.56,
+        "beam100k": 0.7041,
+        "beam10m": 0.43329999999999996,
+        "personamem": 0.3676,
+        "halumem": 0.7364
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.5614180966957775,
+      "rank": 6
+    },
+    {
+      "system": "Zep / Graphiti",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.6383,
+        "lme": 0.7979999999999999,
+        "beam100k": 0.687,
+        "beam10m": 0.5611,
+        "personamem": 0.3234,
+        "halumem": 0.8170999999999999
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.5599070586116862,
+      "rank": 7
+    },
+    {
+      "system": "Viking",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.6933,
+        "lme": 0.6107,
+        "beam100k": 0.7076,
+        "beam10m": 0.5814,
+        "personamem": 0.308,
+        "halumem": 0.7739
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.5397914198253354,
+      "rank": 8
+    },
+    {
+      "system": "mem9",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7364,
+        "lme": 0.78,
+        "beam100k": 0.6575,
+        "beam10m": 0.573,
+        "personamem": 0.30760000000000004,
+        "halumem": 0.728
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.5369255424507068,
+      "rank": 9
+    },
+    {
+      "system": "Cognee",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.8348,
+        "lme": 0.518,
+        "beam100k": 0.593,
+        "beam10m": 0.5602,
+        "personamem": 0.2646,
+        "halumem": 0.726
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.5162396686774107,
+      "rank": 10
+    },
+    {
+      "system": "Supermemory",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7353000000000001,
+        "lme": 0.6607,
+        "beam100k": 0.6598,
+        "beam10m": 0.5249,
+        "personamem": 0.39640000000000003,
+        "halumem": 0.5261
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.5075718645898982,
+      "rank": 11
+    },
+    {
+      "system": "MemMachine",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7390000000000001,
+        "lme": 0.636,
+        "beam100k": 0.648,
+        "beam10m": 0.519,
+        "personamem": 0.3414,
+        "halumem": 0.4702
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "score": 0.4642336724588098,
+      "rank": 12
+    }
+  ],
+  "overall_excluded": [
+    {
+      "system": "Memori",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.41340000000000005,
+        "lme": 0.20800000000000002,
+        "beam100k": null,
+        "beam10m": null,
+        "personamem": 0.33159999999999995,
+        "halumem": 0.4938
+      },
+      "missing_panels": [
+        "beam100k",
+        "beam10m"
+      ],
+      "covered_questions": 10507,
+      "coverage_fraction": 0.9459800126046637
+    },
+    {
+      "system": "MemoryLake",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7249,
+        "lme": null,
+        "beam100k": null,
+        "beam10m": null,
+        "personamem": null,
+        "halumem": null
+      },
+      "missing_panels": [
+        "lme",
+        "beam100k",
+        "beam10m",
+        "personamem",
+        "halumem"
+      ],
+      "covered_questions": 1540,
+      "coverage_fraction": 0.1386513009813631
+    },
+    {
+      "system": "Backboard.io",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.22399999999999998,
+        "lme": null,
+        "beam100k": null,
+        "beam10m": null,
+        "personamem": null,
+        "halumem": null
+      },
+      "missing_panels": [
+        "lme",
+        "beam100k",
+        "beam10m",
+        "personamem",
+        "halumem"
+      ],
+      "covered_questions": 1540,
+      "coverage_fraction": 0.1386513009813631
+    }
+  ],
+  "comparison_matrix": [
+    {
+      "system": "MemOS",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.8883,
+        "lme": 0.892,
+        "beam100k": 0.6687000000000001,
+        "beam10m": 0.5675,
+        "personamem": 0.4058,
+        "halumem": 0.8090999999999999
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.6328542090573511,
+      "overall_rank": 1
+    },
+    {
+      "system": "Tenconic",
+      "origin": "saved_question_records",
+      "scores": {
+        "locomo": 0.8785714285714286,
+        "lme": 0.866,
+        "beam100k": 0.6967688155496329,
+        "beam10m": 0.5521723765700567,
+        "personamem": 0.3684,
+        "halumem": 0.8641476781078743
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.6314164042076046,
+      "overall_rank": 2
+    },
+    {
+      "system": "EverOS",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.8275,
+        "lme": 0.804,
+        "beam100k": 0.5864,
+        "beam10m": 0.47729999999999995,
+        "personamem": 0.3594,
+        "halumem": 0.8865999999999999
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.6191781939317548,
+      "overall_rank": 3
+    },
+    {
+      "system": "Hindsight",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.8199,
+        "lme": 0.722,
+        "beam100k": 0.7021999999999999,
+        "beam10m": 0.5975,
+        "personamem": 0.37979999999999997,
+        "halumem": 0.8399
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.615374025389394,
+      "overall_rank": 4
+    },
+    {
+      "system": "Letta",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7712,
+        "lme": 0.7767000000000001,
+        "beam100k": 0.6922,
+        "beam10m": 0.523,
+        "personamem": 0.35119999999999996,
+        "halumem": 0.8543000000000001
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.6010026199693888,
+      "overall_rank": 5
+    },
+    {
+      "system": "Mem0",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7768,
+        "lme": 0.56,
+        "beam100k": 0.7041,
+        "beam10m": 0.43329999999999996,
+        "personamem": 0.3676,
+        "halumem": 0.7364
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.5614180966957775,
+      "overall_rank": 6
+    },
+    {
+      "system": "Zep / Graphiti",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.6383,
+        "lme": 0.7979999999999999,
+        "beam100k": 0.687,
+        "beam10m": 0.5611,
+        "personamem": 0.3234,
+        "halumem": 0.8170999999999999
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.5599070586116862,
+      "overall_rank": 7
+    },
+    {
+      "system": "Viking",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.6933,
+        "lme": 0.6107,
+        "beam100k": 0.7076,
+        "beam10m": 0.5814,
+        "personamem": 0.308,
+        "halumem": 0.7739
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.5397914198253354,
+      "overall_rank": 8
+    },
+    {
+      "system": "mem9",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7364,
+        "lme": 0.78,
+        "beam100k": 0.6575,
+        "beam10m": 0.573,
+        "personamem": 0.30760000000000004,
+        "halumem": 0.728
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.5369255424507068,
+      "overall_rank": 9
+    },
+    {
+      "system": "Cognee",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.8348,
+        "lme": 0.518,
+        "beam100k": 0.593,
+        "beam10m": 0.5602,
+        "personamem": 0.2646,
+        "halumem": 0.726
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.5162396686774107,
+      "overall_rank": 10
+    },
+    {
+      "system": "Supermemory",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7353000000000001,
+        "lme": 0.6607,
+        "beam100k": 0.6598,
+        "beam10m": 0.5249,
+        "personamem": 0.39640000000000003,
+        "halumem": 0.5261
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.5075718645898982,
+      "overall_rank": 11
+    },
+    {
+      "system": "MemMachine",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7390000000000001,
+        "lme": 0.636,
+        "beam100k": 0.648,
+        "beam10m": 0.519,
+        "personamem": 0.3414,
+        "halumem": 0.4702
+      },
+      "missing_panels": [],
+      "covered_questions": 11107,
+      "coverage_fraction": 1.0,
+      "overall_score": 0.4642336724588098,
+      "overall_rank": 12
+    },
+    {
+      "system": "Memori",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.41340000000000005,
+        "lme": 0.20800000000000002,
+        "beam100k": null,
+        "beam10m": null,
+        "personamem": 0.33159999999999995,
+        "halumem": 0.4938
+      },
+      "missing_panels": [
+        "beam100k",
+        "beam10m"
+      ],
+      "covered_questions": 10507,
+      "coverage_fraction": 0.9459800126046637,
+      "overall_score": null,
+      "overall_rank": null
+    },
+    {
+      "system": "MemoryLake",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.7249,
+        "lme": null,
+        "beam100k": null,
+        "beam10m": null,
+        "personamem": null,
+        "halumem": null
+      },
+      "missing_panels": [
+        "lme",
+        "beam100k",
+        "beam10m",
+        "personamem",
+        "halumem"
+      ],
+      "covered_questions": 1540,
+      "coverage_fraction": 0.1386513009813631,
+      "overall_score": null,
+      "overall_rank": null
+    },
+    {
+      "system": "Backboard.io",
+      "origin": "published_rounded_scores",
+      "scores": {
+        "locomo": 0.22399999999999998,
+        "lme": null,
+        "beam100k": null,
+        "beam10m": null,
+        "personamem": null,
+        "halumem": null
+      },
+      "missing_panels": [
+        "lme",
+        "beam100k",
+        "beam10m",
+        "personamem",
+        "halumem"
+      ],
+      "covered_questions": 1540,
+      "coverage_fraction": 0.1386513009813631,
+      "overall_score": null,
+      "overall_rank": null
+    }
+  ],
+  "panel_leaderboards": [
+    {
+      "id": "locomo",
+      "label": "LoCoMo categories 1-4",
+      "metric": "binary_judge",
+      "count": 1540,
+      "ranked": [
+        {
+          "system": "MemOS",
+          "origin": "published_rounded_scores",
+          "score": 0.8883,
+          "rank": 1
+        },
+        {
+          "system": "Tenconic",
+          "origin": "saved_question_records",
+          "score": 0.8785714285714286,
+          "rank": 2
+        },
+        {
+          "system": "Cognee",
+          "origin": "published_rounded_scores",
+          "score": 0.8348,
+          "rank": 3
+        },
+        {
+          "system": "EverOS",
+          "origin": "published_rounded_scores",
+          "score": 0.8275,
+          "rank": 4
+        },
+        {
+          "system": "Hindsight",
+          "origin": "published_rounded_scores",
+          "score": 0.8199,
+          "rank": 5
+        },
+        {
+          "system": "Mem0",
+          "origin": "published_rounded_scores",
+          "score": 0.7768,
+          "rank": 6
+        },
+        {
+          "system": "Letta",
+          "origin": "published_rounded_scores",
+          "score": 0.7712,
+          "rank": 7
+        },
+        {
+          "system": "MemMachine",
+          "origin": "published_rounded_scores",
+          "score": 0.7390000000000001,
+          "rank": 8
+        },
+        {
+          "system": "mem9",
+          "origin": "published_rounded_scores",
+          "score": 0.7364,
+          "rank": 9
+        },
+        {
+          "system": "Supermemory",
+          "origin": "published_rounded_scores",
+          "score": 0.7353000000000001,
+          "rank": 10
+        },
+        {
+          "system": "MemoryLake",
+          "origin": "published_rounded_scores",
+          "score": 0.7249,
+          "rank": 11
+        },
+        {
+          "system": "Viking",
+          "origin": "published_rounded_scores",
+          "score": 0.6933,
+          "rank": 12
+        },
+        {
+          "system": "Zep / Graphiti",
+          "origin": "published_rounded_scores",
+          "score": 0.6383,
+          "rank": 13
+        },
+        {
+          "system": "Memori",
+          "origin": "published_rounded_scores",
+          "score": 0.41340000000000005,
+          "rank": 14
+        },
+        {
+          "system": "Backboard.io",
+          "origin": "published_rounded_scores",
+          "score": 0.22399999999999998,
+          "rank": 15
+        }
+      ],
+      "unranked_missing": []
+    },
+    {
+      "id": "lme",
+      "label": "LongMemEval-S cleaned",
+      "metric": "binary_judge",
+      "count": 500,
+      "ranked": [
+        {
+          "system": "MemOS",
+          "origin": "published_rounded_scores",
+          "score": 0.892,
+          "rank": 1
+        },
+        {
+          "system": "Tenconic",
+          "origin": "saved_question_records",
+          "score": 0.866,
+          "rank": 2
+        },
+        {
+          "system": "EverOS",
+          "origin": "published_rounded_scores",
+          "score": 0.804,
+          "rank": 3
+        },
+        {
+          "system": "Zep / Graphiti",
+          "origin": "published_rounded_scores",
+          "score": 0.7979999999999999,
+          "rank": 4
+        },
+        {
+          "system": "mem9",
+          "origin": "published_rounded_scores",
+          "score": 0.78,
+          "rank": 5
+        },
+        {
+          "system": "Letta",
+          "origin": "published_rounded_scores",
+          "score": 0.7767000000000001,
+          "rank": 6
+        },
+        {
+          "system": "Hindsight",
+          "origin": "published_rounded_scores",
+          "score": 0.722,
+          "rank": 7
+        },
+        {
+          "system": "Supermemory",
+          "origin": "published_rounded_scores",
+          "score": 0.6607,
+          "rank": 8
+        },
+        {
+          "system": "MemMachine",
+          "origin": "published_rounded_scores",
+          "score": 0.636,
+          "rank": 9
+        },
+        {
+          "system": "Viking",
+          "origin": "published_rounded_scores",
+          "score": 0.6107,
+          "rank": 10
+        },
+        {
+          "system": "Mem0",
+          "origin": "published_rounded_scores",
+          "score": 0.56,
+          "rank": 11
+        },
+        {
+          "system": "Cognee",
+          "origin": "published_rounded_scores",
+          "score": 0.518,
+          "rank": 12
+        },
+        {
+          "system": "Memori",
+          "origin": "published_rounded_scores",
+          "score": 0.20800000000000002,
+          "rank": 13
+        }
+      ],
+      "unranked_missing": [
+        "MemoryLake",
+        "Backboard.io"
+      ]
+    },
+    {
+      "id": "beam100k",
+      "label": "BEAM 100K",
+      "metric": "beam_nugget_mean",
+      "count": 400,
+      "ranked": [
+        {
+          "system": "Viking",
+          "origin": "published_rounded_scores",
+          "score": 0.7076,
+          "rank": 1
+        },
+        {
+          "system": "Mem0",
+          "origin": "published_rounded_scores",
+          "score": 0.7041,
+          "rank": 2
+        },
+        {
+          "system": "Hindsight",
+          "origin": "published_rounded_scores",
+          "score": 0.7021999999999999,
+          "rank": 3
+        },
+        {
+          "system": "Tenconic",
+          "origin": "saved_question_records",
+          "score": 0.6967688155496329,
+          "rank": 4
+        },
+        {
+          "system": "Letta",
+          "origin": "published_rounded_scores",
+          "score": 0.6922,
+          "rank": 5
+        },
+        {
+          "system": "Zep / Graphiti",
+          "origin": "published_rounded_scores",
+          "score": 0.687,
+          "rank": 6
+        },
+        {
+          "system": "MemOS",
+          "origin": "published_rounded_scores",
+          "score": 0.6687000000000001,
+          "rank": 7
+        },
+        {
+          "system": "Supermemory",
+          "origin": "published_rounded_scores",
+          "score": 0.6598,
+          "rank": 8
+        },
+        {
+          "system": "mem9",
+          "origin": "published_rounded_scores",
+          "score": 0.6575,
+          "rank": 9
+        },
+        {
+          "system": "MemMachine",
+          "origin": "published_rounded_scores",
+          "score": 0.648,
+          "rank": 10
+        },
+        {
+          "system": "Cognee",
+          "origin": "published_rounded_scores",
+          "score": 0.593,
+          "rank": 11
+        },
+        {
+          "system": "EverOS",
+          "origin": "published_rounded_scores",
+          "score": 0.5864,
+          "rank": 12
+        }
+      ],
+      "unranked_missing": [
+        "Memori",
+        "MemoryLake",
+        "Backboard.io"
+      ]
+    },
+    {
+      "id": "beam10m",
+      "label": "BEAM 10M",
+      "metric": "beam_nugget_mean",
+      "count": 200,
+      "ranked": [
+        {
+          "system": "Hindsight",
+          "origin": "published_rounded_scores",
+          "score": 0.5975,
+          "rank": 1
+        },
+        {
+          "system": "Viking",
+          "origin": "published_rounded_scores",
+          "score": 0.5814,
+          "rank": 2
+        },
+        {
+          "system": "mem9",
+          "origin": "published_rounded_scores",
+          "score": 0.573,
+          "rank": 3
+        },
+        {
+          "system": "MemOS",
+          "origin": "published_rounded_scores",
+          "score": 0.5675,
+          "rank": 4
+        },
+        {
+          "system": "Zep / Graphiti",
+          "origin": "published_rounded_scores",
+          "score": 0.5611,
+          "rank": 5
+        },
+        {
+          "system": "Cognee",
+          "origin": "published_rounded_scores",
+          "score": 0.5602,
+          "rank": 6
+        },
+        {
+          "system": "Tenconic",
+          "origin": "saved_question_records",
+          "score": 0.5521723765700567,
+          "rank": 7
+        },
+        {
+          "system": "Supermemory",
+          "origin": "published_rounded_scores",
+          "score": 0.5249,
+          "rank": 8
+        },
+        {
+          "system": "Letta",
+          "origin": "published_rounded_scores",
+          "score": 0.523,
+          "rank": 9
+        },
+        {
+          "system": "MemMachine",
+          "origin": "published_rounded_scores",
+          "score": 0.519,
+          "rank": 10
+        },
+        {
+          "system": "EverOS",
+          "origin": "published_rounded_scores",
+          "score": 0.47729999999999995,
+          "rank": 11
+        },
+        {
+          "system": "Mem0",
+          "origin": "published_rounded_scores",
+          "score": 0.43329999999999996,
+          "rank": 12
+        }
+      ],
+      "unranked_missing": [
+        "Memori",
+        "MemoryLake",
+        "Backboard.io"
+      ]
+    },
+    {
+      "id": "personamem",
+      "label": "PersonaMem v2 text 32K",
+      "metric": "multiple_choice_saved",
+      "count": 5000,
+      "ranked": [
+        {
+          "system": "MemOS",
+          "origin": "published_rounded_scores",
+          "score": 0.4058,
+          "rank": 1
+        },
+        {
+          "system": "Supermemory",
+          "origin": "published_rounded_scores",
+          "score": 0.39640000000000003,
+          "rank": 2
+        },
+        {
+          "system": "Hindsight",
+          "origin": "published_rounded_scores",
+          "score": 0.37979999999999997,
+          "rank": 3
+        },
+        {
+          "system": "Tenconic",
+          "origin": "saved_question_records",
+          "score": 0.3684,
+          "rank": 4
+        },
+        {
+          "system": "Mem0",
+          "origin": "published_rounded_scores",
+          "score": 0.3676,
+          "rank": 5
+        },
+        {
+          "system": "EverOS",
+          "origin": "published_rounded_scores",
+          "score": 0.3594,
+          "rank": 6
+        },
+        {
+          "system": "Letta",
+          "origin": "published_rounded_scores",
+          "score": 0.35119999999999996,
+          "rank": 7
+        },
+        {
+          "system": "MemMachine",
+          "origin": "published_rounded_scores",
+          "score": 0.3414,
+          "rank": 8
+        },
+        {
+          "system": "Memori",
+          "origin": "published_rounded_scores",
+          "score": 0.33159999999999995,
+          "rank": 9
+        },
+        {
+          "system": "Zep / Graphiti",
+          "origin": "published_rounded_scores",
+          "score": 0.3234,
+          "rank": 10
+        },
+        {
+          "system": "Viking",
+          "origin": "published_rounded_scores",
+          "score": 0.308,
+          "rank": 11
+        },
+        {
+          "system": "mem9",
+          "origin": "published_rounded_scores",
+          "score": 0.30760000000000004,
+          "rank": 12
+        },
+        {
+          "system": "Cognee",
+          "origin": "published_rounded_scores",
+          "score": 0.2646,
+          "rank": 13
+        }
+      ],
+      "unranked_missing": [
+        "MemoryLake",
+        "Backboard.io"
+      ]
+    },
+    {
+      "id": "halumem",
+      "label": "HaluMem Medium",
+      "metric": "binary_judge",
+      "count": 3467,
+      "ranked": [
+        {
+          "system": "EverOS",
+          "origin": "published_rounded_scores",
+          "score": 0.8865999999999999,
+          "rank": 1
+        },
+        {
+          "system": "Tenconic",
+          "origin": "saved_question_records",
+          "score": 0.8641476781078743,
+          "rank": 2
+        },
+        {
+          "system": "Letta",
+          "origin": "published_rounded_scores",
+          "score": 0.8543000000000001,
+          "rank": 3
+        },
+        {
+          "system": "Hindsight",
+          "origin": "published_rounded_scores",
+          "score": 0.8399,
+          "rank": 4
+        },
+        {
+          "system": "Zep / Graphiti",
+          "origin": "published_rounded_scores",
+          "score": 0.8170999999999999,
+          "rank": 5
+        },
+        {
+          "system": "MemOS",
+          "origin": "published_rounded_scores",
+          "score": 0.8090999999999999,
+          "rank": 6
+        },
+        {
+          "system": "Viking",
+          "origin": "published_rounded_scores",
+          "score": 0.7739,
+          "rank": 7
+        },
+        {
+          "system": "Mem0",
+          "origin": "published_rounded_scores",
+          "score": 0.7364,
+          "rank": 8
+        },
+        {
+          "system": "mem9",
+          "origin": "published_rounded_scores",
+          "score": 0.728,
+          "rank": 9
+        },
+        {
+          "system": "Cognee",
+          "origin": "published_rounded_scores",
+          "score": 0.726,
+          "rank": 10
+        },
+        {
+          "system": "Supermemory",
+          "origin": "published_rounded_scores",
+          "score": 0.5261,
+          "rank": 11
+        },
+        {
+          "system": "Memori",
+          "origin": "published_rounded_scores",
+          "score": 0.4938,
+          "rank": 12
+        },
+        {
+          "system": "MemMachine",
+          "origin": "published_rounded_scores",
+          "score": 0.4702,
+          "rank": 13
+        }
+      ],
+      "unranked_missing": [
+        "MemoryLake",
+        "Backboard.io"
+      ]
+    }
+  ],
+  "benchmark_equal_weighted": {
+    "method": "benchmark_equal_weighted",
+    "benchmark_count": 5,
+    "within_benchmark_aggregation": "question_count_weighted",
+    "missing_policy": "all_panels_required",
+    "weights": [
+      {
+        "id": "locomo",
+        "label": "LoCoMo",
+        "panel_ids": [
+          "locomo"
+        ],
+        "question_count": 1540,
+        "weight": 0.2,
+        "question_count_weight": 0.1386513009813631,
+        "panel_weights": [
+          {
+            "id": "locomo",
+            "count": 1540,
+            "weight_within_benchmark": 1.0,
+            "effective_weight": 0.2
+          }
+        ]
+      },
+      {
+        "id": "lme",
+        "label": "LongMemEval",
+        "panel_ids": [
+          "lme"
+        ],
+        "question_count": 500,
+        "weight": 0.2,
+        "question_count_weight": 0.04501665616278023,
+        "panel_weights": [
+          {
+            "id": "lme",
+            "count": 500,
+            "weight_within_benchmark": 1.0,
+            "effective_weight": 0.2
+          }
+        ]
+      },
+      {
+        "id": "beam",
+        "label": "BEAM",
+        "panel_ids": [
+          "beam100k",
+          "beam10m"
+        ],
+        "question_count": 600,
+        "weight": 0.2,
+        "question_count_weight": 0.054019987395336276,
+        "panel_weights": [
+          {
+            "id": "beam100k",
+            "count": 400,
+            "weight_within_benchmark": 0.6666666666666666,
+            "effective_weight": 0.13333333333333333
+          },
+          {
+            "id": "beam10m",
+            "count": 200,
+            "weight_within_benchmark": 0.3333333333333333,
+            "effective_weight": 0.06666666666666667
+          }
+        ]
+      },
+      {
+        "id": "personamem",
+        "label": "PersonaMem",
+        "panel_ids": [
+          "personamem"
+        ],
+        "question_count": 5000,
+        "weight": 0.2,
+        "question_count_weight": 0.4501665616278023,
+        "panel_weights": [
+          {
+            "id": "personamem",
+            "count": 5000,
+            "weight_within_benchmark": 1.0,
+            "effective_weight": 0.2
+          }
+        ]
+      },
+      {
+        "id": "halumem",
+        "label": "HaluMem",
+        "panel_ids": [
+          "halumem"
+        ],
+        "question_count": 3467,
+        "weight": 0.2,
+        "question_count_weight": 0.3121454938327181,
+        "panel_weights": [
+          {
+            "id": "halumem",
+            "count": 3467,
+            "weight_within_benchmark": 1.0,
+            "effective_weight": 0.2
+          }
+        ]
+      }
+    ],
+    "ranked": [
+      {
+        "system": "MemOS",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.8883,
+          "lme": 0.892,
+          "beam": 0.6349666666666667,
+          "personamem": 0.4058,
+          "halumem": 0.8090999999999999
+        },
+        "score": 0.7260333333333333,
+        "question_weighted_score": 0.6328542090573511,
+        "question_weighted_rank": 1,
+        "score_change": 0.09317912427598218,
+        "rank": 1,
+        "rank_change": 0
+      },
+      {
+        "system": "Tenconic",
+        "origin": "saved_question_records",
+        "benchmark_scores": {
+          "locomo": 0.8785714285714286,
+          "lme": 0.866,
+          "beam": 0.6485700025564408,
+          "personamem": 0.3684,
+          "halumem": 0.8641476781078743
+        },
+        "score": 0.7251378218471487,
+        "question_weighted_score": 0.6314164042076046,
+        "question_weighted_rank": 2,
+        "score_change": 0.09372141763954411,
+        "rank": 2,
+        "rank_change": 0
+      },
+      {
+        "system": "Hindsight",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.8199,
+          "lme": 0.722,
+          "beam": 0.6673,
+          "personamem": 0.37979999999999997,
+          "halumem": 0.8399000000000001
+        },
+        "score": 0.6857800000000001,
+        "question_weighted_score": 0.615374025389394,
+        "question_weighted_rank": 4,
+        "score_change": 0.07040597461060605,
+        "rank": 3,
+        "rank_change": 1
+      },
+      {
+        "system": "EverOS",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.8274999999999999,
+          "lme": 0.804,
+          "beam": 0.5500333333333333,
+          "personamem": 0.3594,
+          "halumem": 0.8865999999999998
+        },
+        "score": 0.6855066666666666,
+        "question_weighted_score": 0.6191781939317548,
+        "question_weighted_rank": 3,
+        "score_change": 0.06632847273491183,
+        "rank": 4,
+        "rank_change": -1
+      },
+      {
+        "system": "Letta",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.7712,
+          "lme": 0.7767000000000001,
+          "beam": 0.6358,
+          "personamem": 0.35119999999999996,
+          "halumem": 0.8543000000000001
+        },
+        "score": 0.67784,
+        "question_weighted_score": 0.6010026199693888,
+        "question_weighted_rank": 5,
+        "score_change": 0.07683738003061125,
+        "rank": 5,
+        "rank_change": 0
+      },
+      {
+        "system": "Zep / Graphiti",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.6383,
+          "lme": 0.7979999999999999,
+          "beam": 0.6450333333333333,
+          "personamem": 0.3234,
+          "halumem": 0.8170999999999999
+        },
+        "score": 0.6443666666666666,
+        "question_weighted_score": 0.5599070586116862,
+        "question_weighted_rank": 7,
+        "score_change": 0.08445960805498043,
+        "rank": 6,
+        "rank_change": 1
+      },
+      {
+        "system": "mem9",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.7364,
+          "lme": 0.78,
+          "beam": 0.6293333333333334,
+          "personamem": 0.30760000000000004,
+          "halumem": 0.728
+        },
+        "score": 0.6362666666666666,
+        "question_weighted_score": 0.5369255424507068,
+        "question_weighted_rank": 9,
+        "score_change": 0.09934112421595986,
+        "rank": 7,
+        "rank_change": 2
+      },
+      {
+        "system": "Mem0",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.7768000000000002,
+          "lme": 0.56,
+          "beam": 0.6138333333333332,
+          "personamem": 0.3676,
+          "halumem": 0.7364
+        },
+        "score": 0.6109266666666666,
+        "question_weighted_score": 0.5614180966957775,
+        "question_weighted_rank": 6,
+        "score_change": 0.04950856997088915,
+        "rank": 8,
+        "rank_change": -2
+      },
+      {
+        "system": "Viking",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.6933,
+          "lme": 0.6107,
+          "beam": 0.6655333333333334,
+          "personamem": 0.308,
+          "halumem": 0.7739
+        },
+        "score": 0.6102866666666668,
+        "question_weighted_score": 0.5397914198253354,
+        "question_weighted_rank": 8,
+        "score_change": 0.07049524684133135,
+        "rank": 9,
+        "rank_change": -1
+      },
+      {
+        "system": "Supermemory",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.7353000000000001,
+          "lme": 0.6607,
+          "beam": 0.6148333333333333,
+          "personamem": 0.39640000000000003,
+          "halumem": 0.5261
+        },
+        "score": 0.5866666666666667,
+        "question_weighted_score": 0.5075718645898982,
+        "question_weighted_rank": 11,
+        "score_change": 0.07909480207676844,
+        "rank": 10,
+        "rank_change": 1
+      },
+      {
+        "system": "Cognee",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.8347999999999999,
+          "lme": 0.518,
+          "beam": 0.5820666666666667,
+          "personamem": 0.2646,
+          "halumem": 0.726
+        },
+        "score": 0.5850933333333332,
+        "question_weighted_score": 0.5162396686774107,
+        "question_weighted_rank": 10,
+        "score_change": 0.06885366465592258,
+        "rank": 11,
+        "rank_change": -1
+      },
+      {
+        "system": "MemMachine",
+        "origin": "published_rounded_scores",
+        "benchmark_scores": {
+          "locomo": 0.7390000000000001,
+          "lme": 0.636,
+          "beam": 0.605,
+          "personamem": 0.3414,
+          "halumem": 0.4702
+        },
+        "score": 0.5583199999999999,
+        "question_weighted_score": 0.4642336724588098,
+        "question_weighted_rank": 12,
+        "score_change": 0.09408632754119012,
+        "rank": 12,
+        "rank_change": 0
+      }
+    ],
+    "excluded": [
+      {
+        "system": "Memori",
+        "origin": "published_rounded_scores",
+        "scores": {
+          "locomo": 0.41340000000000005,
+          "lme": 0.20800000000000002,
+          "beam100k": null,
+          "beam10m": null,
+          "personamem": 0.33159999999999995,
+          "halumem": 0.4938
+        },
+        "missing_panels": [
+          "beam100k",
+          "beam10m"
+        ],
+        "covered_questions": 10507,
+        "coverage_fraction": 0.9459800126046637
+      },
+      {
+        "system": "MemoryLake",
+        "origin": "published_rounded_scores",
+        "scores": {
+          "locomo": 0.7249,
+          "lme": null,
+          "beam100k": null,
+          "beam10m": null,
+          "personamem": null,
+          "halumem": null
+        },
+        "missing_panels": [
+          "lme",
+          "beam100k",
+          "beam10m",
+          "personamem",
+          "halumem"
+        ],
+        "covered_questions": 1540,
+        "coverage_fraction": 0.1386513009813631
+      },
+      {
+        "system": "Backboard.io",
+        "origin": "published_rounded_scores",
+        "scores": {
+          "locomo": 0.22399999999999998,
+          "lme": null,
+          "beam100k": null,
+          "beam10m": null,
+          "personamem": null,
+          "halumem": null
+        },
+        "missing_panels": [
+          "lme",
+          "beam100k",
+          "beam10m",
+          "personamem",
+          "halumem"
+        ],
+        "covered_questions": 1540,
+        "coverage_fraction": 0.1386513009813631
+      }
+    ]
+  }
+}

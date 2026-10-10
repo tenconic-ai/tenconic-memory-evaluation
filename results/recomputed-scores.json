@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "panels": [
+    {
+      "id": "locomo",
+      "label": "LoCoMo categories 1-4",
+      "count": 1540,
+      "score": 0.8785714285714286,
+      "categories": {
+        "1": {
+          "count": 282,
+          "score": 0.776595744680851
+        },
+        "2": {
+          "count": 321,
+          "score": 0.8442367601246106
+        },
+        "3": {
+          "count": 96,
+          "score": 0.6979166666666666
+        },
+        "4": {
+          "count": 841,
+          "score": 0.9464922711058263
+        }
+      },
+      "binary_numerator": 1353,
+      "binary_denominator": 1540
+    },
+    {
+      "id": "lme",
+      "label": "LongMemEval-S cleaned",
+      "count": 500,
+      "score": 0.866,
+      "categories": {
+        "knowledge-update": {
+          "count": 78,
+          "score": 0.8717948717948718
+        },
+        "multi-session": {
+          "count": 133,
+          "score": 0.7293233082706767
+        },
+        "single-session-assistant": {
+          "count": 56,
+          "score": 1.0
+        },
+        "single-session-preference": {
+          "count": 30,
+          "score": 0.9666666666666667
+        },
+        "single-session-user": {
+          "count": 70,
+          "score": 0.9857142857142858
+        },
+        "temporal-reasoning": {
+          "count": 133,
+          "score": 0.8571428571428571
+        }
+      },
+      "binary_numerator": 433,
+      "binary_denominator": 500
+    },
+    {
+      "id": "beam100k",
+      "label": "BEAM 100K",
+      "count": 400,
+      "score": 0.6967688155496329,
+      "categories": {
+        "abstention": {
+          "count": 40,
+          "score": 0.7875
+        },
+        "contradiction_resolution": {
+          "count": 40,
+          "score": 0.6875
+        },
+        "event_ordering": {
+          "count": 40,
+          "score": 0.28743517930585294
+        },
+        "information_extraction": {
+          "count": 40,
+          "score": 0.9125
+        },
+        "instruction_following": {
+          "count": 40,
+          "score": 0.88125
+        },
+        "knowledge_update": {
+          "count": 40,
+          "score": 0.65
+        },
+        "multi_session_reasoning": {
+          "count": 40,
+          "score": 0.6273511904761905
+        },
+        "preference_following": {
+          "count": 40,
+          "score": 0.8875
+        },
+        "summarization": {
+          "count": 40,
+          "score": 0.6966517857142857
+        },
+        "temporal_reasoning": {
+          "count": 40,
+          "score": 0.55
+        }
+      },
+      "score_std_population": 0.36229910020756245
+    },
+    {
+      "id": "beam10m",
+      "label": "BEAM 10M",
+      "count": 200,
+      "score": 0.5521723765700567,
+      "categories": {
+        "abstention": {
+          "count": 20,
+          "score": 0.75
+        },
+        "contradiction_resolution": {
+          "count": 20,
+          "score": 0.69375
+        },
+        "event_ordering": {
+          "count": 20,
+          "score": 0.13991821014501116
+        },
+        "information_extraction": {
+          "count": 20,
+          "score": 0.5875
+        },
+        "instruction_following": {
+          "count": 20,
+          "score": 0.6125
+        },
+        "knowledge_update": {
+          "count": 20,
+          "score": 0.6375
+        },
+        "multi_session_reasoning": {
+          "count": 20,
+          "score": 0.20916666666666667
+        },
+        "preference_following": {
+          "count": 20,
+          "score": 0.725
+        },
+        "summarization": {
+          "count": 20,
+          "score": 0.7538888888888888
+        },
+        "temporal_reasoning": {
+          "count": 20,
+          "score": 0.4125
+        }
+      },
+      "score_std_population": 0.4051971617974579
+    },
+    {
+      "id": "personamem",
+      "label": "PersonaMem v2 text 32K",
+      "count": 5000,
+      "score": 0.3684,
+      "categories": {
+        "anti_stereotypical_pref": {
+          "count": 855,
+          "score": 0.28771929824561404
+        },
+        "ask_to_forget": {
+          "count": 1048,
+          "score": 0.5057251908396947
+        },
+        "health_and_medical_conditions": {
+          "count": 568,
+          "score": 0.31161971830985913
+        },
+        "neutral_preferences": {
+          "count": 858,
+          "score": 0.3333333333333333
+        },
+        "sensitive_info": {
+          "count": 511,
+          "score": 0.33072407045009783
+        },
+        "stereotypical_pref": {
+          "count": 533,
+          "score": 0.3452157598499062
+        },
+        "therapy_background": {
+          "count": 627,
+          "score": 0.39872408293460926
+        }
+      },
+      "binary_numerator": 1842,
+      "binary_denominator": 5000
+    },
+    {
+      "id": "halumem",
+      "label": "HaluMem Medium",
+      "count": 3467,
+      "score": 0.8641476781078743,
+      "categories": {
+        "Basic Fact Recall": {
+          "count": 746,
+          "score": 0.8498659517426274
+        },
+        "Dynamic Update": {
+          "count": 180,
+          "score": 0.7555555555555555
+        },
+        "Generalization & Application": {
+          "count": 746,
+          "score": 0.8967828418230563
+        },
+        "Memory Boundary": {
+          "count": 828,
+          "score": 0.8514492753623188
+        },
+        "Memory Conflict": {
+          "count": 769,
+          "score": 0.8855656697009102
+        },
+        "Multi-hop Inference": {
+          "count": 198,
+          "score": 0.8636363636363636
+        }
+      },
+      "binary_numerator": 2996,
+      "binary_denominator": 3467
+    }
+  ],
+  "overall": {
+    "metric": "question_count_weighted_composite",
+    "count": 11107,
+    "score": 0.6314164042076046,
+    "weights": [
+      {
+        "id": "locomo",
+        "label": "LoCoMo categories 1-4",
+        "count": 1540,
+        "weight": 0.1386513009813631,
+        "score": 0.8785714285714286,
+        "weighted_contribution": 0.1218150715764833
+      },
+      {
+        "id": "lme",
+        "label": "LongMemEval-S cleaned",
+        "count": 500,
+        "weight": 0.04501665616278023,
+        "score": 0.866,
+        "weighted_contribution": 0.03898442423696768
+      },
+      {
+        "id": "beam100k",
+        "label": "BEAM 100K",
+        "count": 400,
+        "weight": 0.03601332493022418,
+        "score": 0.6967688155496329,
+        "weighted_contribution": 0.02509296175563637
+      },
+      {
+        "id": "beam10m",
+        "label": "BEAM 10M",
+        "count": 200,
+        "weight": 0.01800666246511209,
+        "score": 0.5521723765700567,
+        "weighted_contribution": 0.00994278160745578
+      },
+      {
+        "id": "personamem",
+        "label": "PersonaMem v2 text 32K",
+        "count": 5000,
+        "weight": 0.4501665616278023,
+        "score": 0.3684,
+        "weighted_contribution": 0.16584136130368235
+      },
+      {
+        "id": "halumem",
+        "label": "HaluMem Medium",
+        "count": 3467,
+        "weight": 0.3121454938327181,
+        "score": 0.8641476781078743,
+        "weighted_contribution": 0.26973980372737916
+      }
+    ]
+  },
+  "benchmark_families": [
+    {
+      "family": "LoCoMo",
+      "count": 1540,
+      "score": 0.8785714285714286,
+      "panel_ids": [
+        "locomo"
+      ]
+    },
+    {
+      "family": "LongMemEval",
+      "count": 500,
+      "score": 0.866,
+      "panel_ids": [
+        "lme"
+      ]
+    },
+    {
+      "family": "BEAM",
+      "count": 600,
+      "score": 0.6485700025564408,
+      "panel_ids": [
+        "beam100k",
+        "beam10m"
+      ]
+    },
+    {
+      "family": "PersonaMem-v2",
+      "count": 5000,
+      "score": 0.3684,
+      "panel_ids": [
+        "personamem"
+      ]
+    },
+    {
+      "family": "HaluMem",
+      "count": 3467,
+      "score": 0.8641476781078743,
+      "panel_ids": [
+        "halumem"
+      ]
+    }
+  ]
+}
