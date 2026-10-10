@@ -8,7 +8,51 @@
 
 [결과·리더보드](LEADERBOARD.ko.md) · [평가 방법](METHODOLOGY.ko.md) · [릴리스 다운로드](https://github.com/tenconic-ai/tenconic-memory-evaluation/releases/latest) · [데이터 라이선스](THIRD_PARTY_NOTICES.ko.md)
 
-## 주요 결과
+## 종합 리더보드
+
+두 표 모두 **6개 패널 점수를 갖춘 12개 시스템**을 **0–100 척도**로 비교합니다. 다른 시스템은 2026년 10월 8일 [OmniMemEval 공개 재현 결과 스냅샷](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md)을, Tenconic은 이 저장소의 문항별 재계산 결과를 사용합니다. 서로 다른 지표를 결합한 비교용 복합점수이며, 공식 통합 정확도나 동일 조건에서 새로 실행한 대결이 아닙니다.
+
+### 문항 수 가중
+
+각 패널에 평가 문항 수만큼의 비중을 줍니다. 계산식은 `Σ(패널 점수 × 패널 문항 수) / 11,107`입니다.
+
+| 순위 | 시스템 | 종합점수 / 100 |
+| ---: | --- | ---: |
+| 1 | MemOS | 63.2854 |
+| **2** | **Tenconic** | **63.1416** |
+| 3 | EverOS | 61.9178 |
+| 4 | Hindsight | 61.5374 |
+| 5 | Letta | 60.1003 |
+| 6 | Mem0 | 56.1418 |
+| 7 | Zep / Graphiti | 55.9907 |
+| 8 | Viking | 53.9791 |
+| 9 | mem9 | 53.6926 |
+| 10 | Cognee | 51.6240 |
+| 11 | Supermemory | 50.7572 |
+| 12 | MemMachine | 46.4234 |
+
+### 5개 벤치마크 균등 가중
+
+LoCoMo·LongMemEval·BEAM·PersonaMem·HaluMem에 각각 **20%**를 줍니다. BEAM은 먼저 `(400 × BEAM 100K + 200 × BEAM 10M) / 600`으로 통합하고, 5개 벤치마크 점수를 평균합니다.
+
+| 순위 | 시스템 | 종합점수 / 100 |
+| ---: | --- | ---: |
+| 1 | MemOS | 72.6033 |
+| **2** | **Tenconic** | **72.5138** |
+| 3 | Hindsight | 68.5780 |
+| 4 | EverOS | 68.5507 |
+| 5 | Letta | 67.7840 |
+| 6 | Zep / Graphiti | 64.4367 |
+| 7 | mem9 | 63.6267 |
+| 8 | Mem0 | 61.0927 |
+| 9 | Viking | 61.0287 |
+| 10 | Supermemory | 58.6667 |
+| 11 | Cognee | 58.5093 |
+| 12 | MemMachine | 55.8320 |
+
+**두 종합 순위에서 제외:** Memori·MemoryLake·Backboard.io는 패널 점수가 누락되어 있습니다. 누락 점수를 0으로 채우거나 남은 패널에 가중치를 다시 배분하지 않습니다. 다른 시스템의 점수는 원 출처의 반올림 정밀도를 유지합니다. 패널별 순위·정확한 가중치·포함 범위·순위 변동은 [전체 리더보드](LEADERBOARD.ko.md)에 있습니다.
+
+## Tenconic 패널별 결과
 
 2026년 10월 6~8일에 시작한 완료 GPT 평가의 저장 결과입니다. 답변 모델은 `gpt-4.1-mini-2025-04-14`, 모델 판정을 사용한 패널의 판정 모델은 `gpt-4o-mini-2024-07-18`입니다. PersonaMem은 판정 모델 없이 객관식 정오로 평가했습니다.
 
@@ -20,15 +64,6 @@
 | BEAM 10M | 200 | 질문별 nugget score 평균 | 0.552172 |
 | PersonaMem v2 text 32K | 5,000 | 저장된 객관식 정답률 | 36.8400% |
 | HaluMem Medium | 3,467 | 모델 판정 정답률 | 86.4148% |
-
-| 종합 가중 방식 | Tenconic 점수 / 100 | 6개 패널을 모두 갖춘 12개 시스템 중 순위 |
-| --- | ---: | ---: |
-| 문항 수 가중 | 63.1416 | 2 |
-| 5개 벤치마크 균등 가중 | 72.5138 | 2 |
-
-**비교 범위:** 다른 시스템은 2026년 10월 8일 [OmniMemEval 공개 재현 결과](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md)의 반올림 수치를 사용합니다. Tenconic은 이 저장소의 문항별 기록에서 재계산합니다. 서로 다른 지표를 묶은 비교용 복합점수이며, 공식 통합 정확도나 동일 조건에서 새로 실행한 대결이 아닙니다. 패널이 누락된 3개 시스템은 두 종합 순위에서 모두 제외했습니다.
-
-문항 수 가중은 `Σ(패널 점수 × 패널 문항 수) / 11,107`입니다. 균등 가중은 LoCoMo·LongMemEval·BEAM·PersonaMem·HaluMem에 각각 20%를 줍니다. BEAM은 먼저 `(400 × BEAM 100K + 200 × BEAM 10M) / 600`으로 통합합니다. 전체 계산식·가중치·순위 변동·패널별 결과는 [리더보드](LEADERBOARD.ko.md)에 있습니다.
 
 ## 점수 재계산
 

@@ -8,7 +8,51 @@ This repository is maintained by [Tenconic](https://github.com/tenconic-ai). It 
 
 [Results and leaderboards](LEADERBOARD.md) · [Methodology](METHODOLOGY.md) · [Download a release](https://github.com/tenconic-ai/tenconic-memory-evaluation/releases/latest) · [Dataset licenses](THIRD_PARTY_NOTICES.md)
 
-## Results at a glance
+## Overall leaderboards
+
+Both tables compare **12 systems with all six panel scores**, on a **0–100 scale**. Peer values come from the October 8, 2026 [OmniMemEval Reproduced Results snapshot](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md); Tenconic values are recalculated from this repository's question records. These mixed-metric composites are descriptive comparisons, not official unified accuracy or a newly controlled head-to-head evaluation.
+
+### Question-count weighted
+
+Each panel is weighted by its number of evaluated questions: `sum(panel_score × panel_questions) / 11,107`.
+
+| Rank | System | Composite score / 100 |
+| ---: | --- | ---: |
+| 1 | MemOS | 63.2854 |
+| **2** | **Tenconic** | **63.1416** |
+| 3 | EverOS | 61.9178 |
+| 4 | Hindsight | 61.5374 |
+| 5 | Letta | 60.1003 |
+| 6 | Mem0 | 56.1418 |
+| 7 | Zep / Graphiti | 55.9907 |
+| 8 | Viking | 53.9791 |
+| 9 | mem9 | 53.6926 |
+| 10 | Cognee | 51.6240 |
+| 11 | Supermemory | 50.7572 |
+| 12 | MemMachine | 46.4234 |
+
+### Five-benchmark equal weighted
+
+LoCoMo, LongMemEval, BEAM, PersonaMem, and HaluMem each receive **20%**. BEAM is first pooled as `(400 × BEAM_100K + 200 × BEAM_10M) / 600`; the five benchmark scores are then averaged.
+
+| Rank | System | Composite score / 100 |
+| ---: | --- | ---: |
+| 1 | MemOS | 72.6033 |
+| **2** | **Tenconic** | **72.5138** |
+| 3 | Hindsight | 68.5780 |
+| 4 | EverOS | 68.5507 |
+| 5 | Letta | 67.7840 |
+| 6 | Zep / Graphiti | 64.4367 |
+| 7 | mem9 | 63.6267 |
+| 8 | Mem0 | 61.0927 |
+| 9 | Viking | 61.0287 |
+| 10 | Supermemory | 58.6667 |
+| 11 | Cognee | 58.5093 |
+| 12 | MemMachine | 55.8320 |
+
+**Excluded from both overall rankings:** Memori, MemoryLake, and Backboard.io have incomplete panel coverage. Missing scores are not filled with zero or reweighted away. Peer values retain their original published rounding. See the [full leaderboards](LEADERBOARD.md) for panel rankings, exact weights, coverage, and rank changes.
+
+## Tenconic panel results
 
 These are saved results from completed GPT-based evaluations started on October 6–8, 2026. The answer model was `gpt-4.1-mini-2025-04-14`; model-judged panels used `gpt-4o-mini-2024-07-18`. PersonaMem used multiple-choice correctness without a judge model.
 
@@ -20,15 +64,6 @@ These are saved results from completed GPT-based evaluations started on October 
 | BEAM 10M | 200 | Mean per-question nugget score | 0.552172 |
 | PersonaMem v2 text 32K | 5,000 | Saved multiple-choice accuracy | 36.8400% |
 | HaluMem Medium | 3,467 | Model-judged accuracy | 86.4148% |
-
-| Composite method | Tenconic score / 100 | Rank among 12 systems with all six panels |
-| --- | ---: | ---: |
-| Question-count weighted | 63.1416 | 2 |
-| Five-benchmark equal weighted | 72.5138 | 2 |
-
-**Comparison scope:** peer results come from the October 8, 2026 [OmniMemEval Reproduced Results snapshot](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md), using its published rounded values. Tenconic scores are recalculated from this repository's question records. These heterogeneous composites are descriptive comparisons, not an official unified accuracy measure or a newly controlled head-to-head evaluation. Three systems with incomplete panel coverage are excluded from both overall rankings.
-
-The question-count composite is `sum(panel_score × panel_questions) / 11,107`. The equal-weight composite gives each of LoCoMo, LongMemEval, BEAM, PersonaMem, and HaluMem 20%. BEAM is first pooled as `(400 × BEAM_100K + 200 × BEAM_10M) / 600`. See the [full leaderboards](LEADERBOARD.md) for formulas, weights, rank changes, and all panel results.
 
 ## Reproduce the score calculations
 
