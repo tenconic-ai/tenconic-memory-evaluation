@@ -4,7 +4,7 @@
 
 ## Scope
 
-This package publishes the saved scores and question locations for Tenconic's last completed GPT evaluation on the [OmniMemEval](https://github.com/MemTensor/OmniMemEval) path: six panels and 11,107 scored questions. It includes 6,100 saved answers from LongMemEval, BEAM, and PersonaMem. It omits 5,007 answers from LoCoMo and HaluMem because those answers could repeat source wording from datasets with noncommercial (NC) terms and this release serves a business purpose. All original answers remain preserved outside this package. `answer_disclosure` marks the omissions. The scores and full question count remain, but this package cannot support semantic review of the omitted answers. Published questions, references, and options came from the original benchmarks or saved evaluation records; they were not newly generated. See [SOURCE_ACCESS.md](SOURCE_ACCESS.md) and `config/data-disclosure.json` for panel disclosure.
+This package publishes the saved scores and question locations for Tenconic's last completed GPT evaluation on the [OmniMemEval](https://github.com/MemTensor/OmniMemEval) path: six panels and 11,107 scored questions. It includes 6,100 saved answers from LongMemEval, BEAM, and PersonaMem. It omits 5,007 answers from LoCoMo and HaluMem because those answers could repeat source wording from datasets with noncommercial (NC) terms and this release serves a business purpose. All original answers remain preserved outside this package. `answer_disclosure` marks the omissions. The scores and full question count remain, but this package cannot support semantic review of the omitted answers. Published questions, references, and options came from the original benchmarks or saved evaluation records; they were not newly generated. See [Source access](SOURCE_ACCESS.md) and `config/data-disclosure.json` for panel disclosure.
 
 | Panel ID | Evaluation scope | Questions | Saved mean score |
 | --- | --- | ---: | ---: |
@@ -51,7 +51,9 @@ Within BEAM, the 100K and 10M panels retain a 400:200, or 2:1, question-count we
 | HaluMem | 3,467 | 31.2145% | 20% |
 | Total | 11,107 | 100% | 100% |
 
-Tenconic's combined BEAM score is 0.6485700025564408. Its benchmark-equal composite is **0.7251378218471487 (72.5138/100), rank 2**. Its original question-weighted score remains **63.1416/100, rank 2**. [LEADERBOARD.md](LEADERBOARD.md) shows both scores/ranks and changes for every system. `rank_change` is original question-weighted rank minus benchmark-equal rank, so a positive number indicates a rise. Different weights aggregate the same saved results.
+Tenconic's combined BEAM score is 0.6485700025564408. Its benchmark-equal composite is **0.7251378218471487 (72.5138/100), rank 2**. Its original question-weighted score remains **63.1416/100, rank 2**. [Full leaderboards](LEADERBOARD.md) show both scores/ranks and changes for every system. `rank_change` is original question-weighted rank minus benchmark-equal rank, so a positive number indicates a rise. Different weights aggregate the same saved results.
+
+Score change is the benchmark-equal score minus the question-count weighted score, calculated before display rounding and then shown on the 0–100 scale to four decimal places. Tenconic's change is **+9.3721**; subtracting the displayed scores, `72.5138 - 63.1416`, gives `+9.3722`. This last-digit difference is due to rounding, not a different calculation method or evaluation result.
 
 Both overall rankings require all six panels. If either BEAM scope is missing, the system is excluded from both; weights are not redistributed over remaining scopes. Panel rankings still include systems with that panel's score. Sorting uses scores before display rounding. Exactly equal calculated scores share a rank and skip the next rank.
 

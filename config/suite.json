@@ -221,7 +221,7 @@
       "saved_answer_bodies_withheld": 3467
     }
   ],
-  "package_revision": 5,
+  "package_revision": 6,
   "aggregation": {
     "method": "question_count_weighted",
     "expected_questions": 11107,

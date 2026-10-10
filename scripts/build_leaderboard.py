@@ -184,6 +184,7 @@ def markdown(result: dict, language: str = "en") -> str:
             "overall_header": "| Rank | System | Question-count weighted composite (0–100) | Score source |",
             "equal_heading": "## Equal benchmark weighted overall ranking",
             "rank_change_note": "Rank change counts places gained from the question-count weighted rank to the equal benchmark weighted rank; a positive value means a rise.",
+            "score_change_note": "Score change is the equal benchmark weighted score minus the question-count weighted score, calculated before display rounding. It may differ in the last digit from subtracting the displayed scores.",
             "equal_header": "| Equal-weight rank | System | Equal-weight score (0–100) | Question-count rank | Question-count score (0–100) | Rank change | Score change (0–100) |",
             "excluded_note": "Systems missing any panel score are excluded from overall rankings. Missing scores are not set to zero, and the remaining panels are not reweighted.",
             "excluded_header": "| System excluded from overall rank | Scored panels | Covered questions | Coverage | Missing panels |",
@@ -219,6 +220,7 @@ def markdown(result: dict, language: str = "en") -> str:
             "overall_header": "| 순위 | 시스템 | 문항 수 가중 복합점수 (0–100) | 점수 출처 |",
             "equal_heading": "## 벤치마크 균등 가중 전체 순위",
             "rank_change_note": "순위 변화는 문항 수 가중 순위에서 벤치마크 균등 가중 순위로 바뀐 자리 수입니다. 양수는 상승입니다.",
+            "score_change_note": "점수 변화는 반올림 전 벤치마크 균등 가중 점수에서 문항 수 가중 점수를 뺀 값입니다. 따라서 표에 표시된 점수끼리 뺀 값과 마지막 자릿수가 다를 수 있습니다.",
             "equal_header": "| 균등 가중 순위 | 시스템 | 균등 가중 점수 (0–100) | 문항 수 가중 순위 | 문항 수 가중 점수 (0–100) | 순위 변화 | 점수 변화 (0–100) |",
             "excluded_note": "일부 패널 점수가 없는 시스템은 전체 순위에서 제외합니다. 빠진 점수를 0으로 대입하거나 남은 패널에 가중치를 다시 나누지 않습니다.",
             "excluded_header": "| 전체 순위 제외 시스템 | 점수 있는 패널 | 포함 문항 수 | 포함 비율 | 빠진 패널 |",
@@ -279,6 +281,7 @@ def markdown(result: dict, language: str = "en") -> str:
         lines.append(f"| {item['rank']} | {item['system']} | {pct(item['score'])} | {origin(item['origin'])} |")
     lines += ["", labels["equal_heading"], "",
               labels["rank_change_note"], "",
+              labels["score_change_note"], "",
               labels["equal_header"],
               "| ---: | --- | ---: | ---: | ---: | ---: | ---: |"]
     for item in result["benchmark_equal_weighted"]["ranked"]:

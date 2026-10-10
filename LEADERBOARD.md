@@ -55,6 +55,8 @@ Uses the 2026-10-08 snapshot of OmniMemEval Reproduced Results. Published Refere
 
 Rank change counts places gained from the question-count weighted rank to the equal benchmark weighted rank; a positive value means a rise.
 
+Score change is the equal benchmark weighted score minus the question-count weighted score, calculated before display rounding. It may differ in the last digit from subtracting the displayed scores.
+
 | Equal-weight rank | System | Equal-weight score (0–100) | Question-count rank | Question-count score (0–100) | Rank change | Score change (0–100) |
 | ---: | --- | ---: | ---: | ---: | ---: | ---: |
 | 1 | MemOS | 72.6033 | 1 | 63.2854 | +0 | +9.3179 |

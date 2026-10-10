@@ -50,6 +50,8 @@ LoCoMo, LongMemEval, BEAM, PersonaMem, and HaluMem each receive **20%**. BEAM is
 | 11 | Cognee | 58.5093 |
 | 12 | MemMachine | 55.8320 |
 
+Overall scores are displayed to four decimal places. Score changes in the full leaderboards are calculated before display rounding, so they can differ in the last digit from subtracting the displayed scores.
+
 **Excluded from both overall rankings:** Memori, MemoryLake, and Backboard.io have incomplete panel coverage. Missing scores are not filled with zero or reweighted away. Peer values retain their original published rounding. See the [full leaderboards](LEADERBOARD.md) for panel rankings, exact weights, coverage, and rank changes.
 
 ## Tenconic panel results
