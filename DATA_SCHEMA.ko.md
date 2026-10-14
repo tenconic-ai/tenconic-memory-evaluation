@@ -52,3 +52,21 @@ PersonaMem의 제한 공개 행에는 `source_disclosure: {"mode":"source_link_o
 | `excluded` | 누락 패널로 두 종합 순위에서 제외된 시스템과 누락·포함 범위 정보 |
 
 `ranked`의 각 행은 `system`, `origin`, 다섯 `benchmark_scores`, 균등 `score`·`rank`, 기존 `question_weighted_score`·`question_weighted_rank`, `rank_change`, `score_change`를 갖는다. `rank_change`는 기존 순위에서 균등 순위를 뺀 값이며 양수는 상승이다. `score_change`는 균등 점수에서 기존 점수를 뺀 0–1 척도 차이다. 같은 계산 점수는 공동 순위를 사용하고 다음 순위를 건너뛴다. 표에 보이는 반올림 값만 같을 때는 공동 순위로 간주하지 않는다.
+
+## 벤치마크 세부 비교
+
+`config/public-reference-details.json`은 고정된 OmniMemEval 공개 재현 결과에서 옮긴 유형별·BEAM 규모별 값입니다. `source`는 출처 URL·스냅샷 날짜·원래 정밀도·0–1 척도·공개 범위를 기록합니다. 6개 `panels`에는 유형 정의(`id`, 영문·국문 `label`)와 타사 `rows`가 있습니다.
+
+| 필드 | 의미 |
+| --- | --- |
+| `system` | 기존 종합 비교와 연결하는 공통 시스템 이름 |
+| `source_system` | `Zep`과 `graphiti-zep` 등을 구별한 원 벤치마크 표의 이름 |
+| `deployment` | 출처에 표시된 메모리 백엔드 배포 방식 |
+| `score` | 원 표의 패널 종합점수; 기존 `public-reference-scores.json`과 일치하는지 검사 |
+| `categories` | 유형 ID별 점수; 타사 BEAM 행은 원 출처에 능력별 값이 없어 모두 `null` |
+| `score_std` | BEAM의 출처상 분산 표기(0–1 척도); 다른 패널의 입력에서는 생략 |
+| `context_tokens` | 출처의 평균 답변 컨텍스트 토큰; JSON 출처 정보로 보존하고 점수표에는 표시하지 않음 |
+
+생성기는 `results/leaderboard.json`에 `benchmark_details`를 추가합니다. `source`와 6개 `panels` 아래에 유형 정의·문항 수·정렬된 `rows`가 있습니다. Tenconic의 유형별 문항 수·평균은 공개 기록에서 재계산하며 가중평균이 기존 패널 점수와 맞아야 합니다. Tenconic의 `score_std`는 BEAM 문항 점수의 모집단 표준편차이고 다른 패널은 `null`입니다. 공개 문항 스키마에는 토큰 수가 없으므로 Tenconic의 `context_tokens`도 `null`입니다. 타사도 BEAM 외 생성 결과의 `score_std`는 `null`입니다. 각 행에는 `rank`·`origin`이 추가되며 기존 `panel_leaderboards`와 두 종합 순위의 필드·값은 유지합니다.
+
+타사 행은 LoCoMo 14개, LongMemEval·PersonaMem·HaluMem 각각 12개, BEAM 각 규모 11개입니다. 기존 종합 스냅샷에서 해당 패널 점수가 있는 모든 타사를 포함해야 하며 누락을 0으로 채우지 않습니다. 패키지 리비전 7부터 상세 스냅샷은 필수입니다. 영문·국문 리더보드는 같은 결합 결과로 생성합니다. 유형별 평균은 0–100 척도의 소수점 두 자리로 표시하고 JSON은 계산 정밀도를 보존합니다.

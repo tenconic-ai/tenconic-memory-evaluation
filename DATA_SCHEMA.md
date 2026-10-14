@@ -52,3 +52,21 @@ The release keeps `overall_ranked`, `overall_excluded`, `weights`, and `comparis
 | `excluded` | Systems absent from both overall rankings due to missing panels, with included/missing scope information |
 
 Each `ranked` row has `system`, `origin`, five `benchmark_scores`, equal `score`/`rank`, original `question_weighted_score`/`question_weighted_rank`, `rank_change`, and `score_change`. `rank_change` is original rank minus equal-weighted rank; positive means a rise. `score_change` is equal score minus original score on the 0–1 scale. Exactly equal calculated scores share a rank and skip the next rank. Equal displayed rounded values alone do not establish a tie.
+
+## Detailed benchmark comparisons
+
+`config/public-reference-details.json` stores the category and BEAM scale values transcribed from the pinned OmniMemEval reproduced-results snapshot. Its `source` gives the dated source URL, original precision, 0–1 scale and scope. Each of the six `panels` supplies category definitions (`id`, English/Korean `label`) and peer `rows`:
+
+| Field | Meaning |
+| --- | --- |
+| `system` | Canonical name used to join the existing overall comparison |
+| `source_system` | Original per-benchmark label, including `Zep` versus `graphiti-zep` |
+| `deployment` | Source-reported memory backend deployment |
+| `score` | Published overall panel score, checked against `public-reference-scores.json` |
+| `categories` | Category-ID to score mapping; `null` for every peer BEAM row because the source provides no ability breakdown |
+| `score_std` | BEAM's source-reported dispersion on the same 0–1 scale; omitted for other source panels |
+| `context_tokens` | Source-reported average answer-context tokens; retained as source metadata, not displayed in the score tables |
+
+The builder adds `benchmark_details` to `results/leaderboard.json`: `source` and six `panels` with category definitions/counts and sorted `rows`. Tenconic category counts and means come from recalculated public records; their weighted mean must recover the panel score. Tenconic's `score_std` is its question-score population standard deviation for BEAM and `null` otherwise; its `context_tokens` is `null` because this public record schema does not supply token counts. Peer `score_std` is `null` outside BEAM in the generated output. Output rows also contain `rank` and `origin`; existing `panel_leaderboards` and both aggregate rankings retain their original fields and values.
+
+The source snapshot has 14 LoCoMo peer rows, 12 each for LongMemEval/PersonaMem/HaluMem, and 11 per BEAM scale. Every scored peer in the existing overall snapshot must appear in its detail panel. Missing peers are not zero-filled. Package revision 7 requires the detail snapshot. `LEADERBOARD.md` and `LEADERBOARD.ko.md` are generated from this same joined output. Category means are displayed to two decimal places on a 0–100 scale; JSON retains the calculation precision.

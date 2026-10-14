@@ -31,3 +31,5 @@ LongMemEval의 MIT 라이선스 및 저작권 고지 전문은 `notices/LongMemE
 2026-10-10에 위 공식 출처의 라이선스를 확인했다. 포함된 BEAM 벤치마크 유래 자료와 그 발췌·재배열에는 CC BY-SA 4.0을 유지하며, 해당 자료를 수정해 공유할 때도 그 동일조건변경허락 조건을 따라야 한다. PersonaMem 유래 자료는 CC BY 4.0, LongMemEval 유래 자료는 동봉한 MIT 고지를 유지한다. 본 패키지의 선택·발췌와 JSONL 포맷 변경을 원 저자의 변경으로 표현하거나 원 저자가 Tenconic을 보증한다고 표시하지 않는다.
 
 이 문서는 출처와 적용 범위를 표시한다. 패키지 전체나 제품 코드에 새 전역 라이선스를 부여하지 않는다.
+
+**변경 고지 (2026-10-14):** [OmniMemEval 공개 재현 결과](https://github.com/MemTensor/OmniMemEval/blob/0b1ea8d28aa2d3e03ac4a6aee17b3006a131da7d/docs/user_memory/results.md)의 유형별·BEAM 규모별 표를 `config/public-reference-details.json`으로 전사하고, 점수를 0–1 척도로 변환했습니다. 양언어 리더보드에서 별도로 계산한 Tenconic 결과와 함께 재정렬했습니다. 타사의 원 백엔드 이름·배포 방식·반올림된 값은 보존합니다. 이 출처 표의 변환 자료에는 포함된 OmniMemEval Apache 2.0 라이선스와 NOTICE를 적용합니다. 별도 Published Reference/업체 자체 주장 표는 포함하지 않습니다.

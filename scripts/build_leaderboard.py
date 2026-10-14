@@ -9,6 +9,7 @@ import math
 import sys
 from pathlib import Path
 
+from benchmark_details import build_details
 from recompute_scores import EvidenceError, load_json, nonempty_text, object_at, recompute, require
 
 BENCHMARKS = (
@@ -146,7 +147,8 @@ def build(root: Path) -> dict:
                              "metric": metrics[panel_id],
                              "count": panel["count"], "ranked": ranked(observed),
                              "unranked_missing": absent})
-    return {"source": source, "weights": calculated["overall"]["weights"],
+    details = build_details(root, calculated, snapshot)
+    result = {"source": source, "weights": calculated["overall"]["weights"],
             "total_questions": total, "overall_ranked": overall_complete,
             "overall_excluded": overall_excluded, "comparison_matrix": matrix,
             "panel_leaderboards": panel_tables,
@@ -155,6 +157,9 @@ def build(root: Path) -> dict:
                 "within_benchmark_aggregation": "question_count_weighted",
                 "missing_policy": "all_panels_required", "weights": benchmark_weights,
                 "ranked": equal_complete, "excluded": [item.copy() for item in overall_excluded]}}
+    if details is not None:
+        result["benchmark_details"] = details
+    return result
 
 
 def markdown(result: dict, language: str = "en") -> str:
@@ -197,6 +202,21 @@ def markdown(result: dict, language: str = "en") -> str:
             "no_score": "No score (unranked)",
             "saved_origin": "Recalculated from saved question records",
             "published_origin": "Published table's rounded scores",
+            "detail_heading": "## Detailed benchmark comparisons",
+            "detail_intro": "Tenconic category scores and counts come from its saved question records. Peer category values are rounded upstream reproduced results from the dated snapshot, not a synchronized rerun. System names preserve the original Zep / graphiti-zep naming and deployment route. Detailed scores use 0–100 with two decimal places; ranks use the unrounded values. Deployment describes the memory backend, separately from external answer/judge APIs.",
+            "detail_source": "Category comparison snapshot",
+            "detail_rank": "Rank",
+            "detail_system": "System",
+            "detail_source_system": "Source system",
+            "detail_deployment": "Deployment",
+            "detail_overall": "Overall (0–100)",
+            "detail_beam_score": "Overall ± std (0–100)",
+            "detail_beam_note": "Peer BEAM ability scores were not published in the reproduced snapshot; only Tenconic ability scores are shown below. Peer dispersion is copied as reported; Tenconic uses the population standard deviation of saved question scores. These are not confidence intervals.",
+            "detail_ability": "Ability",
+            "detail_count": "Questions",
+            "detail_score": "Tenconic score (0–100)",
+            "detail_local": "local/self-hosted",
+            "detail_cloud": "cloud",
         },
         "ko": {
             "nav": "[홈](README.ko.md) | [평가 방법](METHODOLOGY.ko.md) | [English](LEADERBOARD.md)",
@@ -233,6 +253,21 @@ def markdown(result: dict, language: str = "en") -> str:
             "no_score": "점수 없음 (순위 제외)",
             "saved_origin": "문항별 저장 기록 재계산",
             "published_origin": "공개 표의 반올림 점수",
+            "detail_heading": "## 벤치마크별 상세 비교",
+            "detail_intro": "Tenconic 범주별 점수와 문항 수는 저장된 문항 기록에서 계산했습니다. 비교 시스템의 범주값은 날짜가 고정된 상위 공개 재현 결과 스냅샷의 반올림된 값이며, 동일 조건에서 다시 실행한 결과가 아닙니다. 시스템 이름은 원본 Zep / graphiti-zep 명칭과 배포 경로를 보존합니다. 상세 점수는 0–100 척도의 소수점 두 자리이며 순위는 반올림 전 값으로 계산합니다. 배포 형태는 메모리 백엔드 기준이며 외부 답변·판정 API 사용과는 별개입니다.",
+            "detail_source": "범주 비교 스냅샷",
+            "detail_rank": "순위",
+            "detail_system": "시스템",
+            "detail_source_system": "원본 시스템",
+            "detail_deployment": "배포 형태",
+            "detail_overall": "전체 (0–100)",
+            "detail_beam_score": "전체 ± 표준편차 (0–100)",
+            "detail_beam_note": "비교 시스템의 BEAM 능력별 점수는 공개 재현 결과에 없습니다. 아래에는 Tenconic 능력별 점수만 표시합니다. 타사 분산 표기는 출처 값을 그대로 옮겼으며, Tenconic은 저장 문항 점수의 모집단 표준편차입니다. 신뢰구간이 아닙니다.",
+            "detail_ability": "능력",
+            "detail_count": "문항 수",
+            "detail_score": "Tenconic 점수 (0–100)",
+            "detail_local": "로컬/자체 호스팅",
+            "detail_cloud": "클라우드",
         },
     }[language]
 
@@ -265,6 +300,12 @@ def markdown(result: dict, language: str = "en") -> str:
              f"{labels['precision']}: {precision}. {labels['answer_model']}: {result['source']['answer_model']}; {labels['judge_model']}: {result['source']['judge_model']}.",
              source_note, "",
              labels["weights_heading"], "", labels["weight_header"], "| --- | ---: | ---: |"]
+    details = result.get("benchmark_details")
+    if details is not None:
+        jump_label = "Jump to detailed tables" if language == "en" else "상세 비교표 바로가기"
+        jumps = " · ".join(f"[{table['label']}](#detail-{table['id']})"
+                           for table in details["panels"])
+        lines[4:4] = [f"[{jump_label}](#benchmark-details): {jumps}", ""]
     for entry in result["weights"]:
         lines.append(f"| {entry['label']} | {entry['count']} | {pct(entry['weight'])}% |")
     lines += [f"| {labels['total']} | {result['total_questions']} | 100.0000% |", "",
@@ -306,7 +347,60 @@ def markdown(result: dict, language: str = "en") -> str:
                      " | " + (", ".join(short_labels[panel_id] for panel_id in item["missing_panels"]) or "—") + " |")
     tenconic = next(item for item in result["overall_ranked"] if item["system"] == "Tenconic")
     lines += ["", labels["precision_note"].format(score=pct(tenconic["score"])), ""]
+    if details is not None:
+        detail_source = details["source"]
+        detail_note = detail_source["note"]
+        if language == "ko" and detail_note == (
+                "Category scores, original backend names, deployment routes, context-token values and BEAM "
+                "dispersion were transcribed from the same reproduced-results snapshot as "
+                "public-reference-scores.json. Published Reference Results are excluded. "
+                "No peer question-level records or BEAM ability scores are supplied by that table."):
+            detail_note = ("범주별 점수, 원본 백엔드 명칭, 배포 경로, 컨텍스트 토큰 수, BEAM 산포도는 "
+                           "public-reference-scores.json과 같은 공개 재현 결과 스냅샷에서 옮겼습니다. "
+                           "공개 참고 결과는 제외했습니다. 이 표는 비교 시스템의 문항별 기록이나 BEAM 능력별 점수를 제공하지 않습니다.")
+        lines += ["<a id=\"benchmark-details\"></a>", "", labels["detail_heading"], "",
+                  labels["detail_intro"], "",
+                  f"{labels['detail_source']}: [{labels['source_link']}]({detail_source['url']}) "
+                  f"({detail_source['snapshot_date']}; {detail_source['kind']}; {detail_source['score_scale']}). "
+                  f"{detail_note}", ""]
+        details_by_id = {table["id"]: table for table in details["panels"]}
     for table in result["panel_leaderboards"]:
+        if details is not None:
+            detail = details_by_id[table["id"]]
+            beam = table["id"].startswith("beam")
+            columns = ([labels["detail_rank"], labels["detail_system"],
+                        labels["detail_deployment"]] +
+                       ([] if beam else [f"{category['label'][language]} (n={category['count']})"
+                                         for category in detail["categories"]]) +
+                       [labels["detail_beam_score"] if beam else labels["detail_overall"]])
+            lines += [f"<a id=\"detail-{table['id']}\"></a>", "",
+                      f"## {table['label']} ({table['id']}; {table['metric']}; n={table['count']})", "",
+                      "| " + " | ".join(columns) + " |",
+                      "| " + " | ".join(["---:", "---", "---"] +
+                                          ([] if beam else ["---:"] * len(detail["categories"])) +
+                                          ["---:"]) + " |"]
+            for item in detail["rows"]:
+                system = "**Tenconic**" if item["system"] == "Tenconic" else item["source_system"]
+                deployment = labels["detail_cloud"] if item["deployment"] == "cloud" else labels["detail_local"]
+                values = [] if beam else [f"{item['categories'][category['id']] * 100:.2f}"
+                                          for category in detail["categories"]]
+                overall = f"{item['score'] * 100:.2f}"
+                if beam:
+                    overall += f" ± {item['score_std'] * 100:.2f}"
+                lines.append("| " + " | ".join([str(item["rank"]), system,
+                                                deployment, *values, overall]) + " |")
+            if beam:
+                lines += ["", labels["detail_beam_note"], "",
+                          f"| {labels['detail_ability']} | {labels['detail_count']} | {labels['detail_score']} |",
+                          "| --- | ---: | ---: |"]
+                tenconic = next(row for row in detail["rows"] if row["system"] == "Tenconic")
+                for category in detail["categories"]:
+                    lines.append(f"| {category['label'][language]} | {category['count']} | "
+                                 f"{tenconic['categories'][category['id']] * 100:.2f} |")
+            if table["unranked_missing"]:
+                lines += ["", labels["no_score"] + ": " + ", ".join(table["unranked_missing"])]
+            lines.append("")
+            continue
         lines += [f"## {table['label']} ({table['id']}; {table['metric']}; n={table['count']})", "",
                   labels["panel_header"], "| ---: | --- | ---: | --- |"]
         for item in table["ranked"]:

@@ -6,7 +6,7 @@ This repository contains materials with different rights and license terms. **No
 
 | Material | Applicable notice |
 | --- | --- |
-| Selected OmniMemEval prompt material and its reformatted snapshot | [Apache License 2.0](notices/OmniMemEval-Apache-2.0.txt) and [NOTICE](notices/OmniMemEval-NOTICE.txt); modifications are identified in `config/prompt-templates.json` |
+| Selected OmniMemEval prompt material and reproduced result-table snapshots | [Apache License 2.0](notices/OmniMemEval-Apache-2.0.txt) and [NOTICE](notices/OmniMemEval-NOTICE.txt); modifications are identified in `config/prompt-templates.json` and [third-party notices](THIRD_PARTY_NOTICES.md) |
 | Included LongMemEval question/reference excerpts | [MIT license and copyright notice](notices/LongMemEval-MIT.txt) |
 | Included BEAM source excerpts and their selection/reformatting | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | Included PersonaMem-v2 source excerpts | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |

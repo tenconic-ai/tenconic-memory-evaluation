@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": {
-    "url": "https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md",
+    "url": "https://github.com/MemTensor/OmniMemEval/blob/0b1ea8d28aa2d3e03ac4a6aee17b3006a131da7d/docs/user_memory/results.md",
     "retrieved_at_utc": "2026-10-08T09:29:05Z",
     "kind": "upstream_reproduced_snapshot",
     "score_scale": "0-1",

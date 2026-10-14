@@ -10,7 +10,7 @@ This repository is maintained by [Tenconic](https://github.com/tenconic-ai). It 
 
 ## Overall leaderboards
 
-Both tables compare **12 systems with all six panel scores**, on a **0–100 scale**. Peer values come from the October 8, 2026 [OmniMemEval Reproduced Results snapshot](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md); Tenconic values are recalculated from this repository's question records. These mixed-metric composites are descriptive comparisons, not official unified accuracy or a newly controlled head-to-head evaluation.
+Both tables compare **12 systems with all six panel scores**, on a **0–100 scale**. Peer values come from the October 8, 2026 [OmniMemEval Reproduced Results snapshot](https://github.com/MemTensor/OmniMemEval/blob/0b1ea8d28aa2d3e03ac4a6aee17b3006a131da7d/docs/user_memory/results.md); Tenconic values are recalculated from this repository's question records. These mixed-metric composites are descriptive comparisons, not official unified accuracy or a newly controlled head-to-head evaluation.
 
 ### Question-count weighted
 
@@ -53,6 +53,14 @@ LoCoMo, LongMemEval, BEAM, PersonaMem, and HaluMem each receive **20%**. BEAM is
 Overall scores are displayed to four decimal places. Score changes in the full leaderboards are calculated before display rounding, so they can differ in the last digit from subtracting the displayed scores.
 
 **Excluded from both overall rankings:** Memori, MemoryLake, and Backboard.io have incomplete panel coverage. Missing scores are not filled with zero or reweighted away. Peer values retain their original published rounding. See the [full leaderboards](LEADERBOARD.md) for panel rankings, exact weights, coverage, and rank changes.
+
+## Detailed benchmark comparisons
+
+The [full score tables](LEADERBOARD.md#benchmark-details) include Tenconic and every peer with a published result: **4 LoCoMo types, 6 LongMemEval types, 7 PersonaMem types, and 6 HaluMem types**. Columns show the category question counts; each table is sorted by its existing panel score.
+
+[LoCoMo](LEADERBOARD.md#detail-locomo) · [LongMemEval](LEADERBOARD.md#detail-lme) · [BEAM 100K](LEADERBOARD.md#detail-beam100k) · [BEAM 10M](LEADERBOARD.md#detail-beam10m) · [PersonaMem v2](LEADERBOARD.md#detail-personamem) · [HaluMem](LEADERBOARD.md#detail-halumem)
+
+BEAM includes scale-level peer comparisons and **Tenconic's 10 ability scores at each scale**. The cited peer snapshot has no BEAM ability breakdown. Details use the same October 8 snapshot as the overall rankings; the new tables do not change evaluation results. The [machine-readable detail snapshot](config/public-reference-details.json) preserves the source's backend names and deployment routes.
 
 ## Tenconic panel results
 
@@ -106,7 +114,7 @@ An additional 105 PersonaMem rows omit question/reference/options text because t
 
 | Start here | Contents |
 | --- | --- |
-| [Leaderboard](LEADERBOARD.md) | Two composite methods, weight comparison, coverage, and six panel rankings |
+| [Leaderboard](LEADERBOARD.md) | Two composite methods, coverage, six panel rankings, and category comparison tables |
 | [Methodology](METHODOLOGY.md) | Evaluation scope, models, settings, metric definitions, and limitations |
 | [Data schema](DATA_SCHEMA.md) | JSONL fields, source references, and omission metadata |
 | [Source access](SOURCE_ACCESS.md) | How to locate original benchmark questions |

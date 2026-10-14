@@ -1,6 +1,6 @@
 {
   "source": {
-    "url": "https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md",
+    "url": "https://github.com/MemTensor/OmniMemEval/blob/0b1ea8d28aa2d3e03ac4a6aee17b3006a131da7d/docs/user_memory/results.md",
     "retrieved_at_utc": "2026-10-08T09:29:05Z",
     "kind": "upstream_reproduced_snapshot",
     "score_scale": "0-1",
@@ -1511,6 +1511,1657 @@
         ],
         "covered_questions": 1540,
         "coverage_fraction": 0.1386513009813631
+      }
+    ]
+  },
+  "benchmark_details": {
+    "source": {
+      "url": "https://github.com/MemTensor/OmniMemEval/blob/0b1ea8d28aa2d3e03ac4a6aee17b3006a131da7d/docs/user_memory/results.md",
+      "snapshot_date": "2026-10-08",
+      "kind": "upstream_reproduced_snapshot",
+      "score_scale": "0-1",
+      "original_score_precision": "two decimal places on 0-100 scale",
+      "note": "Category scores, original backend names, deployment routes, context-token values and BEAM dispersion were transcribed from the same reproduced-results snapshot as public-reference-scores.json. Published Reference Results are excluded. No peer question-level records or BEAM ability scores are supplied by that table."
+    },
+    "panels": [
+      {
+        "id": "locomo",
+        "label": "LoCoMo categories 1-4",
+        "count": 1540,
+        "categories": [
+          {
+            "id": "4",
+            "label": {
+              "en": "Single-Hop",
+              "ko": "단일 근거"
+            },
+            "count": 841
+          },
+          {
+            "id": "1",
+            "label": {
+              "en": "Multi-Hop",
+              "ko": "다중 근거"
+            },
+            "count": 282
+          },
+          {
+            "id": "2",
+            "label": {
+              "en": "Temporal",
+              "ko": "시간 추론"
+            },
+            "count": 321
+          },
+          {
+            "id": "3",
+            "label": {
+              "en": "Open-Domain",
+              "ko": "개방형"
+            },
+            "count": 96
+          }
+        ],
+        "rows": [
+          {
+            "system": "MemOS",
+            "source_system": "MemOS",
+            "deployment": "cloud",
+            "score": 0.8883,
+            "categories": {
+              "4": 0.9251,
+              "1": 0.8865000000000001,
+              "2": 0.8504999999999999,
+              "3": 0.6979000000000001
+            },
+            "score_std": null,
+            "context_tokens": 5400,
+            "origin": "published_rounded_scores",
+            "rank": 1
+          },
+          {
+            "system": "Tenconic",
+            "source_system": "Tenconic",
+            "deployment": "local/self-hosted",
+            "score": 0.8785714285714286,
+            "categories": {
+              "4": 0.9464922711058263,
+              "1": 0.776595744680851,
+              "2": 0.8442367601246106,
+              "3": 0.6979166666666666
+            },
+            "score_std": null,
+            "context_tokens": null,
+            "origin": "saved_question_records",
+            "rank": 2
+          },
+          {
+            "system": "Cognee",
+            "source_system": "Cognee",
+            "deployment": "cloud",
+            "score": 0.8348,
+            "categories": {
+              "4": 0.8798999999999999,
+              "1": 0.7884,
+              "2": 0.8183,
+              "3": 0.6319
+            },
+            "score_std": null,
+            "context_tokens": 32532,
+            "origin": "published_rounded_scores",
+            "rank": 3
+          },
+          {
+            "system": "EverOS",
+            "source_system": "EverOS",
+            "deployment": "cloud",
+            "score": 0.8275,
+            "categories": {
+              "4": 0.868,
+              "1": 0.7778,
+              "2": 0.8411,
+              "3": 0.5729
+            },
+            "score_std": null,
+            "context_tokens": 8559,
+            "origin": "published_rounded_scores",
+            "rank": 4
+          },
+          {
+            "system": "Hindsight",
+            "source_system": "Hindsight",
+            "deployment": "cloud",
+            "score": 0.8199,
+            "categories": {
+              "4": 0.8898,
+              "1": 0.7884,
+              "2": 0.7352,
+              "3": 0.5832999999999999
+            },
+            "score_std": null,
+            "context_tokens": 24683,
+            "origin": "published_rounded_scores",
+            "rank": 5
+          },
+          {
+            "system": "Mem0",
+            "source_system": "Mem0",
+            "deployment": "cloud",
+            "score": 0.7768,
+            "categories": {
+              "4": 0.8109000000000001,
+              "1": 0.7612000000000001,
+              "2": 0.7715000000000001,
+              "3": 0.5417000000000001
+            },
+            "score_std": null,
+            "context_tokens": 17395,
+            "origin": "published_rounded_scores",
+            "rank": 6
+          },
+          {
+            "system": "Letta",
+            "source_system": "Letta",
+            "deployment": "cloud",
+            "score": 0.7712,
+            "categories": {
+              "4": 0.8798999999999999,
+              "1": 0.7624,
+              "2": 0.5347999999999999,
+              "3": 0.6354
+            },
+            "score_std": null,
+            "context_tokens": 14188,
+            "origin": "published_rounded_scores",
+            "rank": 7
+          },
+          {
+            "system": "MemMachine",
+            "source_system": "MemMachine",
+            "deployment": "local/self-hosted",
+            "score": 0.7390000000000001,
+            "categories": {
+              "4": 0.8347,
+              "1": 0.5318999999999999,
+              "2": 0.7195999999999999,
+              "3": 0.5729
+            },
+            "score_std": null,
+            "context_tokens": 2577,
+            "origin": "published_rounded_scores",
+            "rank": 8
+          },
+          {
+            "system": "mem9",
+            "source_system": "mem9",
+            "deployment": "cloud",
+            "score": 0.7364,
+            "categories": {
+              "4": 0.7927,
+              "1": 0.6288,
+              "2": 0.7362000000000001,
+              "3": 0.5589999999999999
+            },
+            "score_std": null,
+            "context_tokens": 1597,
+            "origin": "published_rounded_scores",
+            "rank": 9
+          },
+          {
+            "system": "Supermemory",
+            "source_system": "Supermemory",
+            "deployment": "cloud",
+            "score": 0.7353000000000001,
+            "categories": {
+              "4": 0.7539,
+              "1": 0.7706999999999999,
+              "2": 0.6759999999999999,
+              "3": 0.6667000000000001
+            },
+            "score_std": null,
+            "context_tokens": 15238,
+            "origin": "published_rounded_scores",
+            "rank": 10
+          },
+          {
+            "system": "MemoryLake",
+            "source_system": "MemoryLake",
+            "deployment": "cloud",
+            "score": 0.7249,
+            "categories": {
+              "4": 0.7087,
+              "1": 0.753,
+              "2": 0.7975,
+              "3": 0.5417000000000001
+            },
+            "score_std": null,
+            "context_tokens": 5202,
+            "origin": "published_rounded_scores",
+            "rank": 11
+          },
+          {
+            "system": "Viking",
+            "source_system": "Viking",
+            "deployment": "cloud",
+            "score": 0.6933,
+            "categories": {
+              "4": 0.7804000000000001,
+              "1": 0.7329000000000001,
+              "2": 0.48810000000000003,
+              "3": 0.5
+            },
+            "score_std": null,
+            "context_tokens": 5964,
+            "origin": "published_rounded_scores",
+            "rank": 12
+          },
+          {
+            "system": "Zep / Graphiti",
+            "source_system": "Zep",
+            "deployment": "cloud",
+            "score": 0.6383,
+            "categories": {
+              "4": 0.6536,
+              "1": 0.6879000000000001,
+              "2": 0.5556,
+              "3": 0.6354
+            },
+            "score_std": null,
+            "context_tokens": 1862,
+            "origin": "published_rounded_scores",
+            "rank": 13
+          },
+          {
+            "system": "Memori",
+            "source_system": "Memori",
+            "deployment": "cloud",
+            "score": 0.41340000000000005,
+            "categories": {
+              "4": 0.4732,
+              "1": 0.4409,
+              "2": 0.2253,
+              "3": 0.4375
+            },
+            "score_std": null,
+            "context_tokens": 8139,
+            "origin": "published_rounded_scores",
+            "rank": 14
+          },
+          {
+            "system": "Backboard.io",
+            "source_system": "Backboard.io",
+            "deployment": "cloud",
+            "score": 0.22399999999999998,
+            "categories": {
+              "4": 0.2509,
+              "1": 0.2234,
+              "2": 0.134,
+              "3": 0.2917
+            },
+            "score_std": null,
+            "context_tokens": 1198,
+            "origin": "published_rounded_scores",
+            "rank": 15
+          }
+        ]
+      },
+      {
+        "id": "lme",
+        "label": "LongMemEval-S cleaned",
+        "count": 500,
+        "categories": [
+          {
+            "id": "single-session-user",
+            "label": {
+              "en": "SS-User",
+              "ko": "단일 세션 사용자"
+            },
+            "count": 70
+          },
+          {
+            "id": "single-session-assistant",
+            "label": {
+              "en": "SS-Asst",
+              "ko": "단일 세션 도우미"
+            },
+            "count": 56
+          },
+          {
+            "id": "single-session-preference",
+            "label": {
+              "en": "SS-Pref",
+              "ko": "단일 세션 선호"
+            },
+            "count": 30
+          },
+          {
+            "id": "temporal-reasoning",
+            "label": {
+              "en": "Temporal Reasoning",
+              "ko": "시간 추론"
+            },
+            "count": 133
+          },
+          {
+            "id": "multi-session",
+            "label": {
+              "en": "Multi-Session",
+              "ko": "다중 세션"
+            },
+            "count": 133
+          },
+          {
+            "id": "knowledge-update",
+            "label": {
+              "en": "Knowledge Update",
+              "ko": "지식 갱신"
+            },
+            "count": 78
+          }
+        ],
+        "rows": [
+          {
+            "system": "MemOS",
+            "source_system": "MemOS",
+            "deployment": "cloud",
+            "score": 0.892,
+            "categories": {
+              "single-session-user": 1.0,
+              "single-session-assistant": 1.0,
+              "single-session-preference": 1.0,
+              "temporal-reasoning": 0.8946999999999999,
+              "multi-session": 0.7895,
+              "knowledge-update": 0.8462000000000001
+            },
+            "score_std": null,
+            "context_tokens": 4151,
+            "origin": "published_rounded_scores",
+            "rank": 1
+          },
+          {
+            "system": "Tenconic",
+            "source_system": "Tenconic",
+            "deployment": "local/self-hosted",
+            "score": 0.866,
+            "categories": {
+              "single-session-user": 0.9857142857142858,
+              "single-session-assistant": 1.0,
+              "single-session-preference": 0.9666666666666667,
+              "temporal-reasoning": 0.8571428571428571,
+              "multi-session": 0.7293233082706767,
+              "knowledge-update": 0.8717948717948718
+            },
+            "score_std": null,
+            "context_tokens": null,
+            "origin": "saved_question_records",
+            "rank": 2
+          },
+          {
+            "system": "EverOS",
+            "source_system": "EverOS",
+            "deployment": "local/self-hosted",
+            "score": 0.804,
+            "categories": {
+              "single-session-user": 0.9143000000000001,
+              "single-session-assistant": 0.8929,
+              "single-session-preference": 0.9667,
+              "temporal-reasoning": 0.8195,
+              "multi-session": 0.6617000000000001,
+              "knowledge-update": 0.7948999999999999
+            },
+            "score_std": null,
+            "context_tokens": 12379,
+            "origin": "published_rounded_scores",
+            "rank": 3
+          },
+          {
+            "system": "Zep / Graphiti",
+            "source_system": "graphiti-zep",
+            "deployment": "local/self-hosted",
+            "score": 0.7979999999999999,
+            "categories": {
+              "single-session-user": 0.9429000000000001,
+              "single-session-assistant": 1.0,
+              "single-session-preference": 0.8667,
+              "temporal-reasoning": 0.7444,
+              "multi-session": 0.6767,
+              "knowledge-update": 0.7948999999999999
+            },
+            "score_std": null,
+            "context_tokens": 117106,
+            "origin": "published_rounded_scores",
+            "rank": 4
+          },
+          {
+            "system": "mem9",
+            "source_system": "mem9",
+            "deployment": "cloud",
+            "score": 0.78,
+            "categories": {
+              "single-session-user": 0.9571,
+              "single-session-assistant": 0.9464,
+              "single-session-preference": 0.5667,
+              "temporal-reasoning": 0.7744,
+              "multi-session": 0.6241,
+              "knowledge-update": 0.8590000000000001
+            },
+            "score_std": null,
+            "context_tokens": 3805,
+            "origin": "published_rounded_scores",
+            "rank": 5
+          },
+          {
+            "system": "Letta",
+            "source_system": "Letta",
+            "deployment": "cloud",
+            "score": 0.7767000000000001,
+            "categories": {
+              "single-session-user": 0.9571,
+              "single-session-assistant": 0.9821,
+              "single-session-preference": 0.7667,
+              "temporal-reasoning": 0.6942,
+              "multi-session": 0.6541,
+              "knowledge-update": 0.8205
+            },
+            "score_std": null,
+            "context_tokens": 49431,
+            "origin": "published_rounded_scores",
+            "rank": 6
+          },
+          {
+            "system": "Hindsight",
+            "source_system": "Hindsight",
+            "deployment": "local/self-hosted",
+            "score": 0.722,
+            "categories": {
+              "single-session-user": 0.8286,
+              "single-session-assistant": 0.1429,
+              "single-session-preference": 0.9667,
+              "temporal-reasoning": 0.8271,
+              "multi-session": 0.7143,
+              "knowledge-update": 0.7820999999999999
+            },
+            "score_std": null,
+            "context_tokens": 29755,
+            "origin": "published_rounded_scores",
+            "rank": 7
+          },
+          {
+            "system": "Supermemory",
+            "source_system": "Supermemory",
+            "deployment": "cloud",
+            "score": 0.6607,
+            "categories": {
+              "single-session-user": 0.8714,
+              "single-session-assistant": 0.4107,
+              "single-session-preference": 0.6556000000000001,
+              "temporal-reasoning": 0.6842,
+              "multi-session": 0.6015,
+              "knowledge-update": 0.7137
+            },
+            "score_std": null,
+            "context_tokens": 6635,
+            "origin": "published_rounded_scores",
+            "rank": 8
+          },
+          {
+            "system": "MemMachine",
+            "source_system": "MemMachine",
+            "deployment": "local/self-hosted",
+            "score": 0.636,
+            "categories": {
+              "single-session-user": 0.7570999999999999,
+              "single-session-assistant": 0.9643,
+              "single-session-preference": 0.8332999999999999,
+              "temporal-reasoning": 0.5564,
+              "multi-session": 0.3985,
+              "knowledge-update": 0.7564
+            },
+            "score_std": null,
+            "context_tokens": 2803,
+            "origin": "published_rounded_scores",
+            "rank": 9
+          },
+          {
+            "system": "Viking",
+            "source_system": "Viking",
+            "deployment": "cloud",
+            "score": 0.6107,
+            "categories": {
+              "single-session-user": 0.7524,
+              "single-session-assistant": 0.4643,
+              "single-session-preference": 0.9667,
+              "temporal-reasoning": 0.5539000000000001,
+              "multi-session": 0.5789,
+              "knowledge-update": 0.6026
+            },
+            "score_std": null,
+            "context_tokens": 2291,
+            "origin": "published_rounded_scores",
+            "rank": 10
+          },
+          {
+            "system": "Mem0",
+            "source_system": "Mem0",
+            "deployment": "cloud",
+            "score": 0.56,
+            "categories": {
+              "single-session-user": 0.0857,
+              "single-session-assistant": 0.8571,
+              "single-session-preference": 0.9667,
+              "temporal-reasoning": 0.5113,
+              "multi-session": 0.5038,
+              "knowledge-update": 0.7948999999999999
+            },
+            "score_std": null,
+            "context_tokens": 856,
+            "origin": "published_rounded_scores",
+            "rank": 11
+          },
+          {
+            "system": "Cognee",
+            "source_system": "Cognee",
+            "deployment": "local/self-hosted",
+            "score": 0.518,
+            "categories": {
+              "single-session-user": 0.6714,
+              "single-session-assistant": 0.6071,
+              "single-session-preference": 0.8332999999999999,
+              "temporal-reasoning": 0.47369999999999995,
+              "multi-session": 0.3759,
+              "knowledge-update": 0.5128
+            },
+            "score_std": null,
+            "context_tokens": 10305,
+            "origin": "published_rounded_scores",
+            "rank": 12
+          },
+          {
+            "system": "Memori",
+            "source_system": "Memori",
+            "deployment": "cloud",
+            "score": 0.20800000000000002,
+            "categories": {
+              "single-session-user": 0.8414,
+              "single-session-assistant": 0.0179,
+              "single-session-preference": 0.23329999999999998,
+              "temporal-reasoning": 0.037599999999999995,
+              "multi-session": 0.188,
+              "knowledge-update": 0.0641
+            },
+            "score_std": null,
+            "context_tokens": 2779,
+            "origin": "published_rounded_scores",
+            "rank": 13
+          }
+        ]
+      },
+      {
+        "id": "beam100k",
+        "label": "BEAM 100K",
+        "count": 400,
+        "categories": [
+          {
+            "id": "abstention",
+            "label": {
+              "en": "Abstention",
+              "ko": "보류 판단"
+            },
+            "count": 40
+          },
+          {
+            "id": "contradiction_resolution",
+            "label": {
+              "en": "Contradiction Resolution",
+              "ko": "모순 해결"
+            },
+            "count": 40
+          },
+          {
+            "id": "event_ordering",
+            "label": {
+              "en": "Event Ordering",
+              "ko": "사건 순서"
+            },
+            "count": 40
+          },
+          {
+            "id": "information_extraction",
+            "label": {
+              "en": "Information Extraction",
+              "ko": "정보 추출"
+            },
+            "count": 40
+          },
+          {
+            "id": "instruction_following",
+            "label": {
+              "en": "Instruction Following",
+              "ko": "지시 준수"
+            },
+            "count": 40
+          },
+          {
+            "id": "knowledge_update",
+            "label": {
+              "en": "Knowledge Update",
+              "ko": "지식 갱신"
+            },
+            "count": 40
+          },
+          {
+            "id": "multi_session_reasoning",
+            "label": {
+              "en": "Multi-Session Reasoning",
+              "ko": "다중 세션 추론"
+            },
+            "count": 40
+          },
+          {
+            "id": "preference_following",
+            "label": {
+              "en": "Preference Following",
+              "ko": "선호 준수"
+            },
+            "count": 40
+          },
+          {
+            "id": "summarization",
+            "label": {
+              "en": "Summarization",
+              "ko": "요약"
+            },
+            "count": 40
+          },
+          {
+            "id": "temporal_reasoning",
+            "label": {
+              "en": "Temporal Reasoning",
+              "ko": "시간 추론"
+            },
+            "count": 40
+          }
+        ],
+        "rows": [
+          {
+            "system": "Viking",
+            "source_system": "Viking",
+            "deployment": "cloud",
+            "score": 0.7076,
+            "categories": null,
+            "score_std": 0.35229999999999995,
+            "context_tokens": 2023,
+            "origin": "published_rounded_scores",
+            "rank": 1
+          },
+          {
+            "system": "Mem0",
+            "source_system": "Mem0",
+            "deployment": "cloud",
+            "score": 0.7041,
+            "categories": null,
+            "score_std": 0.3636,
+            "context_tokens": 1055,
+            "origin": "published_rounded_scores",
+            "rank": 2
+          },
+          {
+            "system": "Hindsight",
+            "source_system": "Hindsight",
+            "deployment": "local/self-hosted",
+            "score": 0.7021999999999999,
+            "categories": null,
+            "score_std": 0.3644,
+            "context_tokens": 24085,
+            "origin": "published_rounded_scores",
+            "rank": 3
+          },
+          {
+            "system": "Tenconic",
+            "source_system": "Tenconic",
+            "deployment": "local/self-hosted",
+            "score": 0.6967688155496329,
+            "categories": {
+              "abstention": 0.7875,
+              "contradiction_resolution": 0.6875,
+              "event_ordering": 0.28743517930585294,
+              "information_extraction": 0.9125,
+              "instruction_following": 0.88125,
+              "knowledge_update": 0.65,
+              "multi_session_reasoning": 0.6273511904761905,
+              "preference_following": 0.8875,
+              "summarization": 0.6966517857142857,
+              "temporal_reasoning": 0.55
+            },
+            "score_std": 0.36229910020756245,
+            "context_tokens": null,
+            "origin": "saved_question_records",
+            "rank": 4
+          },
+          {
+            "system": "Letta",
+            "source_system": "Letta",
+            "deployment": "cloud",
+            "score": 0.6922,
+            "categories": null,
+            "score_std": 0.3676,
+            "context_tokens": 82013,
+            "origin": "published_rounded_scores",
+            "rank": 5
+          },
+          {
+            "system": "Zep / Graphiti",
+            "source_system": "graphiti-zep",
+            "deployment": "local/self-hosted",
+            "score": 0.687,
+            "categories": null,
+            "score_std": 0.36460000000000004,
+            "context_tokens": 8667,
+            "origin": "published_rounded_scores",
+            "rank": 6
+          },
+          {
+            "system": "MemOS",
+            "source_system": "MemOS",
+            "deployment": "cloud",
+            "score": 0.6687000000000001,
+            "categories": null,
+            "score_std": 0.3737,
+            "context_tokens": 1636,
+            "origin": "published_rounded_scores",
+            "rank": 7
+          },
+          {
+            "system": "Supermemory",
+            "source_system": "Supermemory",
+            "deployment": "cloud",
+            "score": 0.6598,
+            "categories": null,
+            "score_std": 0.371,
+            "context_tokens": 6294,
+            "origin": "published_rounded_scores",
+            "rank": 8
+          },
+          {
+            "system": "mem9",
+            "source_system": "mem9",
+            "deployment": "cloud",
+            "score": 0.6575,
+            "categories": null,
+            "score_std": 0.3892,
+            "context_tokens": 5372,
+            "origin": "published_rounded_scores",
+            "rank": 9
+          },
+          {
+            "system": "MemMachine",
+            "source_system": "MemMachine",
+            "deployment": "local/self-hosted",
+            "score": 0.648,
+            "categories": null,
+            "score_std": 0.3762,
+            "context_tokens": 5413,
+            "origin": "published_rounded_scores",
+            "rank": 10
+          },
+          {
+            "system": "Cognee",
+            "source_system": "Cognee",
+            "deployment": "local/self-hosted",
+            "score": 0.593,
+            "categories": null,
+            "score_std": 0.3944,
+            "context_tokens": 33065,
+            "origin": "published_rounded_scores",
+            "rank": 11
+          },
+          {
+            "system": "EverOS",
+            "source_system": "EverOS",
+            "deployment": "local/self-hosted",
+            "score": 0.5864,
+            "categories": null,
+            "score_std": 0.3936,
+            "context_tokens": 7393,
+            "origin": "published_rounded_scores",
+            "rank": 12
+          }
+        ]
+      },
+      {
+        "id": "beam10m",
+        "label": "BEAM 10M",
+        "count": 200,
+        "categories": [
+          {
+            "id": "abstention",
+            "label": {
+              "en": "Abstention",
+              "ko": "보류 판단"
+            },
+            "count": 20
+          },
+          {
+            "id": "contradiction_resolution",
+            "label": {
+              "en": "Contradiction Resolution",
+              "ko": "모순 해결"
+            },
+            "count": 20
+          },
+          {
+            "id": "event_ordering",
+            "label": {
+              "en": "Event Ordering",
+              "ko": "사건 순서"
+            },
+            "count": 20
+          },
+          {
+            "id": "information_extraction",
+            "label": {
+              "en": "Information Extraction",
+              "ko": "정보 추출"
+            },
+            "count": 20
+          },
+          {
+            "id": "instruction_following",
+            "label": {
+              "en": "Instruction Following",
+              "ko": "지시 준수"
+            },
+            "count": 20
+          },
+          {
+            "id": "knowledge_update",
+            "label": {
+              "en": "Knowledge Update",
+              "ko": "지식 갱신"
+            },
+            "count": 20
+          },
+          {
+            "id": "multi_session_reasoning",
+            "label": {
+              "en": "Multi-Session Reasoning",
+              "ko": "다중 세션 추론"
+            },
+            "count": 20
+          },
+          {
+            "id": "preference_following",
+            "label": {
+              "en": "Preference Following",
+              "ko": "선호 준수"
+            },
+            "count": 20
+          },
+          {
+            "id": "summarization",
+            "label": {
+              "en": "Summarization",
+              "ko": "요약"
+            },
+            "count": 20
+          },
+          {
+            "id": "temporal_reasoning",
+            "label": {
+              "en": "Temporal Reasoning",
+              "ko": "시간 추론"
+            },
+            "count": 20
+          }
+        ],
+        "rows": [
+          {
+            "system": "Hindsight",
+            "source_system": "Hindsight",
+            "deployment": "local/self-hosted",
+            "score": 0.5975,
+            "categories": null,
+            "score_std": 0.39630000000000004,
+            "context_tokens": 23815,
+            "origin": "published_rounded_scores",
+            "rank": 1
+          },
+          {
+            "system": "Viking",
+            "source_system": "Viking",
+            "deployment": "cloud",
+            "score": 0.5814,
+            "categories": null,
+            "score_std": 0.3957,
+            "context_tokens": 2080,
+            "origin": "published_rounded_scores",
+            "rank": 2
+          },
+          {
+            "system": "mem9",
+            "source_system": "mem9",
+            "deployment": "cloud",
+            "score": 0.573,
+            "categories": null,
+            "score_std": 0.39030000000000004,
+            "context_tokens": 4947,
+            "origin": "published_rounded_scores",
+            "rank": 3
+          },
+          {
+            "system": "MemOS",
+            "source_system": "MemOS",
+            "deployment": "cloud",
+            "score": 0.5675,
+            "categories": null,
+            "score_std": 0.3917,
+            "context_tokens": 1558,
+            "origin": "published_rounded_scores",
+            "rank": 4
+          },
+          {
+            "system": "Zep / Graphiti",
+            "source_system": "graphiti-zep",
+            "deployment": "local/self-hosted",
+            "score": 0.5611,
+            "categories": null,
+            "score_std": 0.40700000000000003,
+            "context_tokens": 176211,
+            "origin": "published_rounded_scores",
+            "rank": 5
+          },
+          {
+            "system": "Cognee",
+            "source_system": "Cognee",
+            "deployment": "local/self-hosted",
+            "score": 0.5602,
+            "categories": null,
+            "score_std": 0.4133,
+            "context_tokens": 40914,
+            "origin": "published_rounded_scores",
+            "rank": 6
+          },
+          {
+            "system": "Tenconic",
+            "source_system": "Tenconic",
+            "deployment": "local/self-hosted",
+            "score": 0.5521723765700567,
+            "categories": {
+              "abstention": 0.75,
+              "contradiction_resolution": 0.69375,
+              "event_ordering": 0.13991821014501116,
+              "information_extraction": 0.5875,
+              "instruction_following": 0.6125,
+              "knowledge_update": 0.6375,
+              "multi_session_reasoning": 0.20916666666666667,
+              "preference_following": 0.725,
+              "summarization": 0.7538888888888888,
+              "temporal_reasoning": 0.4125
+            },
+            "score_std": 0.4051971617974579,
+            "context_tokens": null,
+            "origin": "saved_question_records",
+            "rank": 7
+          },
+          {
+            "system": "Supermemory",
+            "source_system": "Supermemory",
+            "deployment": "cloud",
+            "score": 0.5249,
+            "categories": null,
+            "score_std": 0.4044,
+            "context_tokens": 6574,
+            "origin": "published_rounded_scores",
+            "rank": 8
+          },
+          {
+            "system": "Letta",
+            "source_system": "Letta",
+            "deployment": "cloud",
+            "score": 0.523,
+            "categories": null,
+            "score_std": 0.4106,
+            "context_tokens": 49786,
+            "origin": "published_rounded_scores",
+            "rank": 9
+          },
+          {
+            "system": "MemMachine",
+            "source_system": "MemMachine",
+            "deployment": "local/self-hosted",
+            "score": 0.519,
+            "categories": null,
+            "score_std": 0.4046,
+            "context_tokens": 5448,
+            "origin": "published_rounded_scores",
+            "rank": 10
+          },
+          {
+            "system": "EverOS",
+            "source_system": "EverOS",
+            "deployment": "local/self-hosted",
+            "score": 0.47729999999999995,
+            "categories": null,
+            "score_std": 0.41659999999999997,
+            "context_tokens": 11657,
+            "origin": "published_rounded_scores",
+            "rank": 11
+          },
+          {
+            "system": "Mem0",
+            "source_system": "Mem0",
+            "deployment": "cloud",
+            "score": 0.43329999999999996,
+            "categories": null,
+            "score_std": 0.4199,
+            "context_tokens": 1086,
+            "origin": "published_rounded_scores",
+            "rank": 12
+          }
+        ]
+      },
+      {
+        "id": "personamem",
+        "label": "PersonaMem v2 text 32K",
+        "count": 5000,
+        "categories": [
+          {
+            "id": "anti_stereotypical_pref",
+            "label": {
+              "en": "Anti-Stereotypical",
+              "ko": "반고정관념"
+            },
+            "count": 855
+          },
+          {
+            "id": "ask_to_forget",
+            "label": {
+              "en": "Ask-to-Forget",
+              "ko": "망각 요청"
+            },
+            "count": 1048
+          },
+          {
+            "id": "health_and_medical_conditions",
+            "label": {
+              "en": "Health/Medical",
+              "ko": "건강·의료"
+            },
+            "count": 568
+          },
+          {
+            "id": "neutral_preferences",
+            "label": {
+              "en": "Neutral",
+              "ko": "중립 선호"
+            },
+            "count": 858
+          },
+          {
+            "id": "sensitive_info",
+            "label": {
+              "en": "Sensitive",
+              "ko": "민감 정보"
+            },
+            "count": 511
+          },
+          {
+            "id": "stereotypical_pref",
+            "label": {
+              "en": "Stereotypical",
+              "ko": "고정관념"
+            },
+            "count": 533
+          },
+          {
+            "id": "therapy_background",
+            "label": {
+              "en": "Therapy",
+              "ko": "치료 배경"
+            },
+            "count": 627
+          }
+        ],
+        "rows": [
+          {
+            "system": "MemOS",
+            "source_system": "MemOS",
+            "deployment": "cloud",
+            "score": 0.4058,
+            "categories": {
+              "anti_stereotypical_pref": 0.33799999999999997,
+              "ask_to_forget": 0.5782,
+              "health_and_medical_conditions": 0.3257,
+              "neutral_preferences": 0.3566,
+              "sensitive_info": 0.36590000000000006,
+              "stereotypical_pref": 0.39399999999999996,
+              "therapy_background": 0.3923
+            },
+            "score_std": null,
+            "context_tokens": 1908,
+            "origin": "published_rounded_scores",
+            "rank": 1
+          },
+          {
+            "system": "Supermemory",
+            "source_system": "Supermemory",
+            "deployment": "cloud",
+            "score": 0.39640000000000003,
+            "categories": {
+              "anti_stereotypical_pref": 0.42340000000000005,
+              "ask_to_forget": 0.3197,
+              "health_and_medical_conditions": 0.4296,
+              "neutral_preferences": 0.4242,
+              "sensitive_info": 0.3072,
+              "stereotypical_pref": 0.4972,
+              "therapy_background": 0.4067
+            },
+            "score_std": null,
+            "context_tokens": 4473,
+            "origin": "published_rounded_scores",
+            "rank": 2
+          },
+          {
+            "system": "Hindsight",
+            "source_system": "Hindsight",
+            "deployment": "local/self-hosted",
+            "score": 0.37979999999999997,
+            "categories": {
+              "anti_stereotypical_pref": 0.3357,
+              "ask_to_forget": 0.4065,
+              "health_and_medical_conditions": 0.36619999999999997,
+              "neutral_preferences": 0.3811,
+              "sensitive_info": 0.3601,
+              "stereotypical_pref": 0.4278,
+              "therapy_background": 0.3812
+            },
+            "score_std": null,
+            "context_tokens": 15926,
+            "origin": "published_rounded_scores",
+            "rank": 3
+          },
+          {
+            "system": "Tenconic",
+            "source_system": "Tenconic",
+            "deployment": "local/self-hosted",
+            "score": 0.3684,
+            "categories": {
+              "anti_stereotypical_pref": 0.28771929824561404,
+              "ask_to_forget": 0.5057251908396947,
+              "health_and_medical_conditions": 0.31161971830985913,
+              "neutral_preferences": 0.3333333333333333,
+              "sensitive_info": 0.33072407045009783,
+              "stereotypical_pref": 0.3452157598499062,
+              "therapy_background": 0.39872408293460926
+            },
+            "score_std": null,
+            "context_tokens": null,
+            "origin": "saved_question_records",
+            "rank": 4
+          },
+          {
+            "system": "Mem0",
+            "source_system": "Mem0",
+            "deployment": "cloud",
+            "score": 0.3676,
+            "categories": {
+              "anti_stereotypical_pref": 0.414,
+              "ask_to_forget": 0.2433,
+              "health_and_medical_conditions": 0.38380000000000003,
+              "neutral_preferences": 0.39280000000000004,
+              "sensitive_info": 0.3072,
+              "stereotypical_pref": 0.4578,
+              "therapy_background": 0.4354
+            },
+            "score_std": null,
+            "context_tokens": 1388,
+            "origin": "published_rounded_scores",
+            "rank": 5
+          },
+          {
+            "system": "EverOS",
+            "source_system": "EverOS",
+            "deployment": "cloud",
+            "score": 0.3594,
+            "categories": {
+              "anti_stereotypical_pref": 0.3357,
+              "ask_to_forget": 0.31489999999999996,
+              "health_and_medical_conditions": 0.3468,
+              "neutral_preferences": 0.3776,
+              "sensitive_info": 0.33270000000000005,
+              "stereotypical_pref": 0.4447,
+              "therapy_background": 0.4019
+            },
+            "score_std": null,
+            "context_tokens": 6572,
+            "origin": "published_rounded_scores",
+            "rank": 6
+          },
+          {
+            "system": "Letta",
+            "source_system": "Letta",
+            "deployment": "cloud",
+            "score": 0.35119999999999996,
+            "categories": {
+              "anti_stereotypical_pref": 0.3146,
+              "ask_to_forget": 0.3893,
+              "health_and_medical_conditions": 0.3239,
+              "neutral_preferences": 0.34850000000000003,
+              "sensitive_info": 0.27399999999999997,
+              "stereotypical_pref": 0.39399999999999996,
+              "therapy_background": 0.3923
+            },
+            "score_std": null,
+            "context_tokens": 30903,
+            "origin": "published_rounded_scores",
+            "rank": 7
+          },
+          {
+            "system": "MemMachine",
+            "source_system": "MemMachine",
+            "deployment": "local/self-hosted",
+            "score": 0.3414,
+            "categories": {
+              "anti_stereotypical_pref": 0.28190000000000004,
+              "ask_to_forget": 0.45039999999999997,
+              "health_and_medical_conditions": 0.3222,
+              "neutral_preferences": 0.2844,
+              "sensitive_info": 0.2975,
+              "stereotypical_pref": 0.3246,
+              "therapy_background": 0.386
+            },
+            "score_std": null,
+            "context_tokens": 1988,
+            "origin": "published_rounded_scores",
+            "rank": 8
+          },
+          {
+            "system": "Memori",
+            "source_system": "Memori",
+            "deployment": "cloud",
+            "score": 0.33159999999999995,
+            "categories": {
+              "anti_stereotypical_pref": 0.3018,
+              "ask_to_forget": 0.2748,
+              "health_and_medical_conditions": 0.3239,
+              "neutral_preferences": 0.3753,
+              "sensitive_info": 0.3346,
+              "stereotypical_pref": 0.3677,
+              "therapy_background": 0.3812
+            },
+            "score_std": null,
+            "context_tokens": 3109,
+            "origin": "published_rounded_scores",
+            "rank": 9
+          },
+          {
+            "system": "Zep / Graphiti",
+            "source_system": "graphiti-zep",
+            "deployment": "local/self-hosted",
+            "score": 0.3234,
+            "categories": {
+              "anti_stereotypical_pref": 0.28190000000000004,
+              "ask_to_forget": 0.2977,
+              "health_and_medical_conditions": 0.287,
+              "neutral_preferences": 0.3193,
+              "sensitive_info": 0.30920000000000003,
+              "stereotypical_pref": 0.379,
+              "therapy_background": 0.42579999999999996
+            },
+            "score_std": null,
+            "context_tokens": 3645,
+            "origin": "published_rounded_scores",
+            "rank": 10
+          },
+          {
+            "system": "Viking",
+            "source_system": "Viking",
+            "deployment": "cloud",
+            "score": 0.308,
+            "categories": {
+              "anti_stereotypical_pref": 0.31579999999999997,
+              "ask_to_forget": 0.25379999999999997,
+              "health_and_medical_conditions": 0.2923,
+              "neutral_preferences": 0.2949,
+              "sensitive_info": 0.33659999999999995,
+              "stereotypical_pref": 0.36590000000000006,
+              "therapy_background": 0.3477
+            },
+            "score_std": null,
+            "context_tokens": 1688,
+            "origin": "published_rounded_scores",
+            "rank": 11
+          },
+          {
+            "system": "mem9",
+            "source_system": "mem9",
+            "deployment": "cloud",
+            "score": 0.30760000000000004,
+            "categories": {
+              "anti_stereotypical_pref": 0.32280000000000003,
+              "ask_to_forget": 0.22899999999999998,
+              "health_and_medical_conditions": 0.3257,
+              "neutral_preferences": 0.345,
+              "sensitive_info": 0.2505,
+              "stereotypical_pref": 0.38270000000000004,
+              "therapy_background": 0.3333
+            },
+            "score_std": null,
+            "context_tokens": 2045,
+            "origin": "published_rounded_scores",
+            "rank": 12
+          },
+          {
+            "system": "Cognee",
+            "source_system": "Cognee",
+            "deployment": "local/self-hosted",
+            "score": 0.2646,
+            "categories": {
+              "anti_stereotypical_pref": 0.1883,
+              "ask_to_forget": 0.4113,
+              "health_and_medical_conditions": 0.16899999999999998,
+              "neutral_preferences": 0.1865,
+              "sensitive_info": 0.32880000000000004,
+              "stereotypical_pref": 0.16510000000000002,
+              "therapy_background": 0.3493
+            },
+            "score_std": null,
+            "context_tokens": 10189,
+            "origin": "published_rounded_scores",
+            "rank": 13
+          }
+        ]
+      },
+      {
+        "id": "halumem",
+        "label": "HaluMem Medium",
+        "count": 3467,
+        "categories": [
+          {
+            "id": "Basic Fact Recall",
+            "label": {
+              "en": "Basic Fact",
+              "ko": "기본 사실"
+            },
+            "count": 746
+          },
+          {
+            "id": "Memory Boundary",
+            "label": {
+              "en": "Boundary",
+              "ko": "기억 경계"
+            },
+            "count": 828
+          },
+          {
+            "id": "Memory Conflict",
+            "label": {
+              "en": "Conflict",
+              "ko": "기억 충돌"
+            },
+            "count": 769
+          },
+          {
+            "id": "Generalization & Application",
+            "label": {
+              "en": "Generalization",
+              "ko": "일반화·적용"
+            },
+            "count": 746
+          },
+          {
+            "id": "Multi-hop Inference",
+            "label": {
+              "en": "Multi-Hop",
+              "ko": "다중 근거 추론"
+            },
+            "count": 198
+          },
+          {
+            "id": "Dynamic Update",
+            "label": {
+              "en": "Dynamic Update",
+              "ko": "동적 갱신"
+            },
+            "count": 180
+          }
+        ],
+        "rows": [
+          {
+            "system": "EverOS",
+            "source_system": "EverOS",
+            "deployment": "local/self-hosted",
+            "score": 0.8865999999999999,
+            "categories": {
+              "Basic Fact Recall": 0.878,
+              "Memory Boundary": 0.8889,
+              "Memory Conflict": 0.8998999999999999,
+              "Generalization & Application": 0.9048,
+              "Multi-hop Inference": 0.8636,
+              "Dynamic Update": 0.8056
+            },
+            "score_std": null,
+            "context_tokens": 10824,
+            "origin": "published_rounded_scores",
+            "rank": 1
+          },
+          {
+            "system": "Tenconic",
+            "source_system": "Tenconic",
+            "deployment": "local/self-hosted",
+            "score": 0.8641476781078743,
+            "categories": {
+              "Basic Fact Recall": 0.8498659517426274,
+              "Memory Boundary": 0.8514492753623188,
+              "Memory Conflict": 0.8855656697009102,
+              "Generalization & Application": 0.8967828418230563,
+              "Multi-hop Inference": 0.8636363636363636,
+              "Dynamic Update": 0.7555555555555555
+            },
+            "score_std": null,
+            "context_tokens": null,
+            "origin": "saved_question_records",
+            "rank": 2
+          },
+          {
+            "system": "Letta",
+            "source_system": "Letta",
+            "deployment": "cloud",
+            "score": 0.8543000000000001,
+            "categories": {
+              "Basic Fact Recall": 0.8592,
+              "Memory Boundary": 0.8345,
+              "Memory Conflict": 0.857,
+              "Generalization & Application": 0.9062,
+              "Multi-hop Inference": 0.8434,
+              "Dynamic Update": 0.7111
+            },
+            "score_std": null,
+            "context_tokens": 45349,
+            "origin": "published_rounded_scores",
+            "rank": 3
+          },
+          {
+            "system": "Hindsight",
+            "source_system": "Hindsight",
+            "deployment": "local/self-hosted",
+            "score": 0.8399,
+            "categories": {
+              "Basic Fact Recall": 0.7842,
+              "Memory Boundary": 0.8745,
+              "Memory Conflict": 0.8661,
+              "Generalization & Application": 0.8619,
+              "Multi-hop Inference": 0.8131,
+              "Dynamic Update": 0.7389
+            },
+            "score_std": null,
+            "context_tokens": 14798,
+            "origin": "published_rounded_scores",
+            "rank": 4
+          },
+          {
+            "system": "Zep / Graphiti",
+            "source_system": "graphiti-zep",
+            "deployment": "local/self-hosted",
+            "score": 0.8170999999999999,
+            "categories": {
+              "Basic Fact Recall": 0.6944,
+              "Memory Boundary": 0.8913,
+              "Memory Conflict": 0.8843000000000001,
+              "Generalization & Application": 0.8405,
+              "Multi-hop Inference": 0.7979999999999999,
+              "Dynamic Update": 0.6222
+            },
+            "score_std": null,
+            "context_tokens": 5404,
+            "origin": "published_rounded_scores",
+            "rank": 5
+          },
+          {
+            "system": "MemOS",
+            "source_system": "MemOS",
+            "deployment": "cloud",
+            "score": 0.8090999999999999,
+            "categories": {
+              "Basic Fact Recall": 0.6903,
+              "Memory Boundary": 0.9129999999999999,
+              "Memory Conflict": 0.8648,
+              "Generalization & Application": 0.8351000000000001,
+              "Multi-hop Inference": 0.7424,
+              "Dynamic Update": 0.55
+            },
+            "score_std": null,
+            "context_tokens": 1187,
+            "origin": "published_rounded_scores",
+            "rank": 6
+          },
+          {
+            "system": "Viking",
+            "source_system": "Viking",
+            "deployment": "cloud",
+            "score": 0.7739,
+            "categories": {
+              "Basic Fact Recall": 0.5791,
+              "Memory Boundary": 0.9251,
+              "Memory Conflict": 0.8049,
+              "Generalization & Application": 0.8472,
+              "Multi-hop Inference": 0.7475,
+              "Dynamic Update": 0.4778
+            },
+            "score_std": null,
+            "context_tokens": 3196,
+            "origin": "published_rounded_scores",
+            "rank": 7
+          },
+          {
+            "system": "Mem0",
+            "source_system": "Mem0",
+            "deployment": "cloud",
+            "score": 0.7364,
+            "categories": {
+              "Basic Fact Recall": 0.563,
+              "Memory Boundary": 0.9190999999999999,
+              "Memory Conflict": 0.7476999999999999,
+              "Generalization & Application": 0.7842,
+              "Multi-hop Inference": 0.6869,
+              "Dynamic Update": 0.42219999999999996
+            },
+            "score_std": null,
+            "context_tokens": 803,
+            "origin": "published_rounded_scores",
+            "rank": 8
+          },
+          {
+            "system": "mem9",
+            "source_system": "mem9",
+            "deployment": "cloud",
+            "score": 0.728,
+            "categories": {
+              "Basic Fact Recall": 0.5456,
+              "Memory Boundary": 0.9420000000000001,
+              "Memory Conflict": 0.6879000000000001,
+              "Generalization & Application": 0.8016,
+              "Multi-hop Inference": 0.7071,
+              "Dynamic Update": 0.3889
+            },
+            "score_std": null,
+            "context_tokens": 893,
+            "origin": "published_rounded_scores",
+            "rank": 9
+          },
+          {
+            "system": "Cognee",
+            "source_system": "Cognee",
+            "deployment": "local/self-hosted",
+            "score": 0.726,
+            "categories": {
+              "Basic Fact Recall": 0.5241,
+              "Memory Boundary": 0.9251,
+              "Memory Conflict": 0.7464,
+              "Generalization & Application": 0.7828,
+              "Multi-hop Inference": 0.6970000000000001,
+              "Dynamic Update": 0.3556
+            },
+            "score_std": null,
+            "context_tokens": 8981,
+            "origin": "published_rounded_scores",
+            "rank": 10
+          },
+          {
+            "system": "Supermemory",
+            "source_system": "Supermemory",
+            "deployment": "cloud",
+            "score": 0.5261,
+            "categories": {
+              "Basic Fact Recall": 0.252,
+              "Memory Boundary": 0.9745999999999999,
+              "Memory Conflict": 0.4486,
+              "Generalization & Application": 0.4987,
+              "Multi-hop Inference": 0.4192,
+              "Dynamic Update": 0.1611
+            },
+            "score_std": null,
+            "context_tokens": 1672,
+            "origin": "published_rounded_scores",
+            "rank": 11
+          },
+          {
+            "system": "Memori",
+            "source_system": "Memori",
+            "deployment": "cloud",
+            "score": 0.4938,
+            "categories": {
+              "Basic Fact Recall": 0.2091,
+              "Memory Boundary": 0.9323999999999999,
+              "Memory Conflict": 0.41350000000000003,
+              "Generalization & Application": 0.5335,
+              "Multi-hop Inference": 0.24239999999999998,
+              "Dynamic Update": 0.11109999999999999
+            },
+            "score_std": null,
+            "context_tokens": 3275,
+            "origin": "published_rounded_scores",
+            "rank": 12
+          },
+          {
+            "system": "MemMachine",
+            "source_system": "MemMachine",
+            "deployment": "local/self-hosted",
+            "score": 0.4702,
+            "categories": {
+              "Basic Fact Recall": 0.20379999999999998,
+              "Memory Boundary": 0.9742000000000001,
+              "Memory Conflict": 0.3472,
+              "Generalization & Application": 0.4531,
+              "Multi-hop Inference": 0.2677,
+              "Dynamic Update": 0.11109999999999999
+            },
+            "score_std": null,
+            "context_tokens": 1093,
+            "origin": "published_rounded_scores",
+            "rank": 13
+          }
+        ]
       }
     ]
   }

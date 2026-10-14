@@ -72,6 +72,16 @@ python -B scripts/build_leaderboard.py --markdown --language ko
 
 ## 공개 비교의 한계
 
-비교표의 Tenconic 점수는 이 패키지의 문항 기록에서 재계산했다. 다른 14개 시스템은 [OmniMemEval의 공개 Reproduced Results](https://github.com/MemTensor/OmniMemEval/blob/main/docs/user_memory/results.md)의 당시 반올림된 점수 스냅샷(`config/public-reference-scores.json`)을 사용한다. **Published Reference**와 **Reproduced Results**는 서로 다른 출처다. 여섯 패널 점수가 있는 12개 시스템만 전체 순위에 포함하고, 값이 빠진 3개 시스템은 전체 순위에서 제외한다. 누락을 0으로 채우거나 남은 패널로 가중치를 다시 나누지 않는다. 패널별 비교에는 해당 패널 점수가 있는 시스템을 모두 보인다.
+비교표의 Tenconic 점수는 이 패키지의 문항 기록에서 재계산했다. 다른 14개 시스템은 [OmniMemEval의 공개 Reproduced Results](https://github.com/MemTensor/OmniMemEval/blob/0b1ea8d28aa2d3e03ac4a6aee17b3006a131da7d/docs/user_memory/results.md)의 당시 반올림된 점수 스냅샷(`config/public-reference-scores.json`)을 사용한다. **Published Reference**와 **Reproduced Results**는 서로 다른 출처다. 여섯 패널 점수가 있는 12개 시스템만 전체 순위에 포함하고, 값이 빠진 3개 시스템은 전체 순위에서 제외한다. 누락을 0으로 채우거나 남은 패널로 가중치를 다시 나누지 않는다. 패널별 비교에는 해당 패널 점수가 있는 시스템을 모두 보인다.
 
 동일한 답변·판정 모델명이 모든 시스템의 동일 시점·동일 배포 조건 재실행을 뜻하지 않는다. Zep와 Graphiti 등 이름상 묶인 항목은 배포 구성이 섞였을 가능성도 있다. 이전 로컬 시험이 Tenconic 검색 구성 선택에 영향을 주었으므로 블라인드 홀드아웃이나 비교 우월성 주장도 성립하지 않는다.
+
+## 세부 유형별 비교
+
+[리더보드 상세표](LEADERBOARD.ko.md#benchmark-details)는 저장된 문항 점수에서 Tenconic의 유형별 평균을 계산합니다. 유형별 문항 수의 합은 각 패널의 전체 문항 수이며, 문항 수로 가중하면 기존 패널 평균을 복원합니다. LoCoMo 저장 ID는 `4 = 단일 근거`, `1 = 다중 근거`, `2 = 시간 추론`, `3 = 개방형`입니다. 범주 5는 계속 제외합니다. 이 평가의 PersonaMem 선호 유형은 7개입니다.
+
+[상세 비교 JSON](config/public-reference-details.json)의 타사 점수는 기존 종합 비교와 같은 2026년 10월 8일 [OmniMemEval 공개 재현 결과 스냅샷](https://github.com/MemTensor/OmniMemEval/blob/0b1ea8d28aa2d3e03ac4a6aee17b3006a131da7d/docs/user_memory/results.md)에서 가져왔습니다. 원 백엔드 이름과 배포 필드를 보존합니다. LoCoMo는 `Zep`, 나머지 표는 `graphiti-zep`이며, 요약표는 원 출처의 `Zep / Graphiti` 묶음을 유지합니다. 타사 종합점수는 반올림된 범주 점수로 재구성하지 않고 원 표의 값을 사용합니다. Tenconic은 반올림 전에 계산합니다. 상세표는 0–100 척도의 소수점 두 자리, 기존 종합점수 표는 네 자리를 표시합니다.
+
+BEAM 타사 비교에는 규모별 평균과 원 출처의 분산 표기를 표시합니다. Tenconic의 분산은 저장된 문항 점수의 모집단 표준편차이며 신뢰구간이 아닙니다. Tenconic의 10개 능력 평균은 100K에서 능력당 40문항, 10M에서 20문항으로 별도 표시합니다. 원 출처에 타사 능력별 값이 없으므로 해당 점수·순위를 만들지 않습니다. 두 규모의 질문·대화 집합은 서로 달라 그 차이를 이력 길이만의 인과 효과로 해석할 수 없습니다. 사건 순서는 순서 평가 지표를, 다른 BEAM 능력은 저장된 rubric 항목 채점을 사용합니다.
+
+상세표는 저장 수치의 오프라인 계산과 출처 표의 전사 결과입니다. 검색·답변 생성·의미적 채점은 다시 실행하지 않았습니다. 타사 컨텍스트 토큰 값은 출처 보존을 위해 JSON에 남기지만, 이 점수 비교에서 동일 토큰 예산이나 효율 우위를 추론하지 않습니다.

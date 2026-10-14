@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "package_date": "2026-10-10",
+  "package_date": "2026-10-14",
   "system": "Tenconic",
   "panels": [
     {
@@ -221,7 +221,7 @@
       "saved_answer_bodies_withheld": 3467
     }
   ],
-  "package_revision": 6,
+  "package_revision": 7,
   "aggregation": {
     "method": "question_count_weighted",
     "expected_questions": 11107,
